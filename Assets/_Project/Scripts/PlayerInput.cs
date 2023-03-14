@@ -6,31 +6,31 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 {
-    public UnityAction crouchEvent;
+	public UnityAction crouchEvent;
 	public UnityAction crouchCanceledEvent;
 	public UnityAction jumpEvent;
 	public UnityAction jumpCanceledEvent;
-    public UnityAction interactEvent;
+	public UnityAction interactEvent;
 	public UnityAction pauseEvent;
-    public UnityAction<Vector2> moveEvent;
-    public UnityAction<Vector2> cameraLookEvent;
+	public UnityAction<Vector2> moveEvent;
+	public UnityAction<Vector2> cameraLookEvent;
 
-    GameControls gameControls;
+	GameControls gameControls;
 
 
 	void OnEnable()
-    {
-        if (gameControls == null)
-        {
-            gameControls = new GameControls();
-            gameControls.Player.SetCallbacks(this);
-        }
+	{
+		if (gameControls == null)
+		{
+			gameControls = new GameControls();
+			gameControls.Player.SetCallbacks(this);
+		}
 		gameControls.Player.Enable();
 
 		Debug.Log("Inputs Enabled");
-    }
+	}
 
-    void OnDisable()
+	void OnDisable()
 	{
 		gameControls.Player.Disable();
 	}
@@ -61,14 +61,13 @@ public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 
 	public void OnLook(InputAction.CallbackContext context)
 	{
-		if (context.phase == InputActionPhase.Performed)
-			cameraLookEvent?.Invoke(context.ReadValue<Vector2>());
+		cameraLookEvent?.Invoke(context.ReadValue<Vector2>());
 	}
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
-		if (context.phase == InputActionPhase.Performed)
-			moveEvent?.Invoke(context.ReadValue<Vector2>());
+		Debug.Log("Move Event " + context.phase + " value " + context.ReadValue<Vector2>());
+		moveEvent?.Invoke(context.ReadValue<Vector2>());
 	}
 
 	public void OnPause(InputAction.CallbackContext context)
