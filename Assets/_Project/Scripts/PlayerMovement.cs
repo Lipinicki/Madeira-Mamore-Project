@@ -9,24 +9,25 @@ public class PlayerMovement : MonoBehaviour
 {
     public PlayerInput PlayerInput;
 
-	[SerializeField] float _groundOffset = .5f; //Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be
-	[SerializeField] float _groundedRadius = .5f; //Radius of IsGrounded sphere
-	[SerializeField] float _gravityScale = 1f; //Scales the Physics.gravity to a new gravity that is used instead
-	[SerializeField] float _gravityContribution = 0f; //Represents how fast gravityContributionMultiplier will go back to 1f. The higher, the faster
-	[SerializeField] float _gravityComeback = 15f; //The factor which determines how much gravity is affecting verticalMovement
-	[SerializeField] float _gravityDivider = .6f; //Is multiplied each frame while jumping trying to "cancel" gravity effect
-	[SerializeField] float _jumpInputDuration = .4f; //Maximun time which the player can hold the jump button
-	[SerializeField] float _initialJumpForce = 10f; //Sets the player rb.velocity.y to this value when jump is pressed
-	[SerializeField] float _movementSpeed = 10.0f; //Speed of players movement
-	[SerializeField] float _maxHorizontalSpeed = 10f; //Used to clamp horizontal speed to prevent player walking fast
-	[SerializeField] float _maxVerticalSpeed = 30.0f; //Used to clamp player's vertical speed to prevent high fall speeds
-	[SerializeField] bool _isJumping;
-	[SerializeField] LayerMask _groundLayers;
+	[SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")] float _groundOffset = .5f;
+	[SerializeField, Tooltip("Radius of IsGrounded sphere")] float _groundedRadius = .5f;
+	[SerializeField, Tooltip("Scales the Physics.gravity to a new gravity that is used instead")] float _gravityScale = 1f;
+	[SerializeField, Tooltip("Represents how fast gravityContributionMultiplier will go back to 1f. The higher, the faster")] float _gravityContribution = 0f;
+	[SerializeField, Tooltip("The factor which determines how much gravity is affecting verticalMovement")] float _gravityComeback = 15f;
+	[SerializeField, Tooltip("Is multiplied each frame while jumping trying to 'cancel' gravity effect")] float _gravityDivider = .6f;
+	[SerializeField, Tooltip("Maximun time which the player can hold the jump button")] float _jumpInputDuration = .4f;
+	[SerializeField, Tooltip("Sets the player rb.velocity.y to this value when jump is pressed")] float _initialJumpForce = 10f;
+	[SerializeField, Tooltip("Speed of players movement")] float _movementSpeed = 10.0f;
+	[SerializeField, Tooltip("Speed in wich the player turn around its own axis")] float _rotationSpeed = 12f;
+	[SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")] float _maxHorizontalSpeed = 10f;
+	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] float _maxVerticalSpeed = 30.0f;
+	[SerializeField, Tooltip("Force applied to move the rigidbody")] Vector3 _movementVector;
 	[SerializeField] Vector3 _inputVector; 
-	[SerializeField] Vector3 _movementVector; //Force applied to move the rigidbody
+	[SerializeField] LayerMask _groundLayers;
 
-	float _jumpBeginTime = Mathf.NegativeInfinity;
-	Rigidbody _rigidbody;
+	private bool _isJumping;
+	private float _jumpBeginTime = Mathf.NegativeInfinity;
+	private Rigidbody _rigidbody;
 
 	//Adds listeners to events triggered in PlayerInput script
 	void OnEnable()
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		_rigidbody = GetComponent<Rigidbody>();
 		_rigidbody.useGravity = false; //Disable Physics.gravity influence
-		_rigidbody.drag = 0.7f;
+		_rigidbody.drag = 0.75f;
 	}
 
 	void FixedUpdate()
@@ -61,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 		//and raise it to a maximun of 1f
 		if (!IsGrounded())
 		{
-			_gravityContribution += Time.deltaTime * _gravityComeback;
+			_gravityContribution += Time.fixedDeltaTime * _gravityComeback;
 		}
 
 		//Jumps
@@ -95,21 +96,17 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		//Calculates a custom gravity for this rigidbody with contributions from gravity
-		_gravityContribution = Mathf.Clamp01(_gravityContribution); //Clamps the contribution between 0 (jumping) and 1 (falling)
+		_gravityContribution = Mathf.Clamp01(_gravityContribution); //Clamps the contribution between 0 (jumping) and 1 (falling);
 		Vector3 gravity = Physics.gravity * _gravityScale * _gravityContribution;
 		_rigidbody.AddForce(gravity, ForceMode.Acceleration); //Adds gravity
 
 		//Moves the player
-		_rigidbody.AddForce(_movementVector, ForceMode.Force);
+		_rigidbody.AddForce(_movementVector * _rigidbody.mass, ForceMode.Force);
 
 		ClampsVelocity();
 
 		//Rotate to the movement direction
-		_movementVector.y = 0f;
-		if (_movementVector.sqrMagnitude >= .02f)
-		{
-			transform.forward = _movementVector.normalized;
-		}
+		UpdateFowardOrientation(_movementVector.normalized);
 	}
 
 	public bool IsGrounded()
@@ -130,6 +127,15 @@ public class PlayerMovement : MonoBehaviour
 		_rigidbody.velocity = xzVel + yVel;
 	}
 
+    private void UpdateFowardOrientation(Vector3 directionVector)
+    {
+        // Update character rotation based on movement direction
+        if (directionVector.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * _rotationSpeed);
+        }
+    }
 	// =============== PLAYER ACtIONS ===============
 
 	void OnCrouch()
