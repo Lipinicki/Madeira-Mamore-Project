@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField, Tooltip("Speed in wich the player turn around its own axis")] float _rotationSpeed = 12f;
 	[SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")] float _maxHorizontalSpeed = 10f;
 	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] float _maxVerticalSpeed = 30.0f;
+	[SerializeField, Tooltip("Speed in wich the player grabs a ledge")] float _ledgeGrabSpeed = 2f;
 	[SerializeField, ReadOnly] LayerMask _groundLayers;
 	
 	[Header("Vectors")]
@@ -32,12 +33,16 @@ public class PlayerMovement : MonoBehaviour
 	
 	[Header("Adtional Transforms")]
 	[SerializeField] private Transform grabDetectionOrigin;
-
+	
+	private Vector3 _standPosition = Vector3.zero;
+	private Vector3 _lerpDestination = Vector3.zero;
 	private bool _isHoldingLedge = false;
 	private bool _isJumping;
 	private bool _isMoving => _movementVector != Vector3.zero && !_isHoldingLedge;
+	private bool _isLerping = false;
 	private float _jumpBeginTime = Mathf.NegativeInfinity;
-	
+	private float _lerpStartTime;
+
 	private Rigidbody _rigidbody;
 	private Animator _mainAnimator;
 	private RaycastHit grabHit;
@@ -45,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 	private const string kLedgeLayer = "Ledges";
 	private const string kWalkingAnimationParam = "isWalking";
 	private const string kGrabAnimationParam = "isGrabingLedge";
+	private const string kClimbAnimationParam = "StartClimb";
+	private const string kIdleAnimationParam = "StartIdle";
 
 	//Adds listeners to events triggered in PlayerInput script
 	void OnEnable()
@@ -75,15 +82,17 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	private void Update() {
+		// set animation parameters
 		_mainAnimator.SetBool(kWalkingAnimationParam, _isMoving);
-		_mainAnimator.SetBool(kGrabAnimationParam, _isHoldingLedge);
+		_mainAnimator.SetBool(kGrabAnimationParam, _isHoldingLedge);		
+		HandleGrabLerp();
 	}
 
 	void FixedUpdate()
 	{
+		//Checks if can grab a ledge and handle transform interpolation
 		HandleLedgeGrab();
-		Debug.Log(_inputVector.y);
-	
+
 		//Raises gravity contribution starting from 0f at the beginning of the jump
 		//and raise it to a maximun of 1f
 		if (!IsGrounded())
@@ -163,28 +172,62 @@ public class PlayerMovement : MonoBehaviour
 
 	private void HandleLedgeGrab()
 	{
+		// Setup holding state
 		if (IsGrounded() || _isHoldingLedge) return;
 
-		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out grabHit, 1.5f, LayerMask.GetMask(kLedgeLayer)))
+		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out grabHit, 5f, LayerMask.GetMask(kLedgeLayer)))
 		{	
 			_rigidbody.isKinematic = true;
 			_isJumping = false;
 			_isHoldingLedge = true;
+
 			float heightOffset = Vector3.Distance(transform.position, grabDetectionOrigin.position) - 0.15f;
-			Vector3 destination = new Vector3(grabHit.point.x, grabHit.point.y - heightOffset, grabHit.point.z + 0.1f);
-			transform.position = Vector3.MoveTowards(transform.position, destination, 1f);
-			_rigidbody.isKinematic = false;
+			_lerpDestination = new Vector3(grabHit.point.x, grabHit.point.y - heightOffset, grabHit.point.z);
+			_standPosition = grabHit.point + new Vector3(transform.forward.x, transform.forward.y + heightOffset, transform.forward.z);
+			_lerpStartTime = Time.time;
+
+        	_isLerping = true;
 		}
+	}
+
+	private void HandleGrabLerp()
+	{
+		// Smoothly moves the player towards a ledge
+		if (!_isLerping) return;
+		
+		float timeSinceStarted = Time.time - _lerpStartTime;
+		float percentageComplete = timeSinceStarted / _ledgeGrabSpeed;
+
+		transform.position = Vector3.Lerp(transform.position, _lerpDestination, percentageComplete);
+
+		if (percentageComplete >= 1.0f)
+		{
+			_isLerping = false;
+		}
+		
 	}
 
 	private void ReleaseGrab()
 	{
+		//Reset holding state
 		_isHoldingLedge = false;
+		_rigidbody.isKinematic = false;
 	}
 	
-	private void Climb()
+	public async void Climb()
 	{
-
+		//Transitions the player from the ledge to the climbing state
+		_mainAnimator.SetTrigger(kClimbAnimationParam);
+		await Task.Delay(100);
+		
+		float currentClipLenght = _mainAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+		int delayInMiliseconds = (int)(currentClipLenght * 1000);
+		await Task.Delay(delayInMiliseconds);
+		
+		transform.position = _standPosition;
+		_mainAnimator.SetTrigger(kIdleAnimationParam);
+		_rigidbody.isKinematic = false;
+		_isHoldingLedge = false;
 	}
 
 	void OnCrouch()
@@ -199,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnJump()
 	{
-		if (!IsGrounded() && !_isHoldingLedge) return;
+		if (!IsGrounded() || _isHoldingLedge) return;
 
 		_isJumping = true;
 		_rigidbody.velocity += new Vector3(0, _initialJumpForce, 0);
