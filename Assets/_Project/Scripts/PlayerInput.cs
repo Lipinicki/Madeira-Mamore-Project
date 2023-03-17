@@ -26,8 +26,6 @@ public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 			gameControls.Player.SetCallbacks(this);
 		}
 		gameControls.Player.Enable();
-
-		Debug.Log("Inputs Enabled");
 	}
 
 	void OnDisable()
@@ -66,7 +64,6 @@ public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
-		Debug.Log("Move Event " + context.phase + " value " + context.ReadValue<Vector2>());
 		moveEvent?.Invoke(context.ReadValue<Vector2>());
 	}
 
