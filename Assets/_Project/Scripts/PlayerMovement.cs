@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] float _maxVerticalSpeed = 30.0f;
 	[SerializeField, Tooltip("Speed in wich the player grabs a ledge")] float _ledgeGrabSpeed = 2f;
 	[SerializeField] float _climbingSpeed = 5f;
-    [SerializeField] float _facingDotThreshold = 0.9f;
+    [SerializeField, Range(-1, 0)] float _facingDotThreshold = -0.9f;
 	[SerializeField, ReadOnly] LayerMask _groundLayers;
 
 	[Header("Vectors")]
@@ -135,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
 				_gravityContribution *= _gravityDivider; //Reduce the gravity effect
 			}
 		}
+		
 
 		if (!_isHoldingLedge && !_isClimbingLadder)
 		{
@@ -267,7 +268,7 @@ public class PlayerMovement : MonoBehaviour
 			Vector3 playerForward = transform.forward;
 			Vector3 ladderForward = _activeLadder.forward;
 			
-			float facingDotProduct = Vector3.Dot(playerForward, ladderForward);
+			float facingDotProduct = Vector3.Dot(playerForward.normalized, ladderForward.normalized);
 			
 			if (facingDotProduct <= _facingDotThreshold)
 			{
