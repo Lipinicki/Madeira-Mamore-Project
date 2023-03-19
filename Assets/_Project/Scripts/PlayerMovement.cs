@@ -9,6 +9,17 @@ using System.Threading.Tasks;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+	private enum ActionStates
+	{
+		Jumping,
+		Climbing,
+		Holding,
+		Walking,
+		Falling,
+		Crouching,
+		Idle
+	}
+
     public PlayerInput PlayerInput;
 	
 	[Header("Character Movement")]
@@ -25,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")] float _maxHorizontalSpeed = 10f;
 	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] float _maxVerticalSpeed = 30.0f;
 	[SerializeField, Tooltip("Speed in wich the player grabs a ledge")] float _ledgeGrabSpeed = 2f;
+	[SerializeField] float _climbingSpeed = 5f;
+    [SerializeField] float _facingDotThreshold = 0.9f;
 	[SerializeField, ReadOnly] LayerMask _groundLayers;
-	
+
 	[Header("Vectors")]
 	[SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")] Vector3 _movementVector;
 	[SerializeField, ReadOnly] Vector3 _inputVector; 
@@ -34,10 +47,14 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Adtional Transforms")]
 	[SerializeField] private Transform grabDetectionOrigin;
 	
+	private ActionStates currentPlayerState = ActionStates.Idle;
+	private Transform _activeLadder = null;
 	private Vector3 _standPosition = Vector3.zero;
 	private Vector3 _lerpDestination = Vector3.zero;
+	
+	private bool _isClimbingLadder = false;
 	private bool _isHoldingLedge = false;
-	private bool _isJumping;
+	private bool _isJumping = false;
 	private bool _isMoving => _movementVector != Vector3.zero && !_isHoldingLedge;
 	private bool _isLerping = false;
 	private float _jumpBeginTime = Mathf.NegativeInfinity;
@@ -47,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 	private Animator _mainAnimator;
 	private RaycastHit grabHit;
 
+	private const string kLadderLayer = "Ladders";
 	private const string kLedgeLayer = "Ledges";
 	private const string kWalkingAnimationParam = "isWalking";
 	private const string kGrabAnimationParam = "isGrabingLedge";
@@ -92,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		//Checks if can grab a ledge and handle transform interpolation
 		HandleLedgeGrab();
+		HandleLadderClimb();
 
 		//Raises gravity contribution starting from 0f at the beginning of the jump
 		//and raise it to a maximun of 1f
@@ -117,11 +136,10 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 
-		//Applies the movement to players input direction
-		_movementVector = _inputVector * _movementSpeed;
-
-		if (!_isHoldingLedge)
+		if (!_isHoldingLedge && !_isClimbingLadder)
 		{
+			//Applies the movement to players input direction
+			_movementVector = _inputVector * _movementSpeed;
 			ApplyGravity();  //Adds gravity
 			
 			//Moves the player
@@ -168,6 +186,17 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * _rotationSpeed);
         }
     }
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.tag == kLadderLayer) GrabLadder(other.transform);
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.transform.tag == kLadderLayer) ReleaseLadder();
+	}
+
 	// =============== PLAYER ACtIONS ===============
 
 	private void HandleLedgeGrab()
@@ -207,14 +236,14 @@ public class PlayerMovement : MonoBehaviour
 		
 	}
 
-	private void ReleaseGrab()
+	private void ReleaseLedge()
 	{
 		//Reset holding state
 		_isHoldingLedge = false;
 		_rigidbody.isKinematic = false;
 	}
 	
-	public async void Climb()
+	private async void ClimbFromLedge()
 	{
 		//Transitions the player from the ledge to the climbing state
 		_mainAnimator.SetTrigger(kClimbAnimationParam);
@@ -230,6 +259,37 @@ public class PlayerMovement : MonoBehaviour
 		_isHoldingLedge = false;
 	}
 
+	private void HandleLadderClimb()
+	{
+		if (_isClimbingLadder && _activeLadder != null)
+		{
+			Vector3 climbDirection = new Vector3(0f, _inputVector.z, 0f);
+			Vector3 playerForward = transform.forward;
+			Vector3 ladderForward = _activeLadder.forward;
+			
+			float facingDotProduct = Vector3.Dot(playerForward, ladderForward);
+			
+			if (facingDotProduct <= _facingDotThreshold)
+			{
+				transform.Translate(climbDirection * _climbingSpeed * Time.fixedDeltaTime);
+			}
+			
+			if (IsGrounded() && climbDirection.y < 0) ReleaseLadder();
+		}
+	}
+
+	private void ReleaseLadder()
+	{
+		_activeLadder = null;
+		_isClimbingLadder = false;
+	}
+
+	private void GrabLadder(Transform ladderTransform)
+	{
+		_activeLadder = ladderTransform;
+		_isClimbingLadder = true;
+	}
+
 	void OnCrouch()
 	{
 
@@ -242,7 +302,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnJump()
 	{
-		if (!IsGrounded() || _isHoldingLedge) return;
+		if (!IsGrounded() || _isHoldingLedge || _isClimbingLadder) return;
 
 		_isJumping = true;
 		_rigidbody.velocity += new Vector3(0, _initialJumpForce, 0);
@@ -258,10 +318,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		_inputVector = new Vector3(movement.x, 0f, movement.y);
 
-		if (_inputVector.z > 0 && _isHoldingLedge) Climb();
-		else if (_inputVector.z < 0 && _isHoldingLedge) ReleaseGrab();
+		if (_inputVector.z > 0 && _isHoldingLedge) ClimbFromLedge();
+		else if (_inputVector.z < 0 && _isHoldingLedge) ReleaseLedge();
 	}
-
 	// =============== GIZMOS ===============
 
 	void OnDrawGizmosSelected()
@@ -276,3 +335,4 @@ public class PlayerMovement : MonoBehaviour
 		Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - _groundOffset, transform.position.z), _groundedRadius);
 	}
 }
+
