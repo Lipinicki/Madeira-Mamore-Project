@@ -11,13 +11,13 @@ public class PlayerMovement : MonoBehaviour
 {
 	private enum ActionStates
 	{
+		Idle,
+		Walking,
 		Jumping,
 		Climbing,
 		Holding,
-		Walking,
 		Falling,
-		Crouching,
-		Idle
+		Crouching
 	}
 
     public PlayerInput PlayerInput;
@@ -52,9 +52,7 @@ public class PlayerMovement : MonoBehaviour
 	private Vector3 _standPosition = Vector3.zero;
 	private Vector3 _lerpDestination = Vector3.zero;
 	
-	private bool _isHoldingLedge = false;
-	private bool _isJumping = false;
-	private bool _isMoving => _movementVector != Vector3.zero && !_isHoldingLedge;
+	private bool _canApplyMovement => (int)currentPlayerState < 3;
 	private bool _isLerping = false;
 	private float _jumpBeginTime = Mathf.NegativeInfinity;
 	private float _lerpStartTime;
@@ -100,8 +98,8 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update() {
 		// set animation parameters
-		_mainAnimator.SetBool(kWalkingAnimationParam, _isMoving);
-		_mainAnimator.SetBool(kGrabAnimationParam, _isHoldingLedge);		
+		_mainAnimator.SetBool(kWalkingAnimationParam, currentPlayerState == ActionStates.Walking);
+		_mainAnimator.SetBool(kGrabAnimationParam, currentPlayerState == ActionStates.Holding);		
 		HandleGrabLerp();
 	}
 
@@ -126,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 			//called
 			if (Time.time >= _jumpBeginTime + _jumpInputDuration)
 			{
-				_isJumping = false;
+				ResetPlayerState();
 				_gravityContribution = 1f; //Gravity influence is reset to full effect
 			}
 			else
@@ -136,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		
 
-		if (currentPlayerState == ActionStates.Walking)
+		if (_canApplyMovement)
 		{
 			//Applies the movement to players input direction
 			_movementVector = _inputVector * _movementSpeed;
@@ -202,13 +200,12 @@ public class PlayerMovement : MonoBehaviour
 	private void HandleLedgeGrab()
 	{
 		// Setup holding state
-		if (IsGrounded() || _isHoldingLedge) return;
+		if (IsGrounded() || currentPlayerState == ActionStates.Holding) return;
 
 		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out grabHit, 5f, LayerMask.GetMask(kLedgeLayer)))
 		{	
 			_rigidbody.isKinematic = true;
-			_isJumping = false;
-			_isHoldingLedge = true;
+			currentPlayerState = ActionStates.Holding;
 
 			float heightOffset = Vector3.Distance(transform.position, grabDetectionOrigin.position) - 0.15f;
 			_lerpDestination = new Vector3(grabHit.point.x, grabHit.point.y - heightOffset, grabHit.point.z);
@@ -239,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
 	private void ReleaseLedge()
 	{
 		//Reset holding state
-		_isHoldingLedge = false;
+		ResetPlayerState();
 		_rigidbody.isKinematic = false;
 	}
 	
@@ -256,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
 		transform.position = _standPosition;
 		_mainAnimator.SetTrigger(kIdleAnimationParam);
 		_rigidbody.isKinematic = false;
-		_isHoldingLedge = false;
+		ResetPlayerState();
 	}
 
 	private void HandleLadderClimb()
@@ -280,13 +277,13 @@ public class PlayerMovement : MonoBehaviour
 	private void ReleaseLadder()
 	{
 		_activeLadder = null;
-		currentPlayerState = ActionStates.Climbing;
+		ResetPlayerState();
 	}
 
 	private void GrabLadder(Transform ladderTransform)
 	{
 		_activeLadder = ladderTransform;
-		currentPlayerState = ActionStates.Idle;
+		currentPlayerState = ActionStates.Climbing;
 	}
 
 	void OnCrouch()
@@ -301,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnJump()
 	{
-		if (!IsGrounded() || currentPlayerState != ActionStates.Walking) return;
+		if (!IsGrounded() || currentPlayerState == ActionStates.Jumping) return;
 
 		currentPlayerState = ActionStates.Jumping;
 		_rigidbody.velocity += new Vector3(0, _initialJumpForce, 0);
@@ -310,16 +307,20 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnJumpCanceled()
 	{		
-		currentPlayerState = ActionStates.Idle;
+		ResetPlayerState();
 	}
 
 	void OnMove(Vector2 movement)
 	{
 		_inputVector = new Vector3(movement.x, 0f, movement.y);
 
-		if (_inputVector.z > 0 && _isHoldingLedge) ClimbFromLedge();
-		else if (_inputVector.z < 0 && _isHoldingLedge) ReleaseLedge();
+		if (_inputVector.z > 0 && currentPlayerState == ActionStates.Holding) ClimbFromLedge();
+		else if (_inputVector.z < 0 && currentPlayerState == ActionStates.Holding) ReleaseLedge();
+		else if (IsGrounded() && _inputVector != Vector3.zero) currentPlayerState = ActionStates.Walking;
+		else if (IsGrounded() && _inputVector == Vector3.zero) ResetPlayerState();
 	}
+
+	private void ResetPlayerState() => currentPlayerState = ActionStates.Idle;
 	// =============== GIZMOS ===============
 
 	void OnDrawGizmosSelected()
