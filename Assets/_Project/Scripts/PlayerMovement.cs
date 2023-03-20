@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
 	private Vector3 _standPosition = Vector3.zero;
 	private Vector3 _lerpDestination = Vector3.zero;
 	
-	private bool _isClimbingLadder = false;
 	private bool _isHoldingLedge = false;
 	private bool _isJumping = false;
 	private bool _isMoving => _movementVector != Vector3.zero && !_isHoldingLedge;
@@ -120,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		//Jumps
-		if (_isJumping)
+		if (currentPlayerState == ActionStates.Jumping)
 		{
 			//The player can only hold the Jump button for so long as
 			//JumpInputDuration, _jumpBeginTime is setted when OnJump is
@@ -137,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		
 
-		if (!_isHoldingLedge && !_isClimbingLadder)
+		if (currentPlayerState == ActionStates.Walking)
 		{
 			//Applies the movement to players input direction
 			_movementVector = _inputVector * _movementSpeed;
@@ -262,33 +261,32 @@ public class PlayerMovement : MonoBehaviour
 
 	private void HandleLadderClimb()
 	{
-		if (_isClimbingLadder && _activeLadder != null)
+		if (currentPlayerState != ActionStates.Climbing || _activeLadder == null) return;
+		
+		Vector3 climbDirection = new Vector3(0f, _inputVector.z, 0f);
+		Vector3 playerForward = transform.forward;
+		Vector3 ladderForward = _activeLadder.forward;
+		
+		float facingDotProduct = Vector3.Dot(playerForward.normalized, ladderForward.normalized);
+		
+		if (facingDotProduct <= _facingDotThreshold)
 		{
-			Vector3 climbDirection = new Vector3(0f, _inputVector.z, 0f);
-			Vector3 playerForward = transform.forward;
-			Vector3 ladderForward = _activeLadder.forward;
-			
-			float facingDotProduct = Vector3.Dot(playerForward.normalized, ladderForward.normalized);
-			
-			if (facingDotProduct <= _facingDotThreshold)
-			{
-				transform.Translate(climbDirection * _climbingSpeed * Time.fixedDeltaTime);
-			}
-			
-			if (IsGrounded() && climbDirection.y < 0) ReleaseLadder();
+			transform.Translate(climbDirection * _climbingSpeed * Time.fixedDeltaTime);
 		}
+		
+		if (IsGrounded() && climbDirection.y < 0) ReleaseLadder();
 	}
 
 	private void ReleaseLadder()
 	{
 		_activeLadder = null;
-		_isClimbingLadder = false;
+		currentPlayerState = ActionStates.Climbing;
 	}
 
 	private void GrabLadder(Transform ladderTransform)
 	{
 		_activeLadder = ladderTransform;
-		_isClimbingLadder = true;
+		currentPlayerState = ActionStates.Idle;
 	}
 
 	void OnCrouch()
@@ -303,16 +301,16 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnJump()
 	{
-		if (!IsGrounded() || _isHoldingLedge || _isClimbingLadder) return;
+		if (!IsGrounded() || currentPlayerState != ActionStates.Walking) return;
 
-		_isJumping = true;
+		currentPlayerState = ActionStates.Jumping;
 		_rigidbody.velocity += new Vector3(0, _initialJumpForce, 0);
 		_jumpBeginTime = Time.time; //Resets jump begin time
 	}
 
 	void OnJumpCanceled()
-	{
-		_isJumping = false;
+	{		
+		currentPlayerState = ActionStates.Idle;
 	}
 
 	void OnMove(Vector2 movement)
