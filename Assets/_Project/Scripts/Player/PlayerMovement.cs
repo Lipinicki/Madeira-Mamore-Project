@@ -27,19 +27,15 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField, Tooltip("Speed in wich the player turn around its own axis")] float _rotationSpeed = 12f;
 	[SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")] float _maxHorizontalSpeed = 10f;
 	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] float _maxVerticalSpeed = 30.0f;
-
 	[SerializeField] LayerMask _groundLayers;
 
 	[Header("Vectors")]
 	[SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")] Vector3 _movementVector;
 	[SerializeField, ReadOnly] Vector3 _inputVector; 
 	
-	private bool blockVerticalAxis = false;
-	private bool blockHorizontalAxis = false;
 	private bool _canApplyMovement => (int)_currentPlayerState < 3;
 	private float _jumpBeginTime = Mathf.NegativeInfinity;
 	private ActionStates _currentPlayerState = ActionStates.Idle;
-	private SubStates _currentSubstate = SubStates.None;
 	private Rigidbody _rigidbody;
 	private Animator _mainAnimator;
 
@@ -109,10 +105,7 @@ public class PlayerMovement : MonoBehaviour
 		if (_canApplyMovement)
 		{
 			//Applies the movement to players input direction
-			float currentMoveSpeed = _currentSubstate == SubStates.Interacting ?
-			_movementSpeed * 0.45f : _movementSpeed;
-
-			_movementVector = _inputVector * currentMoveSpeed;
+			_movementVector = _inputVector * _movementSpeed;
 			ApplyGravity();  //Adds gravity
 			
 			//Moves the player
@@ -131,23 +124,14 @@ public class PlayerMovement : MonoBehaviour
 		return isGrounded;
 	}
 
-	public void ResetPlayerState(bool resetSubstateToo = true)
-	{	
+	public void ResetPlayerState()
+	{
 		_currentPlayerState = ActionStates.Idle;
-		if (resetSubstateToo == false) return; 
-		_currentSubstate = SubStates.None;
 	}
 
-	public void ChangePlayerState(ActionStates state, SubStates substate = SubStates.None)
+	public void ChangePlayerState(ActionStates state)
 	{
 		_currentPlayerState = state;
-		if (substate == SubStates.None) return; 
-		_currentSubstate = substate;
-	}
-
-	public void ChangePlayerSubstate(SubStates substate)
-	{
-		_currentSubstate = substate;
 	}
 
 	void ApplyGravity()
@@ -172,10 +156,11 @@ public class PlayerMovement : MonoBehaviour
     void UpdateFowardOrientation(Vector3 directionVector)
     {
         // Update character rotation based on movement direction
-        if (directionVector.magnitude < 0.1f || _currentSubstate == SubStates.Interacting) return;
-        
-		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * _rotationSpeed);
+        if (directionVector.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * _rotationSpeed);
+        }
     }
 
 	// =============== INPPUT ACTIONS ===============
@@ -208,24 +193,10 @@ public class PlayerMovement : MonoBehaviour
 	void OnMove(Vector2 movement)
 	{
 		_inputVector = new Vector3(movement.x, 0f, movement.y);
-		_inputVector.x *= blockHorizontalAxis ? 0f : 1f;
-		_inputVector.z *= blockVerticalAxis ? 0f : 1f;
 
-		if (IsGrounded() && movement != Vector2.zero) ChangePlayerState(ActionStates.Walking);
-		else if (IsGrounded() && movement == Vector2.zero) ResetPlayerState(resetSubstateToo: false);
+		
 	}
 
-	public void BlockMovementAxis(bool lockHorizontal = false, bool lockVertical = false)
-	{
-		blockHorizontalAxis = lockHorizontal;
-		blockVerticalAxis = lockVertical;
-	}
-
-	public void UnlockMovementAxis()
-	{
-		blockHorizontalAxis = false;
-		blockVerticalAxis = false;
-	}
 	// =============== GIZMOS ===============
 
 	void OnDrawGizmosSelected()
