@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LadderClimb : MonoBehaviour
 {
-	[SerializeField] float climbingSpeed = 5f;
 	[SerializeField, Range(-1, 0)] float facingDotThreshold = -0.9f;
+	[SerializeField] float climbingSpeed = 5f;
 
 	Transform _activeLadder = null;
 	PlayerMovement _playerMovement;
@@ -41,7 +41,9 @@ public class LadderClimb : MonoBehaviour
 		Vector3 playerForward = transform.forward;
 		Vector3 ladderForward = _activeLadder.forward;
 
-		if (CheckFacingVectors(playerForward.normalized, ladderForward.normalized))
+		float facingDotProduct = Vector3.Dot(playerForward.normalized, ladderForward.normalized);
+
+		if (facingDotProduct <= facingDotThreshold)
 		{
 			transform.Translate(climbDirection * climbingSpeed * Time.fixedDeltaTime);
 		}
@@ -59,11 +61,5 @@ public class LadderClimb : MonoBehaviour
 	{
 		_activeLadder = ladderTransform;
 		_playerMovement.ChangePlayerState(ActionStates.Climbing);
-	}
-
-	public bool CheckFacingVectors(Vector3 vectorA, Vector3 vectorB)
-	{
-		float facingDotProduct = Vector3.Dot(vectorA.normalized, vectorB.normalized);
-		return (facingDotProduct <= facingDotThreshold);
 	}
 }

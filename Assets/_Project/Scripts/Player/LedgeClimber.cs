@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class LedgeClimber : MonoBehaviour
 {
-	public PlayerInput playerInput;
-
 	[SerializeField, Tooltip("Speed in wich the player grabs a ledge")] float ledgeGrabSpeed = 2f;
 	[SerializeField] Transform grabDetectionOrigin;
 
@@ -25,12 +23,12 @@ public class LedgeClimber : MonoBehaviour
 
 	private void OnEnable()
 	{
-		playerInput.moveEvent += OnClimb;
+		_playerMovement.PlayerInput.moveEvent += OnClimb;
 	}
 
 	private void OnDisable()
 	{
-		playerInput.moveEvent -= OnClimb;
+		_playerMovement.PlayerInput.moveEvent -= OnClimb;
 	}
 
 	private void Awake()
@@ -114,5 +112,7 @@ public class LedgeClimber : MonoBehaviour
 	{
 		if (movement.y > 0 && _playerMovement.CurrentPlayerState == ActionStates.Holding) ClimbFromLedge();
 		else if (movement.y < 0 && _playerMovement.CurrentPlayerState == ActionStates.Holding) ReleaseLedge();
+		else if (_playerMovement.IsGrounded() && movement != Vector2.zero) _playerMovement.ChangePlayerState(ActionStates.Walking);
+		else if (_playerMovement.IsGrounded() && movement == Vector2.zero) _playerMovement.ResetPlayerState();
 	}
 }
