@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 3788120389734674106}
   - component: {fileID: 3788120389734674055}
   - component: {fileID: 3788120389734674054}
+  - component: {fileID: 101051203701481243}
+  - component: {fileID: 1327058896120126717}
   - component: {fileID: 4259353017313282562}
   m_Layer: 0
   m_Name: Player
@@ -114,7 +116,6 @@ MonoBehaviour:
     m_Bits: 8
   _movementVector: {x: 0, y: 0, z: 0}
   _inputVector: {x: 0, y: 0, z: 0}
-  grabDetectionOrigin: {fileID: 528401359389523924}
 --- !u!114 &3788120389734674054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +128,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f3cf452ff98c444abf9b45803cdaf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &101051203701481243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788120389734674053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2271d5c822c9d4c8c58c30dedddf8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ledgeGrabSpeed: 2
+  grabDetectionOrigin: {fileID: 528401359389523924}
+--- !u!114 &1327058896120126717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788120389734674053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2de924cda097343bcca96006e26758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingDotThreshold: -0.9
+  climbingSpeed: 5
 --- !u!136 &4259353017313282562
 CapsuleCollider:
   m_ObjectHideFlags: 0
