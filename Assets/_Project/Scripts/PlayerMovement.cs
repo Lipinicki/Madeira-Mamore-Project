@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Adtional Transforms")]
 	[SerializeField] private Transform grabDetectionOrigin;
 	
-	private ActionStates currentPlayerState = ActionStates.Idle;
 	private Transform _activeLadder = null;
 	private Vector3 _standPosition = Vector3.zero;
 	private Vector3 _lerpDestination = Vector3.zero;
+	private ActionStates currentPlayerState = ActionStates.Idle;
 	
 	private bool _canApplyMovement => (int)currentPlayerState < 3;
 	private bool _isLerping = false;
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 	private Animator _mainAnimator;
 	private RaycastHit grabHit;
 
-	private const string kLadderLayer = "Ladders";
+	private const string kLadderTag = "Ladders";
 	private const string kLedgeLayer = "Ledges";
 	private const string kWalkingAnimationParam = "isWalking";
 	private const string kGrabAnimationParam = "isGrabingLedge";
@@ -187,12 +187,12 @@ public class PlayerMovement : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.transform.tag == kLadderLayer) GrabLadder(other.transform);
+		if (other.transform.tag == kLadderTag) GrabLadder(other.transform);
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.transform.tag == kLadderLayer) ReleaseLadder();
+		if (other.transform.tag == kLadderTag) ReleaseLadder();
 	}
 
 	// =============== PLAYER ACtIONS ===============
@@ -202,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
 		// Setup holding state
 		if (IsGrounded() || currentPlayerState == ActionStates.Holding) return;
 
-		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out grabHit, 5f, LayerMask.GetMask(kLedgeLayer)))
+		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out grabHit, 3f, LayerMask.GetMask(kLedgeLayer)))
 		{	
 			_rigidbody.isKinematic = true;
 			currentPlayerState = ActionStates.Holding;
@@ -264,15 +264,14 @@ public class PlayerMovement : MonoBehaviour
 		Vector3 playerForward = transform.forward;
 		Vector3 ladderForward = _activeLadder.forward;
 		
-		float facingDotProduct = Vector3.Dot(playerForward.normalized, ladderForward.normalized);
-		
-		if (facingDotProduct <= _facingDotThreshold)
+		if (CheckFacingVectors(playerForward.normalized, ladderForward.normalized))
 		{
 			transform.Translate(climbDirection * _climbingSpeed * Time.fixedDeltaTime);
 		}
 		
 		if (IsGrounded() && climbDirection.y < 0) ReleaseLadder();
 	}
+
 
 	private void ReleaseLadder()
 	{
@@ -285,6 +284,14 @@ public class PlayerMovement : MonoBehaviour
 		_activeLadder = ladderTransform;
 		currentPlayerState = ActionStates.Climbing;
 	}
+
+	private bool CheckFacingVectors(Vector3 vectorA, Vector3 vectorB)
+	{
+		float facingDotProduct = Vector3.Dot(vectorA.normalized, vectorB.normalized);
+		return (facingDotProduct <= _facingDotThreshold);
+	}
+	
+	private void ResetPlayerState() => currentPlayerState = ActionStates.Idle;
 
 	void OnCrouch()
 	{
@@ -320,7 +327,7 @@ public class PlayerMovement : MonoBehaviour
 		else if (IsGrounded() && _inputVector == Vector3.zero) ResetPlayerState();
 	}
 
-	private void ResetPlayerState() => currentPlayerState = ActionStates.Idle;
+	
 	// =============== GIZMOS ===============
 
 	void OnDrawGizmosSelected()
