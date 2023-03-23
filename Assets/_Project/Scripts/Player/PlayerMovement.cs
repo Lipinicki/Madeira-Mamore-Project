@@ -9,11 +9,19 @@ using System.Threading.Tasks;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    public PlayerInput PlayerInput;
-	public string KIdleAnimationParam { get { return kIdleAnimationParam; } }
-	public Vector3 InputVector { get { return _inputVector; } }
-	public ActionStates CurrentPlayerState { get { return _currentPlayerState; } }
+	private enum ActionStates
+	{
+		Idle,
+		Walking,
+		Jumping,
+		Climbing,
+		Holding,
+		Falling,
+		Crouching
+	}
 
+    public PlayerInput PlayerInput;
+	
 	[Header("Character Movement")]
 	[SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")] float _groundOffset = .5f;
 	[SerializeField, Tooltip("Radius of IsGrounded sphere")] float _groundedRadius = .5f;
@@ -27,23 +35,37 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField, Tooltip("Speed in wich the player turn around its own axis")] float _rotationSpeed = 12f;
 	[SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")] float _maxHorizontalSpeed = 10f;
 	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] float _maxVerticalSpeed = 30.0f;
-
-	[SerializeField] LayerMask _groundLayers;
+	[SerializeField, Tooltip("Speed in wich the player grabs a ledge")] float _ledgeGrabSpeed = 2f;
+	[SerializeField] float _climbingSpeed = 5f;
+    [SerializeField, Range(-1, 0)] float _facingDotThreshold = -0.9f;
+	[SerializeField, ReadOnly] LayerMask _groundLayers;
 
 	[Header("Vectors")]
 	[SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")] Vector3 _movementVector;
 	[SerializeField, ReadOnly] Vector3 _inputVector; 
 	
-	private bool blockVerticalAxis = false;
-	private bool blockHorizontalAxis = false;
-	private bool _canApplyMovement => (int)_currentPlayerState < 3;
+	[Header("Adtional Transforms")]
+	[SerializeField] private Transform grabDetectionOrigin;
+	
+	private Transform _activeLadder = null;
+	private Vector3 _standPosition = Vector3.zero;
+	private Vector3 _lerpDestination = Vector3.zero;
+	private ActionStates currentPlayerState = ActionStates.Idle;
+	
+	private bool _canApplyMovement => (int)currentPlayerState < 3;
+	private bool _isLerping = false;
 	private float _jumpBeginTime = Mathf.NegativeInfinity;
-	private ActionStates _currentPlayerState = ActionStates.Idle;
-	private SubStates _currentSubstate = SubStates.None;
+	private float _lerpStartTime;
+
 	private Rigidbody _rigidbody;
 	private Animator _mainAnimator;
+	private RaycastHit grabHit;
 
+	private const string kLadderTag = "Ladders";
+	private const string kLedgeLayer = "Ledges";
 	private const string kWalkingAnimationParam = "isWalking";
+	private const string kGrabAnimationParam = "isGrabingLedge";
+	private const string kClimbAnimationParam = "StartClimb";
 	private const string kIdleAnimationParam = "StartIdle";
 
 	//Adds listeners to events triggered in PlayerInput script
@@ -76,11 +98,17 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update() {
 		// set animation parameters
-		_mainAnimator.SetBool(kWalkingAnimationParam, _currentPlayerState == ActionStates.Walking);
+		_mainAnimator.SetBool(kWalkingAnimationParam, currentPlayerState == ActionStates.Walking);
+		_mainAnimator.SetBool(kGrabAnimationParam, currentPlayerState == ActionStates.Holding);		
+		HandleGrabLerp();
 	}
 
 	void FixedUpdate()
 	{
+		//Checks if can grab a ledge and handle transform interpolation
+		HandleLedgeGrab();
+		HandleLadderClimb();
+
 		//Raises gravity contribution starting from 0f at the beginning of the jump
 		//and raise it to a maximun of 1f
 		if (!IsGrounded())
@@ -89,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		//Jumps
-		if (_currentPlayerState == ActionStates.Jumping)
+		if (currentPlayerState == ActionStates.Jumping)
 		{
 			//The player can only hold the Jump button for so long as
 			//JumpInputDuration, _jumpBeginTime is setted when OnJump is
@@ -109,10 +137,7 @@ public class PlayerMovement : MonoBehaviour
 		if (_canApplyMovement)
 		{
 			//Applies the movement to players input direction
-			float currentMoveSpeed = _currentSubstate == SubStates.Interacting ?
-			_movementSpeed * 0.45f : _movementSpeed;
-
-			_movementVector = _inputVector * currentMoveSpeed;
+			_movementVector = _inputVector * _movementSpeed;
 			ApplyGravity();  //Adds gravity
 			
 			//Moves the player
@@ -131,26 +156,7 @@ public class PlayerMovement : MonoBehaviour
 		return isGrounded;
 	}
 
-	public void ResetPlayerState(bool resetSubstateToo = true)
-	{	
-		_currentPlayerState = ActionStates.Idle;
-		if (resetSubstateToo == false) return; 
-		_currentSubstate = SubStates.None;
-	}
-
-	public void ChangePlayerState(ActionStates state, SubStates substate = SubStates.None)
-	{
-		_currentPlayerState = state;
-		if (substate == SubStates.None) return; 
-		_currentSubstate = substate;
-	}
-
-	public void ChangePlayerSubstate(SubStates substate)
-	{
-		_currentSubstate = substate;
-	}
-
-	void ApplyGravity()
+	private void ApplyGravity()
 	{
 		//Calculates a custom gravity for this rigidbody with contributions from gravity
 		_gravityContribution = Mathf.Clamp01(_gravityContribution); //Clamps the contribution between 0 (jumping) and 1 (falling);
@@ -169,17 +175,123 @@ public class PlayerMovement : MonoBehaviour
 		_rigidbody.velocity = xzVel + yVel;
 	}
 
-    void UpdateFowardOrientation(Vector3 directionVector)
+    private void UpdateFowardOrientation(Vector3 directionVector)
     {
         // Update character rotation based on movement direction
-        if (directionVector.magnitude < 0.1f || _currentSubstate == SubStates.Interacting) return;
-        
-		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * _rotationSpeed);
+        if (directionVector.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * _rotationSpeed);
+        }
     }
 
-	// =============== INPPUT ACTIONS ===============
-	// This section is deserved to actions triggered by input events
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.tag == kLadderTag) GrabLadder(other.transform);
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.transform.tag == kLadderTag) ReleaseLadder();
+	}
+
+	// =============== PLAYER ACtIONS ===============
+
+	private void HandleLedgeGrab()
+	{
+		// Setup holding state
+		if (IsGrounded() || currentPlayerState == ActionStates.Holding) return;
+
+		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out grabHit, 3f, LayerMask.GetMask(kLedgeLayer)))
+		{	
+			_rigidbody.isKinematic = true;
+			currentPlayerState = ActionStates.Holding;
+
+			float heightOffset = Vector3.Distance(transform.position, grabDetectionOrigin.position) - 0.15f;
+			_lerpDestination = new Vector3(grabHit.point.x, grabHit.point.y - heightOffset, grabHit.point.z);
+			_standPosition = grabHit.point + new Vector3(transform.forward.x, transform.forward.y + heightOffset, transform.forward.z);
+			_lerpStartTime = Time.time;
+
+        	_isLerping = true;
+		}
+	}
+
+	private void HandleGrabLerp()
+	{
+		// Smoothly moves the player towards a ledge
+		if (!_isLerping) return;
+		
+		float timeSinceStarted = Time.time - _lerpStartTime;
+		float percentageComplete = timeSinceStarted / _ledgeGrabSpeed;
+
+		transform.position = Vector3.Lerp(transform.position, _lerpDestination, percentageComplete);
+
+		if (percentageComplete >= 1.0f)
+		{
+			_isLerping = false;
+		}
+		
+	}
+
+	private void ReleaseLedge()
+	{
+		//Reset holding state
+		ResetPlayerState();
+		_rigidbody.isKinematic = false;
+	}
+	
+	private async void ClimbFromLedge()
+	{
+		//Transitions the player from the ledge to the climbing state
+		_mainAnimator.SetTrigger(kClimbAnimationParam);
+		await Task.Delay(100);
+		
+		float currentClipLenght = _mainAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+		int delayInMiliseconds = (int)(currentClipLenght * 1000);
+		await Task.Delay(delayInMiliseconds);
+		
+		transform.position = _standPosition;
+		_mainAnimator.SetTrigger(kIdleAnimationParam);
+		_rigidbody.isKinematic = false;
+		ResetPlayerState();
+	}
+
+	private void HandleLadderClimb()
+	{
+		if (currentPlayerState != ActionStates.Climbing || _activeLadder == null) return;
+		
+		Vector3 climbDirection = new Vector3(0f, _inputVector.z, 0f);
+		Vector3 playerForward = transform.forward;
+		Vector3 ladderForward = _activeLadder.forward;
+		
+		if (CheckFacingVectors(playerForward.normalized, ladderForward.normalized))
+		{
+			transform.Translate(climbDirection * _climbingSpeed * Time.fixedDeltaTime);
+		}
+		
+		if (IsGrounded() && climbDirection.y < 0) ReleaseLadder();
+	}
+
+
+	private void ReleaseLadder()
+	{
+		_activeLadder = null;
+		ResetPlayerState();
+	}
+
+	private void GrabLadder(Transform ladderTransform)
+	{
+		_activeLadder = ladderTransform;
+		currentPlayerState = ActionStates.Climbing;
+	}
+
+	private bool CheckFacingVectors(Vector3 vectorA, Vector3 vectorB)
+	{
+		float facingDotProduct = Vector3.Dot(vectorA.normalized, vectorB.normalized);
+		return (facingDotProduct <= _facingDotThreshold);
+	}
+	
+	private void ResetPlayerState() => currentPlayerState = ActionStates.Idle;
 
 	void OnCrouch()
 	{
@@ -193,9 +305,9 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnJump()
 	{
-		if (!IsGrounded() || _currentPlayerState == ActionStates.Jumping) return;
+		if (!IsGrounded() || currentPlayerState == ActionStates.Jumping) return;
 
-		_currentPlayerState = ActionStates.Jumping;
+		currentPlayerState = ActionStates.Jumping;
 		_rigidbody.velocity += new Vector3(0, _initialJumpForce, 0);
 		_jumpBeginTime = Time.time; //Resets jump begin time
 	}
@@ -208,12 +320,13 @@ public class PlayerMovement : MonoBehaviour
 	void OnMove(Vector2 movement)
 	{
 		_inputVector = new Vector3(movement.x, 0f, movement.y);
-		_inputVector.x *= blockHorizontalAxis ? 0f : 1f;
-		_inputVector.z *= blockVerticalAxis ? 0f : 1f;
 
-		if (IsGrounded() && movement != Vector2.zero) ChangePlayerState(ActionStates.Walking);
-		else if (IsGrounded() && movement == Vector2.zero) ResetPlayerState(resetSubstateToo: false);
+		if (_inputVector.z > 0 && currentPlayerState == ActionStates.Holding) ClimbFromLedge();
+		else if (_inputVector.z < 0 && currentPlayerState == ActionStates.Holding) ReleaseLedge();
+		else if (IsGrounded() && _inputVector != Vector3.zero) currentPlayerState = ActionStates.Walking;
+		else if (IsGrounded() && _inputVector == Vector3.zero) ResetPlayerState();
 	}
+
 	
 	// =============== GIZMOS ===============
 
