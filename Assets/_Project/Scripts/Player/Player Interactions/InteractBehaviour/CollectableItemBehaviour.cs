@@ -17,8 +17,7 @@ public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectab
 		var item = itensInventoryData.GetItem(itemName); 
 		if (item.Value == null) 
 		{
-			Debug.Log($"Error! item: ({itemName}) does not exist on the {itensInventoryData.name} collection.");
-			return;
+			Debug.Log($"Error, item: ({itemName}) does not exist on the {itensInventoryData.name} iventory.");
 		}
 
 		inventory.AddItem(item.Key, item.Value);

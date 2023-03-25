@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/_Project/Art/Models/FBX.meta
 guid: cfa0ffc46ad688a43abbde9c9c851a72
-========
-guid: 307650a449560bd4fa7206e4729646ce
->>>>>>>> 32ad5ac (Minor refactoring on player movement script):Assets/_Project/Scripts/Player.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
