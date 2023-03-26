@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3788120389734674054}
   - component: {fileID: 101051203701481243}
   - component: {fileID: 1327058896120126717}
+  - component: {fileID: 8435062728391737506}
   - component: {fileID: 4259353017313282562}
   m_Layer: 0
   m_Name: Player
@@ -111,6 +112,7 @@ MonoBehaviour:
   _rotationSpeed: 12
   _maxHorizontalSpeed: 2.5
   _maxVerticalSpeed: 50
+  facingDotThreshold: -0.9
   _groundLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -154,8 +156,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2de924cda097343bcca96006e26758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingDotThreshold: -0.9
   climbingSpeed: 5
+--- !u!114 &8435062728391737506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788120389734674053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c7cf3beb7ac8e4e8bbf365d101da7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 2
+  moveSpeed: 5
 --- !u!136 &4259353017313282562
 CapsuleCollider:
   m_ObjectHideFlags: 0
