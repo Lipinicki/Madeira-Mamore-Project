@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
@@ -7,12 +6,12 @@ public class Item
 {
 	public string Name;
 	public string Text;
-	public Sprite Sprite;
+	public Image ImageToShow;
 
-	public Item(string name, string text, Sprite sprite)
+	public Item(string name, string text, Image imageToShow)
 	{
 		Name = name;
 		Text = text;
-		Sprite = sprite;
+		ImageToShow = imageToShow;
 	}
 }
