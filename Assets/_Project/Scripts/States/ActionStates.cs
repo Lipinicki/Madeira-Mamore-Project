@@ -6,7 +6,12 @@
 		Climbing,
 		Holding,
 		Falling,
-		Crouching
 }
 
+public enum SubStates
+{
+	None,
+	Interacting,
+	Crouching
+}
 

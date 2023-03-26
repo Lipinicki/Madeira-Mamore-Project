@@ -43,6 +43,13 @@ public class BlockPushing : MonoBehaviour
 		// Calculate the perpendicular vector to both the blockOffset and the player's forward vector
 		Vector3 perpendicularVector = Vector3.Cross(blockOffset, transform.TransformDirection(Vector3.forward)).normalized;
 
+		// Determine which axis to disable based on the perpendicular vector
+		bool disableHorizontalAxis = (Mathf.Abs(Vector3.Dot(movementDirection, perpendicularVector)) > 0.5f);
+		bool disableVerticalAxis = (Mathf.Abs(Vector3.Dot(movementDirection, perpendicularVector)) < 0.5f);
+
+		// Disable the correct axis while pushing or pulling the block
+		_playerMovement.BlockMovementAxis(disableHorizontalAxis, disableVerticalAxis);
+
 		// Calculate the target position for the block
 		Vector3 targetPosition = transform.position + transform.forward * blockOffset.magnitude;
 
@@ -65,6 +72,7 @@ public class BlockPushing : MonoBehaviour
             activeBlock.isKinematic = true;
 			activeBlock = null;
 			_playerMovement.ResetPlayerState();
+			_playerMovement.UnlockMovementAxis();
 		}
 		else if (Physics.Raycast(transform.position, transform.forward, out var grabHit, maxDistance, LayerMask.GetMask(kPushBlocksLayer)) && activeBlock == null)
 		{
