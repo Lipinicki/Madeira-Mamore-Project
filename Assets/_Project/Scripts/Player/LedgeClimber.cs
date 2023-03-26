@@ -112,7 +112,5 @@ public class LedgeClimber : MonoBehaviour
 	{
 		if (movement.y > 0 && _playerMovement.CurrentPlayerState == ActionStates.Holding) ClimbFromLedge();
 		else if (movement.y < 0 && _playerMovement.CurrentPlayerState == ActionStates.Holding) ReleaseLedge();
-		else if (_playerMovement.IsGrounded() && movement != Vector2.zero) _playerMovement.ChangePlayerState(ActionStates.Walking);
-		else if (_playerMovement.IsGrounded() && movement == Vector2.zero) _playerMovement.ResetPlayerState();
 	}
 }
