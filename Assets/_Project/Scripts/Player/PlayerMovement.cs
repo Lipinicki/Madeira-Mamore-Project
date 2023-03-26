@@ -214,18 +214,7 @@ public class PlayerMovement : MonoBehaviour
 		if (IsGrounded() && movement != Vector2.zero) ChangePlayerState(ActionStates.Walking);
 		else if (IsGrounded() && movement == Vector2.zero) ResetPlayerState(resetSubstateToo: false);
 	}
-
-	public void BlockMovementAxis(bool lockHorizontal = false, bool lockVertical = false)
-	{
-		blockHorizontalAxis = lockHorizontal;
-		blockVerticalAxis = lockVertical;
-	}
-
-	public void UnlockMovementAxis()
-	{
-		blockHorizontalAxis = false;
-		blockVerticalAxis = false;
-	}
+	
 	// =============== GIZMOS ===============
 
 	void OnDrawGizmosSelected()
