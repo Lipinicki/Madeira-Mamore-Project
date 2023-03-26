@@ -855,7 +855,7 @@ Transform:
   m_GameObject: {fileID: 465151133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.14, y: 0.18, z: 0}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1742836950}
@@ -884,7 +884,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465151133}
-  m_Material: {fileID: 13400000, guid: cf4016e5881b01e409460d25cab1ef5f, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2416,7 +2416,7 @@ PrefabInstance:
     - target: {fileID: 3004319069126128267, guid: bd2d4e1b52c15e44f92e85ac0ac9c529,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.52
+      value: 0.45742887
       objectReference: {fileID: 0}
     - target: {fileID: 3268488910648162770, guid: bd2d4e1b52c15e44f92e85ac0ac9c529,
         type: 3}
@@ -4079,6 +4079,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435062728391737506, guid: adf144d77b270794c8c4a65bf5218328,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435062728391737506, guid: adf144d77b270794c8c4a65bf5218328,
+        type: 3}
+      propertyPath: maxDistance
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adf144d77b270794c8c4a65bf5218328, type: 3}
