@@ -109,8 +109,8 @@ MonoBehaviour:
   _gravityComeback: 5
   _gravityDivider: 0.4
   _jumpInputDuration: 0.4
-  _initialJumpForce: 5
-  _movementSpeed: 10
+  _initialJumpForce: 7
+  _movementSpeed: 17
   _rotationSpeed: 12
   _maxHorizontalSpeed: 2.5
   _maxVerticalSpeed: 50

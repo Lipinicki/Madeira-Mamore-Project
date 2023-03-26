@@ -36,7 +36,6 @@ public class LadderClimb : MonoBehaviour
 	private void HandleLadderClimb()
 	{
 		if (_playerMovement.CurrentPlayerState != ActionStates.Climbing || _activeLadder == null) return;
-
 		Vector3 climbDirection = new Vector3(0f, _playerMovement.InputVector.z, 0f);
 		Vector3 playerForward = transform.forward;
 		Vector3 ladderForward = _activeLadder.forward;
