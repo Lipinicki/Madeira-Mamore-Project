@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3788120389734674055}
   - component: {fileID: 101051203701481243}
   - component: {fileID: 1327058896120126717}
+  - component: {fileID: 8169793624649220252}
   - component: {fileID: 276801233607849488}
   - component: {fileID: 3788120389734674054}
   - component: {fileID: 4259353017313282562}
@@ -145,8 +146,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2de924cda097343bcca96006e26758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingDotThreshold: -0.9
   climbingSpeed: 5
+  facingDotThreshold: -0.9
+--- !u!114 &8169793624649220252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788120389734674053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c7cf3beb7ac8e4e8bbf365d101da7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 2
+  moveSpeed: 5
 --- !u!114 &276801233607849488
 MonoBehaviour:
   m_ObjectHideFlags: 0
