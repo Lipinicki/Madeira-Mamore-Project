@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Item
 {
 	public string Name;
+	[Multiline]
 	public string Text;
 	public Sprite Sprite;
 

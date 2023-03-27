@@ -14,7 +14,14 @@ public class Inventory : ScriptableObject
 		Items.Add(itemName,item);
 	}
 
-	public KeyValuePair<string, Item> GetItem(string itemName)
+	public Item GetItem(string itemName)
+	{
+		if (!Items.ContainsKey(itemName)) return null;
+
+		return Items[itemName];
+	}
+
+	public KeyValuePair<string, Item> GetKeyPairValue(string itemName)
 	{
 		if (!Items.ContainsKey(itemName)) return new KeyValuePair<string, Item>("", null);
 
