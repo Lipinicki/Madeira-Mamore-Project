@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectable
@@ -5,6 +6,8 @@ public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectab
 	[SerializeField] string itemName;
 	[SerializeField] Inventory itensInventoryData;
 	[SerializeField] Inventory playerInventory;
+
+	public static Action<Item> onCollectedEvent;
 
 	public void Interact()
 	{
@@ -14,7 +17,7 @@ public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectab
 
 	void ICollectable.Collect(Inventory inventory)
 	{
-		var item = itensInventoryData.GetItem(itemName); 
+		var item = itensInventoryData.GetKeyPairValue(itemName); 
 		if (item.Value == null) 
 		{
 			Debug.Log($"Error! item: ({itemName}) does not exist on the {itensInventoryData.name} collection.");
@@ -22,5 +25,8 @@ public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectab
 		}
 
 		inventory.AddItem(item.Key, item.Value);
+		onCollectedEvent(item.Value);
+
+		Destroy(gameObject);
 	}
 }

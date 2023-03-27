@@ -19,8 +19,8 @@ MonoBehaviour:
         Name: Nota Da Personagem
         Text: textotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotexto
         Sprite: {fileID: 21300000, guid: 8bf2cff02e1cd624390971ebd0a940d9, type: 3}
-    - Key: Jornal
+    - Key: Jornal 4
       Value:
-        Name: Jornal
+        Name: Jornal 4
         Text: Texto teste para fins de teste
         Sprite: {fileID: 21300000, guid: 8f96a63faa3c9ee408300f589ca2ee1e, type: 3}
