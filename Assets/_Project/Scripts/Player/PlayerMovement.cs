@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 	public string KIdleAnimationParam { get { return kIdleAnimationParam; } }
 	public Vector3 InputVector { get { return _inputVector; } }
 	public ActionStates CurrentPlayerState { get { return _currentPlayerState; } }
+	public SubStates CurrentPlayerSubState { get { return _currentSubstate; } }
 
 	[Header("Character Movement")]
 	[SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")] float _groundOffset = .5f;
