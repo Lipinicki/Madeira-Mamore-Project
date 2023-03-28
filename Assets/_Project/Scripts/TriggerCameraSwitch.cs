@@ -18,6 +18,10 @@ public class TriggerCameraSwitch : MonoBehaviour
 	{
 		if (_cameraManager == null) return;
 
-		_cameraManager.SwitchActiveCamera(_targetCamera);
+		if (other.gameObject.CompareTag("Player"))
+		{
+			_cameraManager.SwitchActiveCamera(_targetCamera);
+			Debug.Log("Transitioning to: " + _targetCamera.name);
+		}
 	}
 }

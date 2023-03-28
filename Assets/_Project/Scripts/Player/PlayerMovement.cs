@@ -132,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
 		return isGrounded;
 	}
 
+	public bool IsWalking() => _inputVector.magnitude > 0.01f && IsGrounded() ? true : false; 
+
 	public void ResetPlayerState(bool resetSubstateToo = true)
 	{	
 		_currentPlayerState = ActionStates.Idle;

@@ -51,6 +51,8 @@ public class CameraManager : MonoBehaviour
 
 		_activeCamera.Priority = 10;
 
+		Debug.Log(_activeCamera.name);
+
 		_activeCamera = targetCamera;
 	}
 }
