@@ -56,7 +56,7 @@ public class LedgeClimber : MonoBehaviour
 		if (_playerMovement.IsGrounded()
 			|| _playerMovement.CurrentPlayerState == ActionStates.Holding) return;
 
-		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out _grabHit, 5f, LayerMask.GetMask(kLedgeLayer)))
+		if (Physics.Raycast(grabDetectionOrigin.position, grabDetectionOrigin.forward, out _grabHit, 2f, LayerMask.GetMask(kLedgeLayer)))
 		{
 			_rigidbody.isKinematic = true;
 			_playerMovement.ChangePlayerState(ActionStates.Holding);

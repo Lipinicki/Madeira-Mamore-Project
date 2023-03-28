@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using MyBox;
 using System.Threading.Tasks;
-
+using System.Linq;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,8 +28,9 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField, Tooltip("Speed in wich the player turn around its own axis")] float _rotationSpeed = 12f;
 	[SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")] float _maxHorizontalSpeed = 10f;
 	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] float _maxVerticalSpeed = 30.0f;
-
-	[SerializeField] LayerMask _groundLayers;
+	
+	[Space]
+	[SerializeField] List<LayerMask> _groundLayers;
 
 	[Header("Vectors")]
 	[SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")] Vector3 _movementVector;
@@ -128,7 +129,12 @@ public class PlayerMovement : MonoBehaviour
 	public bool IsGrounded()
 	{
 		Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - _groundOffset, transform.position.z);
-		bool isGrounded = Physics.CheckSphere(spherePosition, _groundedRadius, _groundLayers, QueryTriggerInteraction.Ignore);
+		bool isGrounded = false;
+		foreach (int layer in _groundLayers)
+		{
+			isGrounded = Physics.CheckSphere(spherePosition, _groundedRadius, layer, QueryTriggerInteraction.Ignore);
+			if (isGrounded) break;
+		}
 		return isGrounded;
 	}
 

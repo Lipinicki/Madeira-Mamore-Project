@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BlockPushing : MonoBehaviour
 {
-    public float maxDistance = 2.0f; // Maximum distance the player can push or pull a block
+    public float maxRaycastDistance = 2.0f; // Maximum distance the player can push or pull a block
     public float moveSpeed = 5.0f; // Speed at which the block moves
 	public LayerMask pushLayer;
 	
+	private float maxBlockDistance;
 	private bool isPushing;
 	private Vector3 blockOffset; // Offset between the block's position and the player's position when the block was picked up
+	private Vector3 currentVelocity;
     private PlayerMovement _playerMovement;
 	private Rigidbody activeBlock = null;
 
@@ -36,39 +38,41 @@ public class BlockPushing : MonoBehaviour
 		float inputDot = Vector3.Dot(_playerMovement.InputVector.normalized, blockOffset.normalized);
 		isPushing = (inputDot > 0);
 
-		// Determine the direction of the player's movement relative to the block
-		Vector3 movementDirection = Vector3.Cross(blockOffset.normalized, transform.up);
-		float movementDot = Vector3.Dot(movementDirection, _playerMovement.InputVector.normalized);
-
-		// Calculate the perpendicular vector to both the blockOffset and the player's forward vector
-		Vector3 perpendicularVector = Vector3.Cross(blockOffset, transform.TransformDirection(Vector3.forward)).normalized;
-
 		// Calculate the target position for the block
 		Vector3 targetPosition = transform.position + transform.forward * blockOffset.magnitude;
-
-		// Calculate the movement amount based on the player's input
-		float moveAmount = _playerMovement.InputVector.magnitude;
 
 		// Only allow movement along the block's axis of motion
 		Vector3 blockDirection = (isPushing ? transform.forward : -transform.forward);
 		float moveAlongBlock = Vector3.Dot(_playerMovement.InputVector, blockDirection);
 		Vector3 movement = blockDirection * moveAlongBlock;
 
+		// Limit the distance between the player and the block to maxDistance
+		float distanceToBlock = Vector3.Distance(activeBlock.transform.position, transform.position);
+		if (distanceToBlock > maxBlockDistance)
+		{
+			Vector3 directionToBlock = (activeBlock.transform.position - transform.position).normalized;
+			activeBlock.transform.position = transform.position + directionToBlock * maxBlockDistance;
+		}
+
 		// Apply the movement to the block
-		activeBlock.transform.position = Vector3.MoveTowards(activeBlock.transform.position, targetPosition + movement, moveSpeed * Time.deltaTime);
+		activeBlock.transform.position = Vector3.SmoothDamp(activeBlock.transform.position, targetPosition + movement, ref currentVelocity, 0.1f, moveSpeed);
 	}
 
 	private void OnDragableInteraction()
 	{
 		if (activeBlock != null)
-		{
+		{			
+			activeBlock.velocity = Vector3.zero;
+    		activeBlock.angularVelocity = Vector3.zero;
             activeBlock.isKinematic = true;
 			activeBlock = null;
 			_playerMovement.ResetPlayerState();
 		}
-		else if (Physics.Raycast(transform.position, transform.forward, out var grabHit, maxDistance, pushLayer) && activeBlock == null)
+		else if (Physics.Raycast(transform.position, transform.forward, out var grabHit, maxRaycastDistance, pushLayer) && activeBlock == null)
 		{
+
 			activeBlock = grabHit.transform.GetComponent<Rigidbody>();
+			maxBlockDistance = grabHit.transform.GetComponent<BoxCollider>().size.z + 0.6f;
             activeBlock.isKinematic = false;			
 			_playerMovement.ChangePlayerSubstate(SubStates.Interacting);
 		}
