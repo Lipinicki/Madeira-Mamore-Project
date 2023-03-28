@@ -36,8 +36,6 @@ public class UI_ItemDisplay : MonoBehaviour, ISelectHandler
 
 	public void Click()
 	{
-		Debug.Log("Clicked: " + item.Name);
-
 		if (onButtonClick != null)
 		{
 			onButtonClick?.Invoke(this.item);

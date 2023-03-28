@@ -6,12 +6,12 @@ public class BlockPushing : MonoBehaviour
 {
     public float maxDistance = 2.0f; // Maximum distance the player can push or pull a block
     public float moveSpeed = 5.0f; // Speed at which the block moves
+	public LayerMask pushLayer;
 	
 	private bool isPushing;
 	private Vector3 blockOffset; // Offset between the block's position and the player's position when the block was picked up
     private PlayerMovement _playerMovement;
 	private Rigidbody activeBlock = null;
-	private const string kPushBlocksLayer = "PushPullBlocks";
 
     private void OnEnable()
 	{
@@ -66,7 +66,7 @@ public class BlockPushing : MonoBehaviour
 			activeBlock = null;
 			_playerMovement.ResetPlayerState();
 		}
-		else if (Physics.Raycast(transform.position, transform.forward, out var grabHit, maxDistance, LayerMask.GetMask(kPushBlocksLayer)) && activeBlock == null)
+		else if (Physics.Raycast(transform.position, transform.forward, out var grabHit, maxDistance, pushLayer) && activeBlock == null)
 		{
 			activeBlock = grabHit.transform.GetComponent<Rigidbody>();
             activeBlock.isKinematic = false;			
