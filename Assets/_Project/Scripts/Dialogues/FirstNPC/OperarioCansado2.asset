@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: OperarioCansado2
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 0}
+  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
   characterName: "Oper\xE1rio Cansado"
   speechText: "<wiggle a=0.2 f=0.5> Era muito dinheiro. <shake a=0.5>MUITO MESMO</shake>.
     Me prometeram 8 mil r\xE9is por cada dia trabalhado. Eu j\xE1 pensava em me reconstituir
