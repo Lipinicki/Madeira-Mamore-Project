@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			//Applies the movement to players input direction
 			float currentMoveSpeed = _currentSubstate == SubStates.Interacting ?
-			_movementSpeed * 0.45f : _movementSpeed;
+			_movementSpeed * 0.4f : _movementSpeed;
 
 			_movementVector = _inputVector * currentMoveSpeed;
 			ApplyGravity();  //Adds gravity
