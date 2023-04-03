@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3788120389734674105}
   - component: {fileID: 3788120389734674106}
+  - component: {fileID: 1847364052836778489}
   - component: {fileID: 3788120389734674055}
   - component: {fileID: 6173264354514391785}
   - component: {fileID: 101051203701481243}
@@ -93,7 +94,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &3788120389734674055
+--- !u!114 &1847364052836778489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,12 +103,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 3788120389734674053}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f120a7b0dac4e5f42953d18f4fd4d4c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PlayerInput>k__BackingField: {fileID: 3788120389734674054}
+  <MainRigidbody>k__BackingField: {fileID: 3788120389734674106}
+  <MainAnimator>k__BackingField: {fileID: 3607647965560317362}
+  <InputVector>k__BackingField: {x: 0, y: 0, z: 0}
+  <MovementSpeed>k__BackingField: 17
+  <MaxHorizontalSpeed>k__BackingField: 2.5
+  <MaxVerticalSpeed>k__BackingField: 50
+  <RotationSpeed>k__BackingField: 12
+  <JumpInputDuration>k__BackingField: 0.4
+  <InitialJumpForce>k__BackingField: 7
+  <GravityScale>k__BackingField: 3
+  <GravityContribution>k__BackingField: 1
+  <GravityComeback>k__BackingField: 5
+  <GravityDivider>k__BackingField: 0.4
+  _groundOffset: 0.75
+  _groundedRadius: 0.4
+  _groundLayers:
+    serializedVersion: 2
+    m_Bits: 136
+--- !u!114 &3788120389734674055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788120389734674053}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f34af4f1fa732040be74c78ad7ba934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerInput>k__BackingField: {fileID: 3788120389734674054}
-  <Rigibody>k__BackingField: {fileID: 3788120389734674106}
+  <MainRigidbody>k__BackingField: {fileID: 3788120389734674106}
   <MainAnimator>k__BackingField: {fileID: 3607647965560317362}
+  <InputVector>k__BackingField: {x: 0, y: 0, z: 0}
   _groundOffset: 0.75
   _groundedRadius: 0.4
   _gravityScale: 3
@@ -126,7 +159,6 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 8
   _movementVector: {x: 0, y: 0, z: 0}
-  _inputVector: {x: 0, y: 0, z: 0}
 --- !u!114 &6173264354514391785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRaycastDistance: 2
-  moveSpeed: 5
+  pushForce: 10
   pushLayer:
     serializedVersion: 2
     m_Bits: 128

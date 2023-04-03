@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 	[field: SerializeField] 
 	public Animator MainAnimator { get; private set; }
 
+	[field: SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
+	public Vector3 InputVector { get; private set; }
+
 	public Transform MainCameraTransform { get; private set; }
 	public int KIdleAnimationParam { get { return kIdleAnimationParam; } }
 	public ActionStates CurrentPlayerState { get; private set; } = ActionStates.Idle;
@@ -26,40 +29,40 @@ public class PlayerMovement : MonoBehaviour
 
 	[Header("Character Movement")]
 	[SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")] 
-	private float _groundOffset = .5f;
+	private float _groundOffset = 0.75f;
 
 	[SerializeField, Tooltip("Radius of IsGrounded sphere")] 
-	private float _groundedRadius = .5f;
+	private float _groundedRadius = 0.4f;
 
 	[SerializeField, Tooltip("Scales the Physics.gravity to a new gravity that is used instead")] 
-	private float _gravityScale = 1f;
+	private float _gravityScale = 3f;
 
 	[SerializeField, Tooltip("Represents how fast gravityContributionMultiplier will go back to 1f. The higher, the faster")] 
 	private float _gravityContribution = 0f;
 
 	[SerializeField, Tooltip("The factor which determines how much gravity is affecting verticalMovement")] 
-	private float _gravityComeback = 15f;
+	private float _gravityComeback = 5f;
 
 	[SerializeField, Tooltip("Is multiplied each frame while jumping trying to 'cancel' gravity effect")] 
-	private float _gravityDivider = .6f;
+	private float _gravityDivider = 0.4f;
 
 	[SerializeField, Tooltip("Maximun time which the player can hold the jump button")] 
-	private float _jumpInputDuration = .4f;
+	private float _jumpInputDuration = 0.4f;
 
 	[SerializeField, Tooltip("Sets the player rb.velocity.y to this value when jump is pressed")] 
-	private float _initialJumpForce = 10f;
+	private float _initialJumpForce = 7f;
 
 	[SerializeField, Tooltip("Speed of players movement")] 
-	private float _movementSpeed = 10.0f;
+	private float _movementSpeed = 17f;
 
 	[SerializeField, Tooltip("Speed in wich the player turn around its own axis")] 
 	private float _rotationSpeed = 12f;
 
 	[SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")] 
-	private float _maxHorizontalSpeed = 10f;
+	private float _maxHorizontalSpeed = 2.5f;
 
 	[SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")] 
-	private float _maxVerticalSpeed = 30.0f;
+	private float _maxVerticalSpeed = 50f;
 	
 	[Space]
 	[SerializeField] 
@@ -68,9 +71,6 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Vectors")]
 	[SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")] 
 	private Vector3 _movementVector;
-
-	[field: SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
-	public Vector3 InputVector { get; private set; }
 
 	private bool _canApplyMovement => (int)CurrentPlayerState < 3;
 	private float _jumpBeginTime = Mathf.NegativeInfinity;
