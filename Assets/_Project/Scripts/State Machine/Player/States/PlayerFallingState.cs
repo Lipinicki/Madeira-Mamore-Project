@@ -1,41 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWalkingState : PlayerOnGroundState
+public class PlayerFallingState : PlayerOnAirState
 {
-	private readonly int kWalkingAnimationParam = Animator.StringToHash("isWalking");
-
-	public PlayerWalkingState(PlayerStateMachine stateMachine) : base(stateMachine)
+	public PlayerFallingState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{
 	}
 
 	public override void Enter()
 	{
-		base.Enter();
-
-		Debug.Log("Walking State", _stateMachine);
-		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, true);
+		Debug.Log("Falling State", _stateMachine);
 	}
 
 	public override void FixedTick(float fixedDeltaTime)
 	{
-		MovePlayer();
-
 		base.FixedTick(fixedDeltaTime);
+
+		if (_stateMachine.IsGrounded())
+		{
+			_stateMachine.SwitchCurrentState(new PlayerIdleState(_stateMachine));
+		}
+
+		MovePlayer();
 		RotatePlayer();
 	}
 
 	public override void Tick(float deltaTime)
 	{
-		if (_stateMachine.InputVector == Vector3.zero)
-		{
-			_stateMachine.SwitchCurrentState(new PlayerIdleState(_stateMachine));
-		}
+
 	}
 
 	public override void Exit()
 	{
-		base .Exit();
-		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, false);
+		
 	}
 
 	private void MovePlayer()
@@ -47,12 +45,6 @@ public class PlayerWalkingState : PlayerOnGroundState
 		ClampsHorizontalVelocity();
 	}
 
-	private void RotatePlayer()
-	{
-		//Rotate to the movement direction
-		UpdateFowardOrientation(_stateMachine.MovementVector.normalized);
-	}
-
 	private void ClampsHorizontalVelocity()
 	{
 		Vector3 xzVel = new Vector3(_stateMachine.MainRigidbody.velocity.x, 0, _stateMachine.MainRigidbody.velocity.z);
@@ -61,6 +53,12 @@ public class PlayerWalkingState : PlayerOnGroundState
 		xzVel = Vector3.ClampMagnitude(xzVel, _stateMachine.MaxHorizontalSpeed);
 
 		_stateMachine.MainRigidbody.velocity = xzVel + yVel;
+	}
+
+	private void RotatePlayer()
+	{
+		//Rotate to the movement direction
+		UpdateFowardOrientation(_stateMachine.MovementVector.normalized);
 	}
 
 	void UpdateFowardOrientation(Vector3 directionVector)
