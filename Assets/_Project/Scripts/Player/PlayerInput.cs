@@ -17,7 +17,6 @@ public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 
 	GameControls gameControls;
 
-
 	void OnEnable()
 	{
 		if (gameControls == null)

@@ -12,6 +12,16 @@ public class LadderClimb : MonoBehaviour
 
 	private const string kLadderLayer = "Ladders";
 
+	private void OnEnable()
+	{
+		_playerMovement.PlayerInput.interactEvent += GrabLadder;
+	}
+
+	private void OnDisable()
+	{
+		_playerMovement.PlayerInput.interactEvent -= GrabLadder;
+	}
+
 	private void Awake()
 	{
 		_playerMovement = GetComponent<PlayerMovement>();
@@ -25,7 +35,7 @@ public class LadderClimb : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.transform.tag == kLadderLayer) GrabLadder(other.transform);
+		if (other.transform.tag == kLadderLayer) _activeLadder = other.transform;
 	}
 
 	private void OnTriggerExit(Collider other)
@@ -54,9 +64,10 @@ public class LadderClimb : MonoBehaviour
 		_playerMovement.ResetPlayerState();
 	}
 
-	private void GrabLadder(Transform ladderTransform)
+	private void GrabLadder()
 	{
-		_activeLadder = ladderTransform;
+		if (_activeLadder == null) return;
+
 		_playerMovement.ChangePlayerState(ActionStates.Climbing);
 	}
 

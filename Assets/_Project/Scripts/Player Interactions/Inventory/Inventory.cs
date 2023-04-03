@@ -2,6 +2,7 @@
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using MyBox;
 
 [CreateAssetMenu(fileName = "Inventory", menuName = "IventoryData")]
 public class Inventory : ScriptableObject
@@ -35,9 +36,9 @@ public class Inventory : ScriptableObject
 		return Items.First();
 	}
 
+	[ButtonMethod]
 	public void ClearInventory()
 	{
-		Items.Clear();
+		Items = new SerializedDictionary<string, Item>();
 	}
-
 }
