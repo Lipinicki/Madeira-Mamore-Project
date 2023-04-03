@@ -17,66 +17,157 @@ MonoBehaviour:
     - Key: Nota Da Personagem
       Value:
         Name: Nota Da Personagem
-        Text: Essa nota server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8f96a63faa3c9ee408300f589ca2ee1e, type: 3}
     - Key: "Di\xE1rio"
       Value:
         Name: "Di\xE1rio"
-        Text: Essa nota server para issoEssa nota server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8b5f3a5de1a18d746b91812ea928676e, type: 3}
     - Key: Nota Da Personagem 1
       Value:
         Name: Nota Da Personagem 1
-        Text: Essa nota server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8f96a63faa3c9ee408300f589ca2ee1e, type: 3}
-    - Key: Jornal
+    - Key: Foto
       Value:
         Name: Jornal
-        Text: Essa nota server para isso Essa nota server para isso Essa nota server
-          para isso v Essa nota server para isso Essa nota server para isso Essa
-          nota server para isso Essa nota server para isso Essa nota server para
-          isso  v Essa nota server para isso Essa nota server para isso Essa nota
-          server para isso Essa nota server para isso Essa nota server para isso
-          Essa nota server para isso Essa nota server para isso  Essa nota server
-          para isso Essa nota server para isso Essa nota server para isso Essa nota
-          server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8bf2cff02e1cd624390971ebd0a940d9, type: 3}
-    - Key: "Di\xE1rio 1"
+    - Key: Pingente
       Value:
         Name: "Di\xE1rio"
-        Text: Essa nota server para issoEssa nota server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8b5f3a5de1a18d746b91812ea928676e, type: 3}
     - Key: Nota Da Nota Da Personagem 2
       Value:
         Name: Nota Da Personagem
-        Text: Essa nota server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8f96a63faa3c9ee408300f589ca2ee1e, type: 3}
     - Key: Jornal 1
       Value:
         Name: Jornal
-        Text: Essa nota server para isso Essa nota server para isso Essa nota server
-          para isso v Essa nota server para isso Essa nota server para isso Essa
-          nota server para isso Essa nota server para isso Essa nota server para
-          isso  v Essa nota server para isso Essa nota server para isso Essa nota
-          server para isso Essa nota server para isso Essa nota server para isso
-          Essa nota server para isso Essa nota server para isso  Essa nota server
-          para isso Essa nota server para isso Essa nota server para isso Essa nota
-          server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8bf2cff02e1cd624390971ebd0a940d9, type: 3}
     - Key: "Di\xE1rio 2"
       Value:
         Name: "Di\xE1rio"
-        Text: Essa nota server para issoEssa nota server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8b5f3a5de1a18d746b91812ea928676e, type: 3}
     - Key: Jornal 2
       Value:
         Name: Jornal
-        Text: Essa nota server para isso Essa nota server para isso Essa nota server
-          para isso v Essa nota server para isso Essa nota server para isso Essa
-          nota server para isso Essa nota server para isso Essa nota server para
-          isso  v Essa nota server para isso Essa nota server para isso Essa nota
-          server para isso Essa nota server para isso Essa nota server para isso
-          Essa nota server para isso Essa nota server para isso  Essa nota server
-          para isso Essa nota server para isso Essa nota server para isso Essa nota
-          server para isso
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Vestibulum tempor purus et purus tristique, dictum ornare
+          nisi ornare. Nulla consectetur ut urna in commodo. Etiam quis facilisis
+          lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada
+          fames ac turpis egestas. Cras molestie finibus lectus ut hendrerit. Etiam
+          volutpat, sem in volutpat consectetur, nibh eros consectetur elit, sit
+          amet scelerisque massa dui vitae eros. Integer vitae consequat magna. Etiam
+          malesuada semper augue, sed posuere odio gravida nec.Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit. Vestibulum tempor purus et purus
+          tristique, dictum ornare nisi ornare. Nulla consectetur ut urna in commodo.
+          Etiam quis facilisis lacus. Pellentesque habitant morbi tristique senectus
+          et netus et malesuada fames ac turpis egestas. Cras molestie finibus lectus
+          ut hendrerit. Etiam volutpat, sem in volutpat consectetur, nibh eros consectetur
+          elit, sit amet scelerisque massa dui vitae eros. Integer vitae consequat
+          magna. Etiam malesuada semper augue, sed posuere odio gravida nec.
         Sprite: {fileID: 21300000, guid: 8bf2cff02e1cd624390971ebd0a940d9, type: 3}

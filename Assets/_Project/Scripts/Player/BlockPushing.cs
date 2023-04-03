@@ -33,47 +33,46 @@ public class BlockPushing : MonoBehaviour
 
     private void UpdateBlockPosition()
     {
-        if (activeBlock == null) return;
+		if (activeBlock == null) return;
 
-        // Determine if the player is pushing or pulling based on the dot product between the player's forward vector and the block's offset vector
-        blockOffset = activeBlock.transform.position - transform.position;
-        float inputDot = Vector3.Dot(_playerMovement.InputVector.normalized, blockOffset.normalized);
-        isPushing = (inputDot > 0);
+		// Determine if the player is pushing or pulling based on the dot product between the player's forward vector and the block's offset vector
+		blockOffset = activeBlock.transform.position - transform.position;
+		float inputDot = Vector3.Dot(_playerMovement.InputVector.normalized, blockOffset.normalized);
+		isPushing = (inputDot > 0);
 
-        // Only allow movement along the block's axis of motion
-        Vector3 blockDirection = _playerMovement.InputVector.normalized;
-        activeBlock.AddForce(blockDirection * pushForce * activeBlock.mass, ForceMode.Force);
-    }
+		// Only allow movement along the block's axis of motion
+		Vector3 blockDirection = _playerMovement.InputVector.normalized;
+		activeBlock.AddForce(blockDirection * pushForce * activeBlock.mass, ForceMode.Force);
+	}
 
-    private void LateUpdate()
-    {
-        if (activeBlock == null) return;
-        
-        // Limit the distance between the player and the block to maxDistance
+	private void LateUpdate()
+	{
+		if (activeBlock == null) return;
+
+		// Limit the distance between the player and the block to maxDistance
 		float distanceToBlock = Vector3.Distance(activeBlock.transform.position, transform.position);
 		if (distanceToBlock > maxBlockDistance)
 		{
 			Vector3 directionToBlock = (activeBlock.transform.position - transform.position).normalized;
 			activeBlock.transform.position = transform.position + directionToBlock * maxBlockDistance;
 		}
-    }
+	}
 
-    private void OnDragableInteraction()
-    {
-        if (activeBlock != null)
-        {
-            activeBlock.velocity = Vector3.zero;
-            activeBlock.angularVelocity = Vector3.zero;
-            activeBlock.isKinematic = true;
-            _playerMovement.ResetPlayerState();
-        }
-        else if (Physics.Raycast(transform.position, transform.forward, out var grabHit, maxRaycastDistance, pushLayer))
+	private void OnDragableInteraction()
+	{
+		if (activeBlock != null)
+		{
+			activeBlock.velocity = Vector3.zero;
+			activeBlock.angularVelocity = Vector3.zero;
+			activeBlock.isKinematic = true;
+			_playerMovement.ResetPlayerState();
+		}
+		else if (Physics.Raycast(transform.position, transform.forward, out var grabHit, maxRaycastDistance, pushLayer))
 		{
 			activeBlock = grabHit.transform.GetComponent<Rigidbody>();
 			maxBlockDistance = grabHit.transform.GetComponent<BoxCollider>().size.z + 0.5f;
-            activeBlock.isKinematic = false;
+			activeBlock.isKinematic = false;
 			_playerMovement.ChangePlayerSubstate(SubStates.Interacting);
 		}
 	}
-
 }

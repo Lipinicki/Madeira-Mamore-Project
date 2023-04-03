@@ -25,7 +25,7 @@ public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectab
 		}
 
 		inventory.AddItem(item.Key, item.Value);
-		onCollectedEvent(item.Value);
+		onCollectedEvent?.Invoke(item.Value);
 
 		Destroy(gameObject);
 	}
