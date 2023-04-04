@@ -22,6 +22,8 @@ public class PlayerIdleState : PlayerOnGroundState
 
 	public override void Tick(float deltaTime)
 	{
+		base.Tick(deltaTime);
+
 		if (_stateMachine.InputVector.sqrMagnitude > 0.02f)
 		{
 			_stateMachine.SwitchCurrentState(new PlayerWalkingState(_stateMachine));

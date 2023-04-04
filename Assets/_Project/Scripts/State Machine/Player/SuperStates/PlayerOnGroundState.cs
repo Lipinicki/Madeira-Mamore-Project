@@ -26,11 +26,39 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		ClampsVerticalVelocity();
 	}
 
+	public override void Tick(float deltaTime)
+	{
+		CheckForLadder();
+
+	}
+
 	public override void Exit()
 	{
 		_stateMachine.PlayerInput.jumpEvent -= OnJump;
 		_stateMachine.PlayerInput.crouchEvent -= OnCrouch;
 		_stateMachine.PlayerInput.interactEvent -= OnInteract;
+	}
+
+	private void CheckForLadder()
+	{
+		Ray ray = new Ray(
+					new Vector3(
+					_stateMachine.transform.position.x,
+					_stateMachine.transform.position.y + _stateMachine.RayCastOffset,
+					_stateMachine.transform.position.z
+					),
+					_stateMachine.transform.forward
+					);
+
+		if (Physics.Raycast(ray, out RaycastHit hit, _stateMachine.RayCastMaxDistance, _stateMachine.LadderLayers, QueryTriggerInteraction.Ignore))
+		{
+			Debug.Log("Found Ladder: " + hit.transform.name);
+			_stateMachine.ActiveLadder = hit.transform;
+		}
+		else
+		{
+			_stateMachine.ActiveLadder = null;
+		}
 	}
 
 	private void ClampsVerticalVelocity()

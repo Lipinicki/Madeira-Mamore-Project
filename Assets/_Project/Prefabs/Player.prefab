@@ -123,11 +123,23 @@ MonoBehaviour:
   <GravityContribution>k__BackingField: 1
   <GravityComeback>k__BackingField: 5
   <GravityDivider>k__BackingField: 0.4
-  _groundOffset: 0.66
-  _groundedRadius: 0.4
+  _groundOffset: 0.67
+  _groundedRadius: 0.38
   _groundLayers:
     serializedVersion: 2
-    m_Bits: 137
+    m_Bits: 136
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  <LadderClimbingSpeed>k__BackingField: 5
+  <LadderLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <RayCastOffset>k__BackingField: -0.75
+  <RayCastMaxDistance>k__BackingField: 0.9
+  <LadderStartOffsetHeight>k__BackingField: 0.5
+  <LadderStartOffsetFoward>k__BackingField: 0.5
+  <ForceToLeftLadder>k__BackingField: 9
 --- !u!114 &3788120389734674055
 MonoBehaviour:
   m_ObjectHideFlags: 0

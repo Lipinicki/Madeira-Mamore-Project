@@ -5,11 +5,9 @@ using UnityEngine;
 public class PlayerCrouchState : PlayerOnGroundState
 {
 	private float crouchingHeight = 0.8f;
-	private float transitionSpeed = 5f;
+	private float transitionSpeed = 10f;
 
 	private float currentHeight;
-	private float standingHeight;
-	private CapsuleCollider _playerCollider;
 	private Coroutine crouchRoutine;
 
 	public PlayerCrouchState(PlayerStateMachine stateMachine) : base(stateMachine)
@@ -22,9 +20,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 		_stateMachine.PlayerInput.crouchEvent += ReleaseCrouch;
 
-		_playerCollider = (CapsuleCollider)_stateMachine.PlayerCollider;
-		standingHeight = _playerCollider.height;
-		currentHeight = standingHeight;
+		currentHeight = _stateMachine.StandingHeight;
 
 		StartCrouch();
 	}
@@ -39,7 +35,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 	public override void Tick(float deltaTime)
 	{
-
+		base.Tick(deltaTime);
 	}
 
 	public override void Exit()
@@ -60,15 +56,15 @@ public class PlayerCrouchState : PlayerOnGroundState
 		if (CanStand())
 		{
 			if (crouchRoutine != null) _stateMachine.StopCoroutine(crouchRoutine);
-			crouchRoutine = _stateMachine.StartCoroutine(CrouchCoroutine(standingHeight));
+			crouchRoutine = _stateMachine.StartCoroutine(CrouchCoroutine(_stateMachine.StandingHeight));
 			_stateMachine.SwitchCurrentState(new PlayerIdleState(_stateMachine));
 		}
 	}
 
 	private bool CanStand()
 	{
-		Vector3 raycastOrigin = _stateMachine.transform.position + Vector3.up * (_playerCollider.height / 2);
-		return !Physics.Raycast(raycastOrigin, Vector3.up, out var hit, standingHeight - crouchingHeight);
+		Vector3 raycastOrigin = _stateMachine.transform.position + Vector3.up * (_stateMachine.PlayerCollider.height / 2);
+		return !Physics.Raycast(raycastOrigin, Vector3.up, out var hit, _stateMachine.StandingHeight - crouchingHeight);
 	}
 
 	private void MovePlayer()
@@ -109,7 +105,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 		{
 			var crouchDelta = Time.deltaTime * transitionSpeed;
 			currentHeight = Mathf.Lerp(currentHeight, targetHeight, crouchDelta);
-			_playerCollider.height = currentHeight;
+			_stateMachine.PlayerCollider.height = currentHeight;
 			yield return null;
 		}
 		currentHeight = initalTarget;
