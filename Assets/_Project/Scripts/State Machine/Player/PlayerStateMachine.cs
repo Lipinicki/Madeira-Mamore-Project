@@ -18,7 +18,7 @@ public class PlayerStateMachine : StateMachine
 	public InteractableArea InteractableArea { get; private set; }
 
 	[field: SerializeField]
-	public Collider PlayerCollider { get; private set; }
+	public CapsuleCollider PlayerCollider { get; private set; }
 
 	[field: Space(30f), SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
 	public Vector3 InputVector { get; private set; }
@@ -61,23 +61,41 @@ public class PlayerStateMachine : StateMachine
 	public float JumpBeginTime { get; set; } = Mathf.NegativeInfinity;
 
 	[Space(30f), SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")]
-	private float _groundOffset = 0.75f;
+	private float _groundOffset = 0.67f;
 
 	[SerializeField, Tooltip("Radius of IsGrounded sphere")]
-	private float _groundedRadius = 0.4f;
+	private float _groundedRadius = 0.38f;
 
 	[SerializeField]
 	private LayerMask _groundLayers;
 
-	[SerializeField]
+	[Space(30f), SerializeField]
 	private UnityEvent OnInteractEvent;
 
 	[field: Space(30f), SerializeField] 
 	public float LadderClimbingSpeed { get; private set; } = 5f;
 
+	[field: SerializeField]
+	public LayerMask LadderLayers { get; private set; }
+
+	[field: SerializeField]
+	public float RayCastOffset { get; private set; } = -0.75f;
+
+	[field: SerializeField]
+	public float RayCastMaxDistance { get; private set; } = 0.9f;
+
+	[field: SerializeField]
+	public float LadderStartOffsetHeight { get; private set; } = 0.5f;
+
+	[field: SerializeField]
+	public float LadderStartOffsetFoward { get; private set; } = 0.5f;
+
+	[field: SerializeField]
+	public float ForceToLeftLadder { get; private set; } = 9f;
+
 	public Transform ActiveLadder { get; set; }
 
-	private const string kLadderTag = "Ladders";
+	public float StandingHeight { get; private set; }
 
 	private void OnEnable()
 	{
@@ -91,21 +109,12 @@ public class PlayerStateMachine : StateMachine
 
 	private void Start()
 	{
-		SwitchCurrentState(new PlayerIdleState(this));
-
 		MainCameraTransform = Camera.main.transform;
 		MainRigidbody.useGravity = false; //Disable Physics.gravity influence
 		MainRigidbody.drag = 0.75f;
-	}
+		StandingHeight = PlayerCollider.height;
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.transform.tag == kLadderTag) ActiveLadder = other.transform;
-	}
-
-	private void OnTriggerExit(Collider other)
-	{
-		if (other.transform.tag == kLadderTag) ActiveLadder = null;
+		SwitchCurrentState(new PlayerIdleState(this));
 	}
 
 	public void TriggerInteractiobnEvent()
@@ -157,5 +166,16 @@ public class PlayerStateMachine : StateMachine
 
 		//When selected draw a gizmo that matches the position and the radius of the grounded collider
 		Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - _groundOffset, transform.position.z), _groundedRadius);
+
+		Ray ray = new Ray(
+			new Vector3(
+			transform.position.x,
+			transform.position.y + RayCastOffset,
+			transform.position.z
+			),
+			transform.forward
+			);
+
+		Debug.DrawRay(ray.origin, ray.direction * RayCastMaxDistance);
 	}
 }

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PlayerLadderClimbState : PlayerBaseState
 {
-	private float facingDotThreshold = -0.9f;
-	private float _startOffsetHeight = 0.8f;
-	private float _startOffsetFoward = 0.8f;
-	private float _forceToLeftLadder = 5f;
-
 	public PlayerLadderClimbState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{
 	}
@@ -17,8 +12,16 @@ public class PlayerLadderClimbState : PlayerBaseState
 	{
 		_stateMachine.PlayerInput.interactEvent += OnRelease;
 
-		Vector3 offSetPos = new Vector3(_stateMachine.ActiveLadder.position.x, 0, _stateMachine.ActiveLadder.position.z);
-		_stateMachine.transform.position = offSetPos + _stateMachine.ActiveLadder.forward * _startOffsetFoward + _stateMachine.transform.up * _startOffsetHeight;
+		Vector3 offSetPos = new Vector3(
+			_stateMachine.ActiveLadder.position.x,
+			0,
+			_stateMachine.ActiveLadder.position.z
+			);
+		_stateMachine.transform.position = offSetPos +
+			_stateMachine.ActiveLadder.forward *
+			_stateMachine.LadderStartOffsetFoward +
+			_stateMachine.transform.up *
+			_stateMachine.LadderStartOffsetHeight;
 		_stateMachine.transform.rotation = Quaternion.LookRotation(-_stateMachine.ActiveLadder.transform.forward);
 	}
 
@@ -30,7 +33,28 @@ public class PlayerLadderClimbState : PlayerBaseState
 
 	public override void Tick(float deltaTime)
 	{
-		
+		CheckForLadder();
+	}
+
+	private void CheckForLadder()
+	{
+		Ray ray = new Ray(
+					new Vector3(
+					_stateMachine.transform.position.x,
+					_stateMachine.transform.position.y + _stateMachine.RayCastOffset,
+					_stateMachine.transform.position.z
+					),
+					_stateMachine.transform.forward
+					);
+
+		if (Physics.Raycast(ray, out RaycastHit hit, _stateMachine.RayCastMaxDistance, _stateMachine.LadderLayers, QueryTriggerInteraction.Ignore))
+		{
+			_stateMachine.ActiveLadder = hit.transform;
+		}
+		else
+		{
+			_stateMachine.ActiveLadder = null;
+		}
 	}
 
 	public override void Exit()
@@ -47,24 +71,13 @@ public class PlayerLadderClimbState : PlayerBaseState
 		}
 
 		Vector3 climbDirection = new Vector3(0f, _stateMachine.InputVector.z, 0f);
-		Vector3 playerForward = _stateMachine.transform.forward;
-		Vector3 ladderForward = _stateMachine.ActiveLadder.forward;
 
-		if (CheckFacingVectors(playerForward.normalized, ladderForward.normalized))
-		{
-			_stateMachine.transform.Translate(climbDirection * _stateMachine.LadderClimbingSpeed * deltaTime);
-		}
+		_stateMachine.transform.Translate(climbDirection * _stateMachine.LadderClimbingSpeed * deltaTime);
 
 		if (_stateMachine.IsGrounded())
 		{
 			OnRelease();
 		}
-	}
-
-	private bool CheckFacingVectors(Vector3 vectorA, Vector3 vectorB)
-	{
-		float facingDotProduct = Vector3.Dot(vectorA.normalized, vectorB.normalized);
-		return (facingDotProduct <= facingDotThreshold);
 	}
 
 	private void ClampsHorizontalVelocity()
@@ -79,8 +92,13 @@ public class PlayerLadderClimbState : PlayerBaseState
 
 	private void ApplyForceToLeft()
 	{
-		_stateMachine.ActiveLadder = null;
-		_stateMachine.MainRigidbody.AddForce(_stateMachine.transform.up * _forceToLeftLadder + _stateMachine.transform.forward * _forceToLeftLadder, ForceMode.Impulse);
+		_stateMachine.MainRigidbody.AddForce(
+			_stateMachine.transform.up * 
+			_stateMachine.ForceToLeftLadder + 
+			_stateMachine.transform.forward * 
+			_stateMachine.ForceToLeftLadder, 
+			ForceMode.Impulse
+			);
 		_stateMachine.SwitchCurrentState(new PlayerFallingState(_stateMachine));
 	}
 
