@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using MyBox;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerStateMachine : StateMachine
 {
@@ -12,6 +13,12 @@ public class PlayerStateMachine : StateMachine
 
 	[field: SerializeField]
 	public Animator MainAnimator { get; private set; }
+
+	[field: SerializeField]
+	public InteractableArea InteractableArea { get; private set; }
+
+	[field: SerializeField]
+	public Collider PlayerCollider { get; private set; }
 
 	[field: Space(30f), SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
 	public Vector3 InputVector { get; private set; }
@@ -62,6 +69,16 @@ public class PlayerStateMachine : StateMachine
 	[SerializeField]
 	private LayerMask _groundLayers;
 
+	[SerializeField]
+	private UnityEvent OnInteractEvent;
+
+	[field: Space(30f), SerializeField] 
+	public float LadderClimbingSpeed { get; private set; } = 5f;
+
+	public Transform ActiveLadder { get; set; }
+
+	private const string kLadderTag = "Ladders";
+
 	private void OnEnable()
 	{
 		PlayerInput.moveEvent += OnMove;
@@ -79,6 +96,21 @@ public class PlayerStateMachine : StateMachine
 		MainCameraTransform = Camera.main.transform;
 		MainRigidbody.useGravity = false; //Disable Physics.gravity influence
 		MainRigidbody.drag = 0.75f;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.tag == kLadderTag) ActiveLadder = other.transform;
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.transform.tag == kLadderTag) ActiveLadder = null;
+	}
+
+	public void TriggerInteractiobnEvent()
+	{
+		OnInteractEvent?.Invoke();
 	}
 
 	public bool IsGrounded()

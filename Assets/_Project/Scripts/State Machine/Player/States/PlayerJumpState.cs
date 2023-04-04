@@ -18,6 +18,7 @@ public class PlayerJumpState : PlayerOnAirState
 		RaiseGravitycontribution(fixedDeltaTime);
 		HandleJump();
 		MovePlayer();
+		RotatePlayer();
 	}
 
 	public override void Tick(float deltaTime)
@@ -70,6 +71,18 @@ public class PlayerJumpState : PlayerOnAirState
 		xzVel = Vector3.ClampMagnitude(xzVel, _stateMachine.MaxHorizontalSpeed);
 
 		_stateMachine.MainRigidbody.velocity = xzVel + yVel;
+	}
+
+	private void RotatePlayer()
+	{
+		//Rotate to the movement direction
+		UpdateFowardOrientation(_stateMachine.MovementVector.normalized);
+	}
+
+	void UpdateFowardOrientation(Vector3 directionVector)
+	{
+		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
+		_stateMachine.transform.rotation = Quaternion.Slerp(_stateMachine.transform.rotation, targetRotation, Time.fixedDeltaTime * _stateMachine.RotationSpeed);
 	}
 
 	private void OnJumpcannceled()

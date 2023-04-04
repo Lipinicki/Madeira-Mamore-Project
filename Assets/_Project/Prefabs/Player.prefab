@@ -109,7 +109,10 @@ MonoBehaviour:
   <PlayerInput>k__BackingField: {fileID: 3788120389734674054}
   <MainRigidbody>k__BackingField: {fileID: 3788120389734674106}
   <MainAnimator>k__BackingField: {fileID: 3607647965560317362}
+  <InteractableArea>k__BackingField: {fileID: 9053483479999554347}
+  <PlayerCollider>k__BackingField: {fileID: 4259353017313282562}
   <InputVector>k__BackingField: {x: 0, y: 0, z: 0}
+  <MovementVector>k__BackingField: {x: 0, y: 0, z: 0}
   <MovementSpeed>k__BackingField: 17
   <MaxHorizontalSpeed>k__BackingField: 2.5
   <MaxVerticalSpeed>k__BackingField: 50
@@ -120,11 +123,11 @@ MonoBehaviour:
   <GravityContribution>k__BackingField: 1
   <GravityComeback>k__BackingField: 5
   <GravityDivider>k__BackingField: 0.4
-  _groundOffset: 0.75
+  _groundOffset: 0.66
   _groundedRadius: 0.4
   _groundLayers:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 137
 --- !u!114 &3788120389734674055
 MonoBehaviour:
   m_ObjectHideFlags: 0
