@@ -10,7 +10,7 @@ public class LadderClimb : MonoBehaviour
 	Transform _activeLadder = null;
 	PlayerMovement _playerMovement;
 
-	private const string kLadderLayer = "Ladders";
+	private const string kLadderTag = "Ladders";
 
 	private void OnEnable()
 	{
@@ -35,12 +35,12 @@ public class LadderClimb : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.transform.tag == kLadderLayer) _activeLadder = other.transform;
+		if (other.transform.tag == kLadderTag) _activeLadder = other.transform;
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.transform.tag == kLadderLayer) ReleaseLadder();
+		if (other.transform.tag == kLadderTag) ReleaseLadder();
 	}
 
 	private void HandleLadderClimb()

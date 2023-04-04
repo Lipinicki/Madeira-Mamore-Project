@@ -11,6 +11,8 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 	public override void Enter()
 	{
 		_stateMachine.PlayerInput.jumpEvent += OnJump;
+		_stateMachine.PlayerInput.crouchEvent += OnCrouch;
+		_stateMachine.PlayerInput.interactEvent += OnInteract;
 	}
 
 	public override void FixedTick(float fixedDeltaTime)
@@ -27,6 +29,8 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 	public override void Exit()
 	{
 		_stateMachine.PlayerInput.jumpEvent -= OnJump;
+		_stateMachine.PlayerInput.crouchEvent -= OnCrouch;
+		_stateMachine.PlayerInput.interactEvent -= OnInteract;
 	}
 
 	private void ClampsVerticalVelocity()
@@ -39,10 +43,29 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		_stateMachine.MainRigidbody.velocity = xzVel + yVel;
 	}
 
-	protected void OnJump()
+	private void OnJump()
 	{
 		_stateMachine.MainRigidbody.velocity += new Vector3(0, _stateMachine.InitialJumpForce, 0);
 		_stateMachine.JumpBeginTime = Time.time; //Resets jump begin time
 		_stateMachine.SwitchCurrentState(new PlayerJumpState(_stateMachine));
+	}
+
+	private void OnCrouch()
+	{
+		_stateMachine.SwitchCurrentState(new PlayerCrouchState(_stateMachine));
+	}
+
+	private void OnInteract()
+	{
+		if (_stateMachine.InteractableArea.CanInteract)
+		{
+			_stateMachine.InteractableArea.Interaction.Interact();
+			_stateMachine.TriggerInteractiobnEvent();
+		}
+
+		if (_stateMachine.ActiveLadder != null)
+		{
+			_stateMachine.SwitchCurrentState(new PlayerLadderClimbState(_stateMachine));
+		}
 	}
 }
