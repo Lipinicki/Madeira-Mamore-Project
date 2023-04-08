@@ -99,7 +99,6 @@ public class PlayerStateMachine : StateMachine
 
 	[field: SerializeField]
 	public float ForceToLeftLadder { get; private set; } = 9f;
-
 	public Transform ActiveLadder { get; set; }
 	public float StandingHeight { get; private set; }
 
@@ -109,11 +108,11 @@ public class PlayerStateMachine : StateMachine
 	
 	[field: SerializeField]
     public float BlockMovementSpeed { get; private set; } = 2f; // Force applied to the block when pushed	
-	
 	public float BlockOffset { get; private set; } = 1f;
 	public float MaxInteractionDistance { get; private set; } 
     public LayerMask PushBlocksLayer;
     public Rigidbody ActiveBlock { get; private set; } = null;
+
 
 	private void OnEnable()
 	{
@@ -136,7 +135,7 @@ public class PlayerStateMachine : StateMachine
 		SwitchCurrentState(new PlayerIdleState(this));
 	}
 
-	public void TriggerInteractiobnEvent()
+	public void TriggerInteractionEvent()
 	{
 		OnInteractEvent?.Invoke();
 	}

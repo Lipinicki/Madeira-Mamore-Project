@@ -88,7 +88,7 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		if (_stateMachine.InteractableArea.CanInteract)
 		{
 			_stateMachine.InteractableArea.Interaction.Interact();
-			_stateMachine.TriggerInteractiobnEvent();
+			_stateMachine.TriggerInteractionEvent();
 		}
 		else if (_stateMachine.ActiveLadder != null)
 		{

@@ -5,16 +5,16 @@ using UnityEngine.Events;
 
 public class NpcController : MonoBehaviour, IInteractable
 {
-    private DialogueController dialogueController;
+    private UIController uiController;
     [SerializeField] private Dialogue npcDialogue;
     
     private void OnEnable()
     {
-        dialogueController = GameObject.FindGameObjectWithTag(DialogueController.kDialogueControllerTag).GetComponent<DialogueController>();   
+        uiController = GameObject.FindGameObjectWithTag(UIController.kDialogueControllerTag).GetComponent<UIController>();   
     }
 
     public void Interact()
     {
-        dialogueController.OnNpcInteraction.Invoke(npcDialogue);
+        uiController.OnNpcInteraction.Invoke(npcDialogue);
     }
 }

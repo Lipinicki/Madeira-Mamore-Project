@@ -20,6 +20,7 @@ public class PlayerSound : MonoBehaviour
 	public void DisableStepsAudio()
 	{
 		audioSource.Stop();
+		if (stepsRoutine == null) return;
 		StopCoroutine(stepsRoutine);
 		stepsRoutine = null;
 	}

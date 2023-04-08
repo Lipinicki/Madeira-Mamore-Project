@@ -11,9 +11,11 @@ public class InteractableArea : MonoBehaviour
 	[SerializeField] private UnityEvent OnPotentialInteraction;
 	[SerializeField] private UnityEvent OnPotentialInteractionCancelled;
 
+	public const string kInteractable = "Interactable";
+
 	public void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("Interactable"))
+		if (other.gameObject.CompareTag(kInteractable))
 		{
 			CanInteract = true;
 			AddInteraction(other.gameObject);
@@ -23,7 +25,7 @@ public class InteractableArea : MonoBehaviour
 
 	public void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.CompareTag("Interactable"))
+		if (other.gameObject.CompareTag(kInteractable))
 		{
 			CanInteract = false;
 			ResetInteraction();
