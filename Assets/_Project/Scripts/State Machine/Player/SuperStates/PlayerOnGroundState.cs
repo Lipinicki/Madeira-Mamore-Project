@@ -90,10 +90,14 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 			_stateMachine.InteractableArea.Interaction.Interact();
 			_stateMachine.TriggerInteractiobnEvent();
 		}
-
-		if (_stateMachine.ActiveLadder != null)
+		else if (_stateMachine.ActiveLadder != null)
 		{
 			_stateMachine.SwitchCurrentState(new PlayerLadderClimbState(_stateMachine));
+		}
+		else if (Physics.Raycast(_stateMachine.transform.position, _stateMachine.transform.forward, out var grabHit, _stateMachine.RayCastMaxDistance, _stateMachine.PushBlocksLayer))
+		{
+			_stateMachine.SetupActiveBlock(grabHit.transform);
+			_stateMachine.SwitchCurrentState(new PlayerPushingState(_stateMachine));
 		}
 	}
 }

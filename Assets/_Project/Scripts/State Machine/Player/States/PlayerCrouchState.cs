@@ -41,7 +41,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 	public override void Exit()
 	{
 		base.Exit();
-
+		_stateMachine.StopCoroutine(crouchRoutine);
 		_stateMachine.PlayerInput.crouchEvent -= ReleaseCrouch;
 	}
 

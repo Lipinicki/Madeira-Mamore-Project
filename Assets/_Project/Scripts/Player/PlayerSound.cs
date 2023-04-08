@@ -9,25 +9,34 @@ public class PlayerSound : MonoBehaviour
 	[SerializeField] private float footStepsDelay = 1.0f;
 	[SerializeField, Range(0.0f, 1.0f)] private float footStepsVolume = 0.5f;
 
-	private PlayerMovement playerMov;
+	private Coroutine stepsRoutine = null;
 
-	private void Start()
+	public void SetupStepsAudio()
 	{
-		playerMov = GetComponent<PlayerMovement>();
-		StartCoroutine(PlayFootstepsAudio());
+		if (stepsRoutine != null) return;
+		stepsRoutine = StartCoroutine(PlayFootstepsAudio());
+	}
+
+	public void DisableStepsAudio()
+	{
+		audioSource.Stop();
+		StopCoroutine(stepsRoutine);
+		stepsRoutine = null;
 	}
 
 	IEnumerator PlayFootstepsAudio()
 	{
 		while (true)
 		{
-			if (playerMov.IsWalking())
-			{
-				int index = Random.Range(0, footstepsSFX.Count);
-				audioSource.PlayOneShot(footstepsSFX[index], footStepsVolume);
-			}
+			int index = Random.Range(0, footstepsSFX.Count);
+			audioSource.PlayOneShot(footstepsSFX[index], footStepsVolume);
 
 			yield return new WaitForSeconds(footStepsDelay);
 		}
+	}
+
+	private void OnDisable()
+	{
+		DisableStepsAudio();
 	}
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerWalkingState : PlayerOnGroundState
@@ -11,8 +12,8 @@ public class PlayerWalkingState : PlayerOnGroundState
 	public override void Enter()
 	{
 		base.Enter();
-
 		Debug.Log("Walking State", _stateMachine);
+		_stateMachine.PlayerSound.SetupStepsAudio();
 		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, true);
 	}
 
@@ -36,13 +37,15 @@ public class PlayerWalkingState : PlayerOnGroundState
 
 	public override void Exit()
 	{
-		base .Exit();
+		base.Exit();
+		
+		_stateMachine.PlayerSound.DisableStepsAudio();
 		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, false);
 	}
 
 	private void MovePlayer()
 	{
-		_stateMachine.MovementVector = _stateMachine.InputVector * _stateMachine.MovementSpeed;
+		_stateMachine.MovementVector = _stateMachine.InputVector.normalized * _stateMachine.MovementSpeed;
 
 		//Moves the player
 		_stateMachine.MainRigidbody.AddForce(_stateMachine.MovementVector * _stateMachine.MainRigidbody.mass, ForceMode.Force);
