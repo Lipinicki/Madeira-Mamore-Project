@@ -351,11 +351,11 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
+        virtual void OnMove(InputAction.CallbackContext context) {}
+        virtual void OnLook(InputAction.CallbackContext context) {}
+        virtual void OnJump(InputAction.CallbackContext context) {}
+        virtual void OnCrouch(InputAction.CallbackContext context) {}
+        virtual void OnInteract(InputAction.CallbackContext context) {}
+        virtual void OnPause(InputAction.CallbackContext context) {}
     }
 }
