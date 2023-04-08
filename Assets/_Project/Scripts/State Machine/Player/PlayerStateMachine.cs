@@ -5,8 +5,12 @@ using UnityEngine.Events;
 
 public class PlayerStateMachine : StateMachine
 {
-	[field: SerializeField]
+	
+	[field: SerializeField, Header("Essential Components")]
 	public PlayerInput PlayerInput { get; private set; }
+
+	[field: SerializeField]
+	public PlayerSound PlayerSound { get; private set; }
 
 	[field: SerializeField]
 	public Rigidbody MainRigidbody { get; private set; }
@@ -19,6 +23,9 @@ public class PlayerStateMachine : StateMachine
 
 	[field: SerializeField]
 	public CapsuleCollider PlayerCollider { get; private set; }
+	
+	[field: SerializeField]
+	public Transform PlayerVisualTransform { get; private set; }
 
 	[field: Space(30f), SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
 	public Vector3 InputVector { get; private set; }
@@ -26,7 +33,7 @@ public class PlayerStateMachine : StateMachine
 	[field: SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")]
 	public Vector3 MovementVector { get; set; }
 
-	[field: Space(30f), SerializeField, Tooltip("Speed of players movement")]
+	[field: Header("Movement Parameters"), Space(30f), SerializeField, Tooltip("Speed of players movement")]
 	public float MovementSpeed { get; private set; } = 17f;
 
 	[field: SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")]
@@ -71,8 +78,8 @@ public class PlayerStateMachine : StateMachine
 
 	[Space(30f), SerializeField]
 	private UnityEvent OnInteractEvent;
-
-	[field: Space(30f), SerializeField] 
+	
+	[field: Space(30f), SerializeField, Header("Ladder State")]
 	public float LadderClimbingSpeed { get; private set; } = 5f;
 
 	[field: SerializeField]
@@ -94,12 +101,24 @@ public class PlayerStateMachine : StateMachine
 	public float ForceToLeftLadder { get; private set; } = 9f;
 
 	public Transform ActiveLadder { get; set; }
-
 	public float StandingHeight { get; private set; }
+
+
+	[field: SerializeField, Header("Pushing State")]
+	public float MinInteractionDistance { get; private set; } = 1f;
+	
+	[field: SerializeField]
+    public float BlockMovementSpeed { get; private set; } = 2f; // Force applied to the block when pushed	
+	
+	public float BlockOffset { get; private set; } = 1f;
+	public float MaxInteractionDistance { get; private set; } 
+    public LayerMask PushBlocksLayer;
+    public Rigidbody ActiveBlock { get; private set; } = null;
 
 	private void OnEnable()
 	{
 		PlayerInput.moveEvent += OnMove;
+
 	}
 
 	private void OnDisable()
@@ -177,5 +196,25 @@ public class PlayerStateMachine : StateMachine
 			);
 
 		Debug.DrawRay(ray.origin, ray.direction * RayCastMaxDistance);
+	}
+
+	public void SetupActiveBlock(Transform t)
+	{
+		Rigidbody rb = t.GetComponent<Rigidbody>();
+		var blockDepth = t.GetComponent<Collider>().bounds.size.z;
+		
+		BlockOffset = blockDepth;
+		ActiveBlock = rb;
+	}
+
+	public void DetachBlock()
+	{
+		if (ActiveBlock != null)
+		{
+			ActiveBlock.velocity = Vector3.zero;
+			ActiveBlock.angularVelocity = Vector3.zero;
+			MaxInteractionDistance = 0f;
+			ActiveBlock = null;
+		}
 	}
 }
