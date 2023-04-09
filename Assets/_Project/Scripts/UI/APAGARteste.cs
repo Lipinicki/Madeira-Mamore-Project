@@ -9,7 +9,7 @@ public class APAGARteste : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.R))
 		{
 			other.SetActive(!other.activeInHierarchy);
 		}
