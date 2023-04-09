@@ -12,6 +12,9 @@ public class PlayerWalkingState : PlayerOnGroundState
 	public override void Enter()
 	{
 		base.Enter();
+
+		_stateMachine.PlayerInput.crouchEvent += OnCrouch;
+
 		Debug.Log("Walking State", _stateMachine);
 		_stateMachine.PlayerSound.SetupStepsAudio();
 		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, true);
@@ -38,6 +41,8 @@ public class PlayerWalkingState : PlayerOnGroundState
 	public override void Exit()
 	{
 		base.Exit();
+
+		_stateMachine.PlayerInput.crouchEvent -= OnCrouch;
 		
 		_stateMachine.PlayerSound.DisableStepsAudio();
 		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, false);
@@ -72,5 +77,10 @@ public class PlayerWalkingState : PlayerOnGroundState
 	{
 		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
 		_stateMachine.transform.rotation = Quaternion.Slerp(_stateMachine.transform.rotation, targetRotation, Time.fixedDeltaTime * _stateMachine.RotationSpeed);
+	}
+
+	private void OnCrouch()
+	{
+		_stateMachine.SwitchCurrentState(new PlayerCrouchState(_stateMachine));
 	}
 }

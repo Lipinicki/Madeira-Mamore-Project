@@ -11,6 +11,9 @@ public class PlayerIdleState : PlayerOnGroundState
 	public override void Enter()
 	{
 		base.Enter();
+
+		_stateMachine.PlayerInput.crouchEvent += OnCrouch;
+
 		Debug.Log("Idle State", _stateMachine);
 		_stateMachine.MainAnimator.SetTrigger(kIdleAnimationParam);
 	}
@@ -33,5 +36,12 @@ public class PlayerIdleState : PlayerOnGroundState
 	public override void Exit()
 	{
 		base.Exit();
+
+		_stateMachine.PlayerInput.crouchEvent -= OnCrouch;
+	}
+
+	private void OnCrouch()
+	{
+		_stateMachine.SwitchCurrentState(new PlayerCrouchState(_stateMachine));
 	}
 }
