@@ -18,4 +18,5 @@ MonoBehaviour:
     Eu j\xE1 n\xE3o tinha mais nada a perder. Eu n\xE3o tinha fam\xEDlia, eu n\xE3o
     tinha filhos, eu n\xE3o tinha ningu\xE9m. Eu j\xE1 tinha desistido de tudo, e
     fui prometido uma segunda chance na vida quando vim trabalhar aqui.</wiggle>"
-  speechAudio: {fileID: 0}
+  hasAudio: 1
+  speechAudio: {fileID: 8300000, guid: c64d6a57da2407a4fa5c3730d0c5908d, type: 3}
