@@ -2631,30 +2631,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 921562647}
     m_Modifications:
-    - target: {fileID: 1112133797835116600, guid: cb6e3ff4d2595544c84da5944479628b,
+    - target: {fileID: 4037205775553990896, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -321.69025
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086635072171156794, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -321.6902
-      objectReference: {fileID: 0}
-    - target: {fileID: 3464806786457297461, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 253.68
-      objectReference: {fileID: 0}
+      propertyPath: audioScr
+      value: 
+      objectReference: {fileID: 4549357490267074388}
     - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
       propertyPath: m_Name
       value: DialoguePresenter
-      objectReference: {fileID: 0}
-    - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7305460934764504687, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
@@ -2761,11 +2746,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8199047274878770262, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -18.950363
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb6e3ff4d2595544c84da5944479628b, type: 3}
 --- !u!224 &4549357490267074386 stripped
@@ -2786,6 +2766,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbada278e6375574fb2828117236c7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &4549357490267074388 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1728830074489607021, guid: cb6e3ff4d2595544c84da5944479628b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4549357490267074385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5374422586961870474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1357909894896092109, guid: 4632ad91cac59884cb897cc75dcb9371,

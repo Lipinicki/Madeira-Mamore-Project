@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Project/Prefabs/UI.meta
 guid: 28c966c0adecd0d4a9ef439f8d7701ce
+========
+guid: 882aa857c59199a44890d4541b3d9871
+>>>>>>>> 32ad5ac (Minor refactoring on player movement script):Assets/_Project/Scripts/States.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

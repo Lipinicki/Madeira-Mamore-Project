@@ -16,4 +16,5 @@ MonoBehaviour:
   characterName: Joana
   speechText: "N\xE3o precisa se desesperar. Eu estou aqui. O que aconteceu? Por
     que voc\xEA veio para c\xE1?"
-  speechAudio: {fileID: 0}
+  hasAudio: 1
+  speechAudio: {fileID: 8300000, guid: 13b162f8160c86f4da558dc58b5722c1, type: 3}

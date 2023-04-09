@@ -17,6 +17,7 @@ public class DialoguePresenter : MonoBehaviour
     [Space]
 
     [Header("Dialogue Actions")]
+    [SerializeField] private AudioSource audioScr;
     [SerializeField] private Button returnButton;
     [SerializeField] private Button advanceButton;
 
@@ -54,6 +55,12 @@ public class DialoguePresenter : MonoBehaviour
         portraitShadow.sprite = currentSpeech.characterPortrait;
         characterName.SetText(currentSpeech.characterName);
         dialogueText.SetText(currentSpeech.speechText);
+        
+        if (currentSpeech.hasAudio)
+        { 
+            audioScr.clip = currentSpeech.speechAudio;
+            audioScr.Play();
+        }
     }
 
     public void AdvanceDialogue()
