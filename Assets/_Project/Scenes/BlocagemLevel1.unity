@@ -1112,17 +1112,17 @@ PrefabInstance:
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.19782421
+      value: 0.19782422
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.4652348
+      value: -0.46523485
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.10750775
+      value: 0.107507765
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
@@ -1419,8 +1419,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139166421}
-  m_LocalRotation: {x: 0.19782421, y: -0.4652348, z: 0.10750775, w: 0.8560749}
-  m_LocalPosition: {x: 13.202299, y: 5, z: -11.900944}
+  m_LocalRotation: {x: 0.47325227, y: -0.32635742, z: 0.19431601, w: 0.79483616}
+  m_LocalPosition: {x: 4.0062027, y: 8.846207, z: -7.6962414}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1991,7 +1991,7 @@ GameObject:
   - component: {fileID: 246325441}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2141,7 +2141,7 @@ GameObject:
   - component: {fileID: 270293516}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6197,7 +6197,7 @@ GameObject:
   - component: {fileID: 840386359}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6663,7 +6663,7 @@ GameObject:
   - component: {fileID: 936094742}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7687,7 +7687,7 @@ GameObject:
   - component: {fileID: 1068701810}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10669,7 +10669,7 @@ GameObject:
   - component: {fileID: 1395428458}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12297,7 +12297,7 @@ GameObject:
   - component: {fileID: 1585288143}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13096,7 +13096,7 @@ GameObject:
   - component: {fileID: 1665324933}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13560,7 +13560,7 @@ GameObject:
   - component: {fileID: 1704205137}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13942,7 +13942,7 @@ GameObject:
   - component: {fileID: 1764034741}
   m_Layer: 0
   m_Name: '%$ Header'
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

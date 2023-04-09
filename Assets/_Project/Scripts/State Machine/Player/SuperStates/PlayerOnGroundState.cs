@@ -10,18 +10,18 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 
 	public override void Enter()
 	{
-		_stateMachine.PlayerInput.jumpEvent += OnJump;
-		_stateMachine.PlayerInput.interactEvent += OnInteract;
+		_ctx.PlayerInput.jumpEvent += OnJump;
+		_ctx.PlayerInput.interactEvent += OnInteract;
 	}
 
 	public override void FixedTick(float fixedDeltaTime)
 	{
-		if (!_stateMachine.IsGrounded())
+		if (!_ctx.IsGrounded())
 		{
-			_stateMachine.SwitchCurrentState(new PlayerFallingState(_stateMachine));
+			_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
 		}
 
-		_stateMachine.ApplyGravity();
+		_ctx.ApplyGravity();
 		ClampsVerticalVelocity();
 	}
 
@@ -33,64 +33,64 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 
 	public override void Exit()
 	{
-		_stateMachine.PlayerInput.jumpEvent -= OnJump;
-		_stateMachine.PlayerInput.interactEvent -= OnInteract;
+		_ctx.PlayerInput.jumpEvent -= OnJump;
+		_ctx.PlayerInput.interactEvent -= OnInteract;
 	}
 
 	private void CheckForLadder()
 	{
 		Ray ray = new Ray(
 					new Vector3(
-					_stateMachine.transform.position.x,
-					_stateMachine.transform.position.y + _stateMachine.RayCastOffset,
-					_stateMachine.transform.position.z
+					_ctx.transform.position.x,
+					_ctx.transform.position.y + _ctx.RayCastOffset,
+					_ctx.transform.position.z
 					),
-					_stateMachine.transform.forward
+					_ctx.transform.forward
 					);
 
-		if (Physics.Raycast(ray, out RaycastHit hit, _stateMachine.RayCastMaxDistance, _stateMachine.LadderLayers, QueryTriggerInteraction.Ignore))
+		if (Physics.Raycast(ray, out RaycastHit hit, _ctx.RayCastMaxDistance, _ctx.LadderLayers, QueryTriggerInteraction.Ignore))
 		{
 			Debug.Log("Found Ladder: " + hit.transform.name);
-			_stateMachine.ActiveLadder = hit.transform;
+			_ctx.ActiveLadder = hit.transform;
 		}
 		else
 		{
-			_stateMachine.ActiveLadder = null;
+			_ctx.ActiveLadder = null;
 		}
 	}
 
 	private void ClampsVerticalVelocity()
 	{
-		Vector3 xzVel = new Vector3(_stateMachine.MainRigidbody.velocity.x, 0, _stateMachine.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _stateMachine.MainRigidbody.velocity.y, 0);
+		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
+		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
 
-		yVel = Vector3.ClampMagnitude(yVel, _stateMachine.MaxVerticalSpeed);
+		yVel = Vector3.ClampMagnitude(yVel, _ctx.MaxVerticalSpeed);
 
-		_stateMachine.MainRigidbody.velocity = xzVel + yVel;
+		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
 	private void OnJump()
 	{
-		_stateMachine.MainRigidbody.velocity += new Vector3(0, _stateMachine.InitialJumpForce, 0);
-		_stateMachine.JumpBeginTime = Time.time; //Resets jump begin time
-		_stateMachine.SwitchCurrentState(new PlayerJumpState(_stateMachine));
+		_ctx.MainRigidbody.velocity += new Vector3(0, _ctx.InitialJumpForce, 0);
+		_ctx.JumpBeginTime = Time.time; //Resets jump begin time
+		_ctx.SwitchCurrentState(new PlayerJumpState(_ctx));
 	}
 
 	private void OnInteract()
 	{
-		if (_stateMachine.InteractableArea.CanInteract)
+		if (_ctx.InteractableArea.CanInteract)
 		{
-			_stateMachine.InteractableArea.Interaction.Interact();
-			_stateMachine.TriggerInteractionEvent();
+			_ctx.InteractableArea.Interaction.Interact();
+			_ctx.TriggerInteractionEvent();
 		}
-		else if (_stateMachine.ActiveLadder != null)
+		else if (_ctx.ActiveLadder != null)
 		{
-			_stateMachine.SwitchCurrentState(new PlayerLadderClimbState(_stateMachine));
+			_ctx.SwitchCurrentState(new PlayerLadderClimbState(_ctx));
 		}
-		else if (Physics.Raycast(_stateMachine.transform.position, _stateMachine.transform.forward, out var grabHit, _stateMachine.RayCastMaxDistance, _stateMachine.PushBlocksLayer))
+		else if (Physics.Raycast(_ctx.transform.position, _ctx.transform.forward, out var grabHit, _ctx.RayCastMaxDistance, _ctx.PushBlocksLayer))
 		{
-			_stateMachine.SetupActiveBlock(grabHit.transform);
-			_stateMachine.SwitchCurrentState(new PlayerPushingState(_stateMachine));
+			_ctx.SetupActiveBlock(grabHit.transform);
+			_ctx.SwitchCurrentState(new PlayerPushingState(_ctx));
 		}
 	}
 }

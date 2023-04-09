@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerOnGroundState
 {
-	private readonly int kIdleAnimationParam = Animator.StringToHash("StartIdle");
+	private readonly int r_IdleAnimationState = Animator.StringToHash("Idle");
+
+	private const float k_AnimationTransitionTime = 0.15f;
 
 	public PlayerIdleState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{
@@ -12,10 +14,10 @@ public class PlayerIdleState : PlayerOnGroundState
 	{
 		base.Enter();
 
-		_stateMachine.PlayerInput.crouchEvent += OnCrouch;
+		_ctx.PlayerInput.crouchEvent += OnCrouch;
 
-		Debug.Log("Idle State", _stateMachine);
-		_stateMachine.MainAnimator.SetTrigger(kIdleAnimationParam);
+		Debug.Log("Idle State", _ctx);
+		_ctx.MainAnimator.CrossFadeInFixedTime(r_IdleAnimationState, k_AnimationTransitionTime);
 	}
 
 	public override void FixedTick(float fixedDeltaTime)
@@ -27,9 +29,9 @@ public class PlayerIdleState : PlayerOnGroundState
 	{
 		base.Tick(deltaTime);
 
-		if (_stateMachine.InputVector.sqrMagnitude > 0.02f)
+		if (_ctx.InputVector.sqrMagnitude > 0.02f)
 		{
-			_stateMachine.SwitchCurrentState(new PlayerWalkingState(_stateMachine));
+			_ctx.SwitchCurrentState(new PlayerWalkingState(_ctx));
 		}
 	}
 
@@ -37,11 +39,11 @@ public class PlayerIdleState : PlayerOnGroundState
 	{
 		base.Exit();
 
-		_stateMachine.PlayerInput.crouchEvent -= OnCrouch;
+		_ctx.PlayerInput.crouchEvent -= OnCrouch;
 	}
 
 	private void OnCrouch()
 	{
-		_stateMachine.SwitchCurrentState(new PlayerCrouchState(_stateMachine));
+		_ctx.SwitchCurrentState(new PlayerCrouchState(_ctx));
 	}
 }

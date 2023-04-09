@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerPushingState : PlayerOnGroundState
 {
 	private readonly int kWalkingAnimationParam = Animator.StringToHash("isWalking");
-	private Rigidbody activeBlock => _stateMachine.ActiveBlock;
-	private Transform transform => _stateMachine.transform;
+	private Rigidbody activeBlock => _ctx.ActiveBlock;
+	private Transform transform => _ctx.transform;
 	private Vector3 blockTargetPosition = Vector3.zero;
 
 	public PlayerPushingState(PlayerStateMachine stateMachine) : base(stateMachine)
@@ -16,11 +16,11 @@ public class PlayerPushingState : PlayerOnGroundState
 	{
 		base.Enter();
 
-		_stateMachine.PlayerInput.interactEvent += Release;
+		_ctx.PlayerInput.interactEvent += Release;
 		
-		Debug.Log("Pusing State", _stateMachine);
-		_stateMachine.PlayerSound.SetupStepsAudio();
-		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, true);
+		Debug.Log("Pusing State", _ctx);
+		_ctx.PlayerSound.SetupStepsAudio();
+		_ctx.MainAnimator.SetBool(kWalkingAnimationParam, true);
 	}
 
 	public override void FixedTick(float fixedDeltaTime)
@@ -39,49 +39,49 @@ public class PlayerPushingState : PlayerOnGroundState
 	{
 		base.Exit();
 		
-		_stateMachine.PlayerSound.DisableStepsAudio();
-		_stateMachine.MainAnimator.SetBool(kWalkingAnimationParam, false);
+		_ctx.PlayerSound.DisableStepsAudio();
+		_ctx.MainAnimator.SetBool(kWalkingAnimationParam, false);
 	}
 
 	private void UpdateBlockPosition()
 	{
-		if (activeBlock == null || _stateMachine.InputVector == Vector3.zero) return;
+		if (activeBlock == null || _ctx.InputVector == Vector3.zero) return;
 
 
 		// Calculate the target position for the block based on the player's forward direction
-		blockTargetPosition = transform.position + (transform.forward.normalized * _stateMachine.BlockOffset);
+		blockTargetPosition = transform.position + (transform.forward.normalized * _ctx.BlockOffset);
 		
-		float movingFactor = _stateMachine.BlockMovementSpeed * Time.fixedDeltaTime;
+		float movingFactor = _ctx.BlockMovementSpeed * Time.fixedDeltaTime;
 		Vector3 interpolatedPosition = Vector3.Lerp(activeBlock.transform.position, blockTargetPosition, movingFactor);
 
-		_stateMachine.ActiveBlock.MovePosition(interpolatedPosition);
+		_ctx.ActiveBlock.MovePosition(interpolatedPosition);
 	}
 
 
 	private void MovePlayer()
 	{
-		float reducedMovespeed = _stateMachine.MovementSpeed * 0.4f;
-		_stateMachine.MovementVector = _stateMachine.InputVector.normalized * reducedMovespeed;
+		float reducedMovespeed = _ctx.MovementSpeed * 0.4f;
+		_ctx.MovementVector = _ctx.InputVector.normalized * reducedMovespeed;
 
 		//Moves the player
-		_stateMachine.MainRigidbody.AddForce(_stateMachine.MovementVector * _stateMachine.MainRigidbody.mass, ForceMode.Force);
+		_ctx.MainRigidbody.AddForce(_ctx.MovementVector * _ctx.MainRigidbody.mass, ForceMode.Force);
 		ClampsHorizontalVelocity();
 	}
 
 	private void ClampsHorizontalVelocity()
 	{
-		Vector3 xzVel = new Vector3(_stateMachine.MainRigidbody.velocity.x, 0, _stateMachine.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _stateMachine.MainRigidbody.velocity.y, 0);
+		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
+		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
 
-		xzVel = Vector3.ClampMagnitude(xzVel, _stateMachine.MaxHorizontalSpeed);
+		xzVel = Vector3.ClampMagnitude(xzVel, _ctx.MaxHorizontalSpeed);
 
-		_stateMachine.MainRigidbody.velocity = xzVel + yVel;
+		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
 	private void Release()
 	{
-		_stateMachine.DetachBlock();
-		_stateMachine.SwitchCurrentState(new PlayerIdleState(_stateMachine));
+		_ctx.DetachBlock();
+		_ctx.SwitchCurrentState(new PlayerIdleState(_ctx));
 	}
 
 }
