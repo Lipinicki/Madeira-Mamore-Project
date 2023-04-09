@@ -10,19 +10,19 @@ public class PlayerLadderClimbState : PlayerBaseState
 
 	public override void Enter()
 	{
-		_stateMachine.PlayerInput.interactEvent += OnRelease;
+		_ctx.PlayerInput.interactEvent += OnRelease;
 
 		Vector3 offSetPos = new Vector3(
-			_stateMachine.ActiveLadder.position.x,
+			_ctx.ActiveLadder.position.x,
 			0,
-			_stateMachine.ActiveLadder.position.z
+			_ctx.ActiveLadder.position.z
 			);
-		_stateMachine.transform.position = offSetPos +
-			_stateMachine.ActiveLadder.forward *
-			_stateMachine.LadderStartOffsetFoward +
-			_stateMachine.transform.up *
-			_stateMachine.LadderStartOffsetHeight;
-		_stateMachine.transform.rotation = Quaternion.LookRotation(-_stateMachine.ActiveLadder.transform.forward);
+		_ctx.transform.position = offSetPos +
+			_ctx.ActiveLadder.forward *
+			_ctx.LadderStartOffsetFoward +
+			_ctx.transform.up *
+			_ctx.LadderStartOffsetHeight;
+		_ctx.transform.rotation = Quaternion.LookRotation(-_ctx.ActiveLadder.transform.forward);
 	}
 
 	public override void FixedTick(float fixedDeltaTime)
@@ -40,41 +40,41 @@ public class PlayerLadderClimbState : PlayerBaseState
 	{
 		Ray ray = new Ray(
 					new Vector3(
-					_stateMachine.transform.position.x,
-					_stateMachine.transform.position.y + _stateMachine.RayCastOffset,
-					_stateMachine.transform.position.z
+					_ctx.transform.position.x,
+					_ctx.transform.position.y + _ctx.RayCastOffset,
+					_ctx.transform.position.z
 					),
-					_stateMachine.transform.forward
+					_ctx.transform.forward
 					);
 
-		if (Physics.Raycast(ray, out RaycastHit hit, _stateMachine.RayCastMaxDistance, _stateMachine.LadderLayers, QueryTriggerInteraction.Ignore))
+		if (Physics.Raycast(ray, out RaycastHit hit, _ctx.RayCastMaxDistance, _ctx.LadderLayers, QueryTriggerInteraction.Ignore))
 		{
-			_stateMachine.ActiveLadder = hit.transform;
+			_ctx.ActiveLadder = hit.transform;
 		}
 		else
 		{
-			_stateMachine.ActiveLadder = null;
+			_ctx.ActiveLadder = null;
 		}
 	}
 
 	public override void Exit()
 	{
-		_stateMachine.PlayerInput.interactEvent -= OnRelease;
+		_ctx.PlayerInput.interactEvent -= OnRelease;
 	}
 
 	private void HandleLadderClimb(float deltaTime)
 	{
-		if (_stateMachine.ActiveLadder == null)
+		if (_ctx.ActiveLadder == null)
 		{
 			ApplyForceToLeft();
 			return;
 		}
 
-		Vector3 climbDirection = new Vector3(0f, _stateMachine.InputVector.z, 0f);
+		Vector3 climbDirection = new Vector3(0f, _ctx.InputVector.z, 0f);
 
-		_stateMachine.transform.Translate(climbDirection * _stateMachine.LadderClimbingSpeed * deltaTime);
+		_ctx.transform.Translate(climbDirection * _ctx.LadderClimbingSpeed * deltaTime);
 
-		if (_stateMachine.IsGrounded())
+		if (_ctx.IsGrounded())
 		{
 			OnRelease();
 		}
@@ -82,29 +82,29 @@ public class PlayerLadderClimbState : PlayerBaseState
 
 	private void ClampsHorizontalVelocity()
 	{
-		Vector3 xzVel = new Vector3(_stateMachine.MainRigidbody.velocity.x, 0, _stateMachine.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _stateMachine.MainRigidbody.velocity.y, 0);
+		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
+		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
 
 		xzVel = Vector3.ClampMagnitude(xzVel, 0);
 
-		_stateMachine.MainRigidbody.velocity = xzVel + yVel;
+		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
 	private void ApplyForceToLeft()
 	{
-		_stateMachine.MainRigidbody.AddForce(
-			_stateMachine.transform.up * 
-			_stateMachine.ForceToLeftLadder + 
-			_stateMachine.transform.forward * 
-			_stateMachine.ForceToLeftLadder, 
+		_ctx.MainRigidbody.AddForce(
+			_ctx.transform.up * 
+			_ctx.ForceToLeftLadder + 
+			_ctx.transform.forward * 
+			_ctx.ForceToLeftLadder, 
 			ForceMode.Impulse
 			);
-		_stateMachine.SwitchCurrentState(new PlayerFallingState(_stateMachine));
+		_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
 	}
 
 	private void OnRelease()
 	{
-		_stateMachine.ActiveLadder = null;
-		_stateMachine.SwitchCurrentState(new PlayerFallingState(_stateMachine));
+		_ctx.ActiveLadder = null;
+		_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
 	}
 }

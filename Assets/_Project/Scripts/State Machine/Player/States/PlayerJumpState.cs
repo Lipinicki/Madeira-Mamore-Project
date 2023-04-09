@@ -2,14 +2,21 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerOnAirState
 {
+	private readonly int r_JumpAnimationState = Animator.StringToHash("JumpingUp");
+
+	private const float k_AnimationTransitionTime = 0.15f;
+
 	public PlayerJumpState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{
 	}
 
 	public override void Enter()
 	{
-		_stateMachine.PlayerInput.jumpCanceledEvent += OnJumpcannceled;
-		Debug.Log("Jumping State", _stateMachine);
+		Debug.Log("Jumping State", _ctx);
+
+		_ctx.PlayerInput.jumpCanceledEvent += OnJumpcannceled;
+
+		_ctx.MainAnimator.CrossFadeInFixedTime(r_JumpAnimationState, k_AnimationTransitionTime);
 	}
 
 	public override void FixedTick(float fixedDeltaTime)
@@ -28,14 +35,14 @@ public class PlayerJumpState : PlayerOnAirState
 
 	public override void Exit()
 	{
-		_stateMachine.PlayerInput.jumpCanceledEvent -= OnJumpcannceled;
+		_ctx.PlayerInput.jumpCanceledEvent -= OnJumpcannceled;
 	}
 
 	private void RaiseGravitycontribution(float deltaTime)
 	{
 		//Raises gravity contribution starting from 0f at the beginning of the jump
 		//and raise it to a maximun of 1f
-		_stateMachine.GravityContribution += deltaTime * _stateMachine.GravityComeback;
+		_ctx.GravityContribution += deltaTime * _ctx.GravityComeback;
 	}
 
 	private void HandleJump()
@@ -43,52 +50,52 @@ public class PlayerJumpState : PlayerOnAirState
 		//The player can only hold the Jump button for so long as
 		//JumpInputDuration, _jumpBeginTime is setted when OnJump is
 		//called
-		if (Time.time >= _stateMachine.JumpBeginTime + _stateMachine.JumpInputDuration)
+		if (Time.time >= _ctx.JumpBeginTime + _ctx.JumpInputDuration)
 		{
-			_stateMachine.GravityContribution = 1f; //Gravity influence is reset to full effect
-			_stateMachine.SwitchCurrentState(new PlayerFallingState(_stateMachine));
+			_ctx.GravityContribution = 1f; //Gravity influence is reset to full effect
+			_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
 		}
 		else
 		{
-			_stateMachine.GravityContribution *= _stateMachine.GravityDivider; //Reduce the gravity effect
+			_ctx.GravityContribution *= _ctx.GravityDivider; //Reduce the gravity effect
 		}
 	}
 
 	private void MovePlayer()
 	{
-		_stateMachine.MovementVector = _stateMachine.InputVector * _stateMachine.MovementSpeed;
+		_ctx.MovementVector = _ctx.InputVector * _ctx.MovementSpeed;
 
 		//Moves the player
-		_stateMachine.MainRigidbody.AddForce(_stateMachine.MovementVector * _stateMachine.MainRigidbody.mass, ForceMode.Force);
+		_ctx.MainRigidbody.AddForce(_ctx.MovementVector * _ctx.MainRigidbody.mass, ForceMode.Force);
 		ClampsHorizontalVelocity();
 	}
 
 	private void ClampsHorizontalVelocity()
 	{
-		Vector3 xzVel = new Vector3(_stateMachine.MainRigidbody.velocity.x, 0, _stateMachine.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _stateMachine.MainRigidbody.velocity.y, 0);
+		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
+		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
 
-		xzVel = Vector3.ClampMagnitude(xzVel, _stateMachine.MaxHorizontalSpeed);
+		xzVel = Vector3.ClampMagnitude(xzVel, _ctx.MaxHorizontalSpeed);
 
-		_stateMachine.MainRigidbody.velocity = xzVel + yVel;
+		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
 	private void RotatePlayer()
 	{
 		//Rotate to the movement direction
-		UpdateFowardOrientation(_stateMachine.MovementVector.normalized);
+		UpdateFowardOrientation(_ctx.MovementVector.normalized);
 	}
 
 	void UpdateFowardOrientation(Vector3 directionVector)
 	{
 		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
-		_stateMachine.transform.rotation = Quaternion.Slerp(_stateMachine.transform.rotation, targetRotation, Time.fixedDeltaTime * _stateMachine.RotationSpeed);
+		_ctx.transform.rotation = Quaternion.Slerp(_ctx.transform.rotation, targetRotation, Time.fixedDeltaTime * _ctx.RotationSpeed);
 	}
 
 	private void OnJumpcannceled()
 	{
 		Debug.Log("Enter this block");
-		_stateMachine.GravityContribution = 1f;
-		_stateMachine.SwitchCurrentState(new PlayerFallingState(_stateMachine));
+		_ctx.GravityContribution = 1f;
+		_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
 	}
 }

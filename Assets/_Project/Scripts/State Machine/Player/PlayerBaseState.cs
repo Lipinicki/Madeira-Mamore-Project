@@ -2,10 +2,10 @@
 
 public abstract class PlayerBaseState : GameState
 {
-	protected PlayerStateMachine _stateMachine;
+	protected PlayerStateMachine _ctx;
 
 	protected PlayerBaseState(PlayerStateMachine stateMachine)
 	{
-		_stateMachine = stateMachine;
+		_ctx = stateMachine;
 	}
 }
