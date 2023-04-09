@@ -2631,30 +2631,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 921562647}
     m_Modifications:
-    - target: {fileID: 1112133797835116600, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -321.69025
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086635072171156794, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -321.6902
-      objectReference: {fileID: 0}
-    - target: {fileID: 3464806786457297461, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 253.68
-      objectReference: {fileID: 0}
     - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
       propertyPath: m_Name
       value: DialoguePresenter
-      objectReference: {fileID: 0}
-    - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7305460934764504687, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
@@ -2760,11 +2740,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8199047274878770262, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -18.950363
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb6e3ff4d2595544c84da5944479628b, type: 3}

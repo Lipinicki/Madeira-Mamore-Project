@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/FinalGameScenes/MainMenuScene.unity
     guid: 959bfa83b96174844a0e7cefe6cab8d3
+  - enabled: 1
+    path: Assets/_Project/Scenes/DialogueTestScene.unity
+    guid: 98ede21ab69d112458e1b2bade50bfcd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a1380a5c25b22d94c9cc9a9ccd485a2c,
       type: 2}

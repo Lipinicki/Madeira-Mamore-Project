@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyBox;
 
 [CreateAssetMenu(fileName = "Empty Speech", menuName = "Dialogue System/New Speech", order = 1)]
 
@@ -11,6 +12,6 @@ public class Speech : ScriptableObject
     public Sprite characterPortrait;
     public string characterName;
     public string speechText;
-    public AudioClip speechAudio;
-
+    public bool hasAudio = false;
+    [ConditionalField(nameof(hasAudio))] public AudioClip speechAudio;
 }
