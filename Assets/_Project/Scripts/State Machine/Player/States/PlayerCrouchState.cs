@@ -18,6 +18,8 @@ public class PlayerCrouchState : PlayerOnGroundState
 	{
 		base.Enter();
 
+		Debug.Log("Crouching State");
+
 		_stateMachine.PlayerInput.crouchEvent += ReleaseCrouch;
 
 		currentHeight = _stateMachine.StandingHeight;
@@ -63,7 +65,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 	private bool CanStand()
 	{
-		Vector3 raycastOrigin = _stateMachine.transform.position + Vector3.up * (_stateMachine.PlayerCollider.height / 2);
+		Vector3 raycastOrigin = _stateMachine.transform.position + Vector3.up * (_stateMachine.PlayerCollider.height * 0.5f);
 		return !Physics.Raycast(raycastOrigin, Vector3.up, out var hit, _stateMachine.StandingHeight - crouchingHeight);
 	}
 
@@ -94,13 +96,16 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 	void UpdateFowardOrientation(Vector3 directionVector)
 	{
+		if (directionVector == Vector3.zero) return;
+
 		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
 		_stateMachine.transform.rotation = Quaternion.Slerp(_stateMachine.transform.rotation, targetRotation, Time.fixedDeltaTime * _stateMachine.RotationSpeed);
 	}
 
 	private IEnumerator CrouchCoroutine(float targetHeight)
 	{
-		var initalTarget = targetHeight;
+		if (_stateMachine.PlayerCollider.height == targetHeight) yield break;
+
 		while (Mathf.Abs(currentHeight - targetHeight) > 0.01f)
 		{
 			var crouchDelta = Time.deltaTime * transitionSpeed;
@@ -108,6 +113,6 @@ public class PlayerCrouchState : PlayerOnGroundState
 			_stateMachine.PlayerCollider.height = currentHeight;
 			yield return null;
 		}
-		currentHeight = initalTarget;
+		currentHeight = targetHeight;
 	}
 }
