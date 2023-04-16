@@ -26,7 +26,7 @@ public class PlayerPushingState : PlayerOnGroundState
 	public override void FixedTick(float fixedDeltaTime)
 	{
 		MovePlayer();
-		UpdateBlockPosition();
+		UpdateBlockPosition(fixedDeltaTime);
 		base.FixedTick(fixedDeltaTime);
 	}
 
@@ -43,24 +43,21 @@ public class PlayerPushingState : PlayerOnGroundState
 		_ctx.MainAnimator.SetBool(kWalkingAnimationParam, false);
 	}
 
-	private void UpdateBlockPosition()
+	private void UpdateBlockPosition(float deltaTime)
 	{
 		if (activeBlock == null || _ctx.InputVector == Vector3.zero) return;
 
-
 		// Calculate the target position for the block based on the player's forward direction
-		blockTargetPosition = transform.position + (transform.forward.normalized * _ctx.BlockOffset);
-		
-		float movingFactor = _ctx.BlockMovementSpeed * Time.fixedDeltaTime;
-		Vector3 interpolatedPosition = Vector3.Lerp(activeBlock.transform.position, blockTargetPosition, movingFactor);
+		blockTargetPosition = new Vector3(transform.position.x, activeBlock.transform.position.y, transform.position.z) 
+			+ (transform.forward.normalized * _ctx.BlockOffset);
 
-		_ctx.ActiveBlock.MovePosition(interpolatedPosition);
+		_ctx.ActiveBlock.MovePosition(blockTargetPosition);
 	}
 
 
 	private void MovePlayer()
 	{
-		float reducedMovespeed = _ctx.MovementSpeed * 0.4f;
+		float reducedMovespeed = _ctx.MovementSpeed * 0.8f;
 		_ctx.MovementVector = _ctx.InputVector.normalized * reducedMovespeed;
 
 		//Moves the player

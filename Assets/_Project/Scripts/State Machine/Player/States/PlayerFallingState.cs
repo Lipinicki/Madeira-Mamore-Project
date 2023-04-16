@@ -69,6 +69,8 @@ public class PlayerFallingState : PlayerOnAirState
 
 	void UpdateFowardOrientation(Vector3 directionVector)
 	{
+		if (directionVector == Vector3.zero) return;
+
 		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
 		_ctx.transform.rotation = Quaternion.Slerp(_ctx.transform.rotation, targetRotation, Time.fixedDeltaTime * _ctx.RotationSpeed);
 	}

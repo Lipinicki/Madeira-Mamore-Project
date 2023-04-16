@@ -27,6 +27,9 @@ public class PlayerStateMachine : StateMachine
 	[field: SerializeField]
 	public Transform PlayerVisualTransform { get; private set; }
 
+	[field: SerializeField]
+	public Inventory PlayerInventory { get; private set; }
+
 	[field: Space(30f), SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
 	public Vector3 InputVector { get; private set; }
 
@@ -103,7 +106,7 @@ public class PlayerStateMachine : StateMachine
 	public float StandingHeight { get; private set; }
 
 
-	[field: SerializeField, Header("Pushing State")]
+	[field: Space(30f), SerializeField, Header("Pushing State")]
 	public float MinInteractionDistance { get; private set; } = 1f;
 	
 	[field: SerializeField]
@@ -117,7 +120,6 @@ public class PlayerStateMachine : StateMachine
 	private void OnEnable()
 	{
 		PlayerInput.moveEvent += OnMove;
-
 	}
 
 	private void OnDisable()
@@ -131,6 +133,7 @@ public class PlayerStateMachine : StateMachine
 		MainRigidbody.useGravity = false; //Disable Physics.gravity influence
 		MainRigidbody.drag = 0.75f;
 		StandingHeight = PlayerCollider.height;
+		PlayerInventory.ClearInventory();
 
 		SwitchCurrentState(new PlayerIdleState(this));
 	}

@@ -20,7 +20,7 @@ public class UI_InventoryDisplay : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (Item item in inventory.Items.Values)
+        foreach (Item item in inventory.GetItems().Values)
         {
             var itemDisplay = Instantiate(ItemPrefab).GetComponent<UI_ItemDisplay>();
             itemDisplay.transform.SetParent(contentParent, false);
