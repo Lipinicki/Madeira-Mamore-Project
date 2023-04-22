@@ -1794,6 +1794,7 @@ MonoBehaviour:
   <InteractableArea>k__BackingField: {fileID: 9053483479999554347}
   <PlayerCollider>k__BackingField: {fileID: 4259353017313282562}
   <PlayerVisualTransform>k__BackingField: {fileID: 6174840198748837066}
+  <PlayerInventory>k__BackingField: {fileID: 0}
   <InputVector>k__BackingField: {x: 0, y: 0, z: 0}
   <MovementVector>k__BackingField: {x: 0, y: 0, z: 0}
   <MovementSpeed>k__BackingField: 17
