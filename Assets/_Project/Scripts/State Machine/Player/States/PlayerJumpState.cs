@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerOnAirState
 {
-	private readonly int r_JumpAnimationState = Animator.StringToHash("JumpingUp");
+	private readonly int r_JumpAnimationState = Animator.StringToHash("FallingIdle");
 
 	private const float k_AnimationTransitionTime = 0.15f;
 

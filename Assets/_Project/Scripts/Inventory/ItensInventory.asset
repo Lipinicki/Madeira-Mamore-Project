@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef8474146667144c9f46474f96fbd5a, type: 3}
+  m_Name: ItensInventory
+  m_EditorClassIdentifier: 
+  Items:
+    _serializedList:
+    - Key: Nota Da Personagem
+      Value:
+        Name: Nota Da Personagem
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8f96a63faa3c9ee408300f589ca2ee1e, type: 3}
+    - Key: "Di\xE1rio"
+      Value:
+        Name: "Di\xE1rio"
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8b5f3a5de1a18d746b91812ea928676e, type: 3}
+    - Key: Nota Da Personagem 1
+      Value:
+        Name: Nota Da Personagem 1
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8f96a63faa3c9ee408300f589ca2ee1e, type: 3}
+    - Key: Foto
+      Value:
+        Name: Jornal
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8bf2cff02e1cd624390971ebd0a940d9, type: 3}
+    - Key: Pingente
+      Value:
+        Name: "Di\xE1rio"
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8b5f3a5de1a18d746b91812ea928676e, type: 3}
+    - Key: Nota Da Nota Da Personagem 2
+      Value:
+        Name: Nota Da Personagem
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8f96a63faa3c9ee408300f589ca2ee1e, type: 3}
+    - Key: Jornal 1
+      Value:
+        Name: Jornal
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8bf2cff02e1cd624390971ebd0a940d9, type: 3}
+    - Key: "Di\xE1rio 2"
+      Value:
+        Name: "Di\xE1rio"
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8b5f3a5de1a18d746b91812ea928676e, type: 3}
+    - Key: Jornal 4
+      Value:
+        Name: Jornal 4
+        Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          tempor purus et purus tristique, dictum ornare nisi ornare. Nulla consectetur
+          ut urna in commodo. Etiam quis facilisis lacus. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+          molestie finibus lectus ut hendrerit. Etiam volutpat, sem in volutpat consectetur,
+          nibh eros consectetur elit, sit amet scelerisque massa dui vitae eros.
+          Integer vitae consequat magna. Etiam malesuada semper augue, sed posuere
+          odio gravida nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vestibulum tempor purus et purus tristique, dictum ornare nisi ornare.
+          Nulla consectetur ut urna in commodo. Etiam quis facilisis lacus. Pellentesque
+          habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Cras molestie finibus lectus ut hendrerit. Etiam volutpat, sem
+          in volutpat consectetur, nibh eros consectetur elit, sit amet scelerisque
+          massa dui vitae eros. Integer vitae consequat magna. Etiam malesuada semper
+          augue, sed posuere odio gravida nec.Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Vestibulum tempor purus et purus tristique, dictum ornare
+          nisi ornare. Nulla consectetur ut urna in commodo. Etiam quis facilisis
+          lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada
+          fames ac turpis egestas. Cras molestie finibus lectus ut hendrerit. Etiam
+          volutpat, sem in volutpat consectetur, nibh eros consectetur elit, sit
+          amet scelerisque massa dui vitae eros. Integer vitae consequat magna. Etiam
+          malesuada semper augue, sed posuere odio gravida nec.Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit. Vestibulum tempor purus et purus
+          tristique, dictum ornare nisi ornare. Nulla consectetur ut urna in commodo.
+          Etiam quis facilisis lacus. Pellentesque habitant morbi tristique senectus
+          et netus et malesuada fames ac turpis egestas. Cras molestie finibus lectus
+          ut hendrerit. Etiam volutpat, sem in volutpat consectetur, nibh eros consectetur
+          elit, sit amet scelerisque massa dui vitae eros. Integer vitae consequat
+          magna. Etiam malesuada semper augue, sed posuere odio gravida nec.
+        Sprite: {fileID: 21300000, guid: 8bf2cff02e1cd624390971ebd0a940d9, type: 3}
+    - Key: "Chave Primeiro Vag\xE3o"
+      Value:
+        Name: "Chave Primeiro Vag\xE3o"
+        Text: "Chave Primeiro Vag\xE3o"
+        Sprite: {fileID: 0}

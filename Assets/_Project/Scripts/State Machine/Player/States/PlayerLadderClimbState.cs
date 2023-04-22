@@ -14,7 +14,7 @@ public class PlayerLadderClimbState : PlayerBaseState
 
 		Vector3 offSetPos = new Vector3(
 			_ctx.ActiveLadder.position.x,
-			0,
+			_ctx.transform.position.y,
 			_ctx.ActiveLadder.position.z
 			);
 		_ctx.transform.position = offSetPos +
@@ -66,11 +66,14 @@ public class PlayerLadderClimbState : PlayerBaseState
 	{
 		if (_ctx.ActiveLadder == null)
 		{
-			ApplyForceToLeft();
+			ApplyForceToLeft(_ctx.transform.up *
+			_ctx.ForceToLeftLadder +
+			_ctx.transform.forward *
+			_ctx.ForceToLeftLadder);
 			return;
 		}
 
-		Vector3 climbDirection = new Vector3(0f, _ctx.InputVector.z, 0f);
+		Vector3 climbDirection = new Vector3(0f, _ctx.PlayerInput.RawMovementInput.z, 0f);
 
 		_ctx.transform.Translate(climbDirection * _ctx.LadderClimbingSpeed * deltaTime);
 
@@ -90,21 +93,15 @@ public class PlayerLadderClimbState : PlayerBaseState
 		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
-	private void ApplyForceToLeft()
+	private void ApplyForceToLeft(Vector3 force)
 	{
-		_ctx.MainRigidbody.AddForce(
-			_ctx.transform.up * 
-			_ctx.ForceToLeftLadder + 
-			_ctx.transform.forward * 
-			_ctx.ForceToLeftLadder, 
-			ForceMode.Impulse
-			);
+		_ctx.MainRigidbody.AddForce(force, ForceMode.Impulse);
 		_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
 	}
 
 	private void OnRelease()
 	{
 		_ctx.ActiveLadder = null;
-		_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
+		ApplyForceToLeft(_ctx.transform.up * _ctx.ForceToLeftLadder);
 	}
 }

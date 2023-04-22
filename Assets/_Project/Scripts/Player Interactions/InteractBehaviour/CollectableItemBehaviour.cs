@@ -24,9 +24,11 @@ public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectab
 			return;
 		}
 
+		if (inventory.GetItems().ContainsKey(item.Key)) return;
+
 		inventory.AddItem(item.Key, item.Value);
 		onCollectedEvent?.Invoke(item.Value);
 
-		Destroy(gameObject);
+		gameObject.SetActive(false);
 	}
 }

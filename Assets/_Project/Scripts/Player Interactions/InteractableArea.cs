@@ -13,10 +13,21 @@ public class InteractableArea : MonoBehaviour
 
 	public const string kInteractable = "Interactable";
 
+	private void OnEnable()
+	{
+		CollectableItemBehaviour.onCollectedEvent += OnCollection;
+	}
+
+	private void OnDisable()
+	{
+		CollectableItemBehaviour.onCollectedEvent -= OnCollection;
+	}
+
 	public void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag(kInteractable))
 		{
+			Debug.Log(other.name, other);
 			CanInteract = true;
 			AddInteraction(other.gameObject);
 			OnPotentialInteraction?.Invoke();
@@ -41,5 +52,13 @@ public class InteractableArea : MonoBehaviour
 	private void ResetInteraction()
 	{
 		Interaction = null;
+	}
+
+	private void OnCollection(Item item = null)
+	{
+		if (Interaction == null) return;
+
+		Interaction = null;
+		CanInteract = false;
 	}
 }

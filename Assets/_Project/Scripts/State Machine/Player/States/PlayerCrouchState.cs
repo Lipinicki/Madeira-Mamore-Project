@@ -26,7 +26,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 		Debug.Log("Crouching State");
 
-		_ctx.PlayerInput.crouchEvent += ReleaseCrouch;
+		_ctx.PlayerInput.crouchCanceledEvent += ReleaseCrouch;
 
 		currentHeight = _ctx.StandingHeight;
 
@@ -57,7 +57,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 	public override void Exit()
 	{
 		base.Exit();
-		_ctx.PlayerInput.crouchEvent -= ReleaseCrouch;
+		_ctx.PlayerInput.crouchCanceledEvent -= ReleaseCrouch;
 	}
 
 	private void StartCrouch()

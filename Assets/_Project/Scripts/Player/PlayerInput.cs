@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 {
+	public Vector3 RawMovementInput { get; private set; }
+
 	public UnityAction crouchEvent;
 	public UnityAction crouchCanceledEvent;
 	public UnityAction jumpEvent;
@@ -67,7 +69,11 @@ public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
-		moveEvent?.Invoke(context.ReadValue<Vector2>());
+		Vector2 input = context.ReadValue<Vector2>();
+
+		moveEvent?.Invoke(input);
+
+		RawMovementInput = new Vector3(input.x, 0, input.y);
 	}
 
 	public void OnPause(InputAction.CallbackContext context)
