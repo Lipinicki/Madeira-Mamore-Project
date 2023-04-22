@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform destinationPoint;
     [SerializeField] private RectTransform.Axis movementDirection;
@@ -12,6 +12,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField, Range(1f, 10f)] private float intervalToGoBack = 2f;
     [SerializeField] private float positionOffset = 0.15f;
     
+    private bool isMoving = false;
     private Vector3 initialPosition;
     private Sequence movingTween = null;
 
@@ -22,21 +23,25 @@ public class MovingPlatform : MonoBehaviour
 
     public void GoToDestination()
     {
+        if (isMoving) return;
+        Debug.Log("aaaaaaaaaaaaaaa");
         movingTween?.Kill();
     
         movingTween = (movementDirection == RectTransform.Axis.Horizontal) ?
         HorizontalMovement() : VerticalMovement();
 
+        isMoving = true;
         movingTween.Play();
     }
 
     private Sequence VerticalMovement()
     {
         Sequence internalSequence = DOTween.Sequence();
-        internalSequence.Append(transform.DOLocalMoveY(destinationPoint.position.y + positionOffset, movementDuration).SetEase(Ease.OutSine));
-        internalSequence.Append(transform.DOLocalMoveY(destinationPoint.position.y, movementDuration * 0.1f).SetEase(Ease.OutQuart));
+        internalSequence.Append(transform.DOLocalMoveY(destinationPoint.position.y + positionOffset, movementDuration).SetEase(Ease.InSine));
+        internalSequence.Append(transform.DOLocalMoveY(destinationPoint.position.y, movementDuration * 0.025f).SetEase(Ease.OutQuint));
         internalSequence.AppendInterval(intervalToGoBack);
-        internalSequence.Append(transform.DOLocalMoveY(initialPosition.y, movementDuration * 0.5f).SetEase(Ease.InOutExpo));
+        internalSequence.Append(transform.DOLocalMoveY(initialPosition.y, movementDuration * 0.5f).SetEase(Ease.OutQuart));
+        internalSequence.OnComplete( () => isMoving = false);
 
         return internalSequence;
     }
@@ -44,10 +49,11 @@ public class MovingPlatform : MonoBehaviour
     private Sequence HorizontalMovement()
     {
         Sequence internalSequence = DOTween.Sequence();
-        internalSequence.Append(transform.DOLocalMoveX(destinationPoint.position.x + positionOffset, movementDuration).SetEase(Ease.OutSine));
-        internalSequence.Append(transform.DOLocalMoveX(destinationPoint.position.x, movementDuration * 0.1f).SetEase(Ease.OutQuart));
+        internalSequence.Append(transform.DOLocalMoveX(destinationPoint.position.x + positionOffset, movementDuration).SetEase(Ease.InSine));
+        internalSequence.Append(transform.DOLocalMoveX(destinationPoint.position.x, movementDuration * 0.025f).SetEase(Ease.OutQuint));
         internalSequence.AppendInterval(intervalToGoBack);
-        internalSequence.Append(transform.DOLocalMoveX(initialPosition.x, movementDuration * 0.5f).SetEase(Ease.InOutExpo));
+        internalSequence.Append(transform.DOLocalMoveX(initialPosition.x, movementDuration * 0.5f).SetEase(Ease.OutQuart));
+        internalSequence.OnComplete( () => isMoving = false);
 
         return internalSequence;
     }
@@ -56,5 +62,11 @@ public class MovingPlatform : MonoBehaviour
     {
         movingTween?.Kill();
         movingTween = null;
+        isMoving = false;
+    }
+
+    public void Interact()
+    {
+        GoToDestination();
     }
 }
