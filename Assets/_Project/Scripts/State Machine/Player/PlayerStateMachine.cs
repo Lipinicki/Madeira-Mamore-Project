@@ -81,6 +81,8 @@ public class PlayerStateMachine : StateMachine
 
 	[Space(30f), SerializeField]
 	private UnityEvent OnInteractEvent;
+
+	public float OriginalHeight { get; set; } = 2f;
 	
 	[field: Space(30f), SerializeField, Header("Ladder State")]
 	public float LadderClimbingSpeed { get; private set; } = 5f;

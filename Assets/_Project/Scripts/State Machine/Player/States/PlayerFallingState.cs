@@ -25,6 +25,7 @@ public class PlayerFallingState : PlayerOnAirState
 
 		if (_ctx.IsGrounded())
 		{
+			_ctx.PlayerCollider.height = _ctx.OriginalHeight;
 			_ctx.SwitchCurrentState(new PlayerIdleState(_ctx));
 		}
 

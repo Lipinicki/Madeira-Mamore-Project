@@ -27,7 +27,6 @@ public class InteractableArea : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag(kInteractable))
 		{
-			Debug.Log(other.name, other);
 			CanInteract = true;
 			AddInteraction(other.gameObject);
 			OnPotentialInteraction?.Invoke();

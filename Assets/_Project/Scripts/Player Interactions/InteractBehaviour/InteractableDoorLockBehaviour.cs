@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using MyBox;
+using DG.Tweening;
 
 public class InteractableDoorLockBehaviour : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Inventory playerInventory;
-    [SerializeField] private string keyItemName;
+    [SerializeField] private bool useLever = false;
+    [ConditionalField(nameof(useLever), inverse: true)][SerializeField] private Inventory playerInventory;
+    [ConditionalField(nameof(useLever), inverse: true)][SerializeField] private string keyItemName;
     [SerializeField] private Animator animator;
     [SerializeField] private UnityEvent OnDoorOpenned;
 
@@ -14,9 +17,9 @@ public class InteractableDoorLockBehaviour : MonoBehaviour, IInteractable
 
 	void IInteractable.Interact()
 	{
-        if (playerInventory.GetItem(keyItemName) == null)
+        if (playerInventory?.GetItem(keyItemName) == null && !useLever)
         {
-            Debug.Log("Item: " + keyItemName + "not found");
+            Debug.LogWarning("Item: " + keyItemName + "not found");
             return;
         }
 

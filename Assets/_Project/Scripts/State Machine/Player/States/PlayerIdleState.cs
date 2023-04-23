@@ -16,7 +16,6 @@ public class PlayerIdleState : PlayerOnGroundState
 
 		_ctx.PlayerInput.crouchEvent += OnCrouch;
 
-		Debug.Log("Idle State", _ctx);
 		_ctx.MainAnimator.CrossFadeInFixedTime(r_IdleAnimationState, k_AnimationTransitionTime);
 	}
 

@@ -27,7 +27,6 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 
 	public override void Tick(float deltaTime)
 	{
-		CheckForLadder();
 
 	}
 
@@ -37,7 +36,7 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		_ctx.PlayerInput.interactEvent -= OnInteract;
 	}
 
-	private void CheckForLadder()
+	private bool CheckForLadder()
 	{
 		Ray ray = new Ray(
 					new Vector3(
@@ -50,12 +49,13 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 
 		if (Physics.Raycast(ray, out RaycastHit hit, _ctx.RayCastMaxDistance, _ctx.LadderLayers, QueryTriggerInteraction.Ignore))
 		{
-			Debug.Log("Found Ladder: " + hit.transform.name);
 			_ctx.ActiveLadder = hit.transform;
+			return true;
 		}
 		else
 		{
 			_ctx.ActiveLadder = null;
+			return false;
 		}
 	}
 
@@ -83,7 +83,7 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 			_ctx.InteractableArea.Interaction.Interact();
 			_ctx.TriggerInteractionEvent();
 		}
-		else if (_ctx.ActiveLadder != null)
+		else if (CheckForLadder())
 		{
 			_ctx.SwitchCurrentState(new PlayerLadderClimbState(_ctx));
 		}

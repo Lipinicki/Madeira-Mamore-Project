@@ -17,7 +17,6 @@ public class PlayerWalkingState : PlayerOnGroundState
 
 		_ctx.PlayerInput.crouchEvent += OnCrouch;
 
-		Debug.Log("Walking State", _ctx);
 		_ctx.PlayerSound.SetupStepsAudio();
 		_ctx.MainAnimator.CrossFadeInFixedTime(r_WalkingAnimationState, k_AnimationTransitionTime);
 	}
