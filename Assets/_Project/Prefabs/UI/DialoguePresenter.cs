@@ -15,14 +15,22 @@ public class DialoguePresenter : MonoBehaviour
     [SerializeField] private TMP_Text characterName;
     
     [Space]
+    [SerializeField] private GameObject leftArrow;
+    [SerializeField] private GameObject rightArrow;
+
+    [SerializeField] private GameObject leftXmark;
+    [SerializeField] private GameObject rightXmark;
+
+
+    [Space]
 
     [Header("Dialogue Actions")]
     [SerializeField] private AudioSource audioScr;
     [SerializeField] private Button returnButton;
     [SerializeField] private Button advanceButton;
 
-    private Dialogue activeDialogue;
-    private Speech currentSpeech;
+    private Dialogue activeDialogue = null;
+    private Speech currentSpeech = null;
     private int speechIndex = 0;
 
     private void OnEnable()
@@ -45,6 +53,8 @@ public class DialoguePresenter : MonoBehaviour
 
     private void UpdateDialoguePresenter()
     {
+        if (activeDialogue.SpheechCount == 0) return;
+
         List<Speech> speechies = activeDialogue.speechList.ToList();
 
         if (speechies.IndexOf(currentSpeech) == speechIndex) return;
@@ -56,6 +66,12 @@ public class DialoguePresenter : MonoBehaviour
         characterName.SetText(currentSpeech.characterName);
         dialogueText.SetText(currentSpeech.speechText);
         
+        leftArrow.SetActive(speechIndex > 0);
+        rightArrow.SetActive(speechIndex < activeDialogue.SpheechCount - 1);
+        
+        leftXmark.SetActive(speechIndex == 0);
+        rightXmark.SetActive(speechIndex == activeDialogue.SpheechCount - 1);
+
         if (currentSpeech.hasAudio)
         { 
             audioScr.clip = currentSpeech.speechAudio;
@@ -66,6 +82,11 @@ public class DialoguePresenter : MonoBehaviour
     public void AdvanceDialogue()
     {
         if (activeDialogue == null) return;
+        if (speechIndex == activeDialogue.SpheechCount)
+        {
+            EndDialogue();
+            return;
+        }
 
         speechIndex++;
         speechIndex = Math.Clamp(speechIndex, 0, activeDialogue.SpheechCount - 1);
@@ -76,10 +97,24 @@ public class DialoguePresenter : MonoBehaviour
     public void ReturnDialogue()
     {
         if (activeDialogue == null) return;
-
+        if (speechIndex == 0)
+        { 
+            EndDialogue();
+            return;
+        }
+        
         speechIndex--;
         speechIndex = Math.Clamp(speechIndex, 0, activeDialogue.SpheechCount - 1);
 
         UpdateDialoguePresenter();
+    }
+
+    private void EndDialogue()
+    {
+        Debug.Log("end");
+        speechIndex = 0;
+        activeDialogue = null;
+        currentSpeech = null;
+        gameObject.SetActive(false);
     }
 }

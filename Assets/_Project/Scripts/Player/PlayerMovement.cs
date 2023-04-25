@@ -28,11 +28,6 @@ public class PlayerMovement : MonoBehaviour
 	public SubStates CurrentPlayerSubState { get; private set; } = SubStates.None;
 
 	[Header("Character Movement")]
-	[SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")] 
-	private float _groundOffset = 0.75f;
-
-	[SerializeField, Tooltip("Radius of IsGrounded sphere")] 
-	private float _groundedRadius = 0.4f;
 
 	[SerializeField, Tooltip("Scales the Physics.gravity to a new gravity that is used instead")] 
 	private float _gravityScale = 3f;
@@ -66,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	[Space]
 	[SerializeField] 
-	private List<LayerMask> _groundLayers;
+	private LayerMask _groundLayers;
 
 	[Header("Vectors")]
 	[SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")] 
@@ -168,14 +163,8 @@ public class PlayerMovement : MonoBehaviour
 
 	public bool IsGrounded()
 	{
-		Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - _groundOffset, transform.position.z);
-		bool isGrounded = false;
-		foreach (int layer in _groundLayers)
-		{
-			isGrounded = Physics.CheckSphere(spherePosition, _groundedRadius, layer, QueryTriggerInteraction.Ignore);
-			if (isGrounded) break;
-		}
-		return isGrounded;
+		Vector3 raycastOrigin = transform.position - (Vector3.up * transform.localScale.y * 0.5f);
+		return Physics.Raycast(raycastOrigin, Vector3.down, out var hit, 0.01f, _groundLayers);
 	}
 
 	public bool IsWalking() => InputVector.magnitude > 0.01f && IsGrounded() ? true : false; 
@@ -264,20 +253,6 @@ public class PlayerMovement : MonoBehaviour
 
 		if (IsGrounded() && movement != Vector2.zero) ChangePlayerState(ActionStates.Walking);
 		else if (IsGrounded() && movement == Vector2.zero) ResetPlayerState(resetSubstateToo: false);
-	}
-
-	// =============== GIZMOS ===============
-
-	void OnDrawGizmosSelected()
-	{
-		Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-		Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-		if (IsGrounded()) Gizmos.color = transparentGreen;
-		else Gizmos.color = transparentRed;
-
-		//When selected draw a gizmo that matches the position and the radius of the grounded collider
-		Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - _groundOffset, transform.position.z), _groundedRadius);
 	}
 }
 

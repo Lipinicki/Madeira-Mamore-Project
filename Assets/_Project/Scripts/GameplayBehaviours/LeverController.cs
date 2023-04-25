@@ -7,7 +7,7 @@ public class LeverController : MonoBehaviour, IInteractable
 {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Animator animator;
-    [SerializeField] private InteractableChainBehaviour chainBehaviour;
+    [SerializeField] private MonoBehaviour chainBehaviour;
 
     public const string kLeverActivate = "Activate";
     public const string kLeverIdle = "Idle";
@@ -21,7 +21,9 @@ public class LeverController : MonoBehaviour, IInteractable
         isInteracting = true;
         animator?.SetTrigger(kLeverActivate);
         audioSource?.Play();
-        chainBehaviour?.Interact();
+
+        IInteractable currentInteraction = chainBehaviour as IInteractable;
+        currentInteraction.Interact();
     }
 
     public void SetIdle()

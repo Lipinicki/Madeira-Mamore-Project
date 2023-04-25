@@ -12,10 +12,9 @@ public class PlayerJumpState : PlayerOnAirState
 
 	public override void Enter()
 	{
-		Debug.Log("Jumping State", _ctx);
 
 		_ctx.PlayerInput.jumpCanceledEvent += OnJumpcannceled;
-
+		_ctx.PlayerCollider.height = 0.8f;
 		_ctx.MainAnimator.CrossFadeInFixedTime(r_JumpAnimationState, k_AnimationTransitionTime);
 	}
 

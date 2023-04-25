@@ -162,6 +162,8 @@ public class PlayerStateMachine : StateMachine
 
 	#endregion
 
+	public float OriginalHeight { get; set; } = 2f;
+
 	private void OnEnable()
 	{
 		PlayerInput.moveEvent += OnMove;
