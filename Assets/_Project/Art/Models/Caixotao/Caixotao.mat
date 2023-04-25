@@ -24,13 +24,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-<<<<<<<< HEAD:Assets/_Project/Art/Materials/Chão/ChaoProcedMadeira.mat
-        m_Texture: {fileID: 2800000, guid: dfd1713b89f53be46a458ac6c0632535, type: 3}
-        m_Scale: {x: 10, y: 3.08}
-========
         m_Texture: {fileID: 2800000, guid: 4765cefc765c71544bb2d22ce04d05eb, type: 3}
         m_Scale: {x: 1, y: 1}
->>>>>>>> origin/Vini-J1:Assets/_Project/Art/Models/Caixotao/Caixotao.mat
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 0e82b947b23995f46b693effc840130f, type: 3}
@@ -53,13 +48,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-<<<<<<<< HEAD:Assets/_Project/Art/Materials/Chão/ChaoProcedMadeira.mat
-        m_Texture: {fileID: 2800000, guid: dfd1713b89f53be46a458ac6c0632535, type: 3}
-        m_Scale: {x: 10, y: 3.08}
-========
         m_Texture: {fileID: 2800000, guid: 4765cefc765c71544bb2d22ce04d05eb, type: 3}
         m_Scale: {x: 1, y: 1}
->>>>>>>> origin/Vini-J1:Assets/_Project/Art/Models/Caixotao/Caixotao.mat
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: 4b091cbfa832f234692fe3b44a2935fc, type: 3}
