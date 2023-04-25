@@ -11,12 +11,14 @@ public class PlayerSound : MonoBehaviour
 
 	private Coroutine stepsRoutine = null;
 
+	// Plays the steps sound if it is not playing yet
 	public void SetupStepsAudio()
 	{
 		if (stepsRoutine != null) return;
 		stepsRoutine = StartCoroutine(PlayFootstepsAudio());
 	}
 
+	// Stops steps sound
 	public void DisableStepsAudio()
 	{
 		audioSource.Stop();

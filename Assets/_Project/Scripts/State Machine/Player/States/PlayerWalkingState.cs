@@ -51,6 +51,7 @@ public class PlayerWalkingState : PlayerOnGroundState
 
 	private void MovePlayer()
 	{
+		Debug.Log("Move");
 		_ctx.MovementVector = _ctx.InputVector.normalized * _ctx.MovementSpeed;
 
 		//Moves the player

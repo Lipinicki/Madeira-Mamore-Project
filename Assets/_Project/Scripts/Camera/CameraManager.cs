@@ -7,15 +7,22 @@ using UnityEngine;
 // Class used to manage cinemachine cameras in the scene and wich camera is being used at the moment
 public class CameraManager : MonoBehaviour
 {
-	[HideInInspector] public List<CinemachineVirtualCamera> Cameras = new List<CinemachineVirtualCamera>(); //All cameras in the scene
+    [SerializeField, Tooltip("The camera wich will follow the player at the start of the scene")] 
+	private CinemachineVirtualCamera startCamera;
 
-    [SerializeField, Tooltip("The camera wich will follow the player at the start of the scene")] CinemachineVirtualCamera _startCamera;
+	[SerializeField, Tooltip("The list of all CinemachineCameras in the Scene")] 
+	private List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>();
 
-    CinemachineVirtualCamera _activeCamera;
+	// Tracks the current Live CM camera in the scene, which the priority is the highest
+    private CinemachineVirtualCamera _activeCamera;
 
-	void Awake()
+	private const int kLowestPriority = 10;
+	private const int kHighestPriority = 20;
+
+	private void OnValidate()
 	{
-		FindAllCameras();
+		// Switch the active camera on editor mode
+		ResetCamerasPriority();
 	}
 
 	void Start()
@@ -23,35 +30,30 @@ public class CameraManager : MonoBehaviour
 		ResetCamerasPriority();
 	}
 
-	void FindAllCameras()
-	{
-		Cameras = FindObjectsOfType<CinemachineVirtualCamera>().ToList();
-	}
-
+	// Sets all cameras priority to the lowest and sets active camera to the start camera
 	void ResetCamerasPriority()
 	{
-		foreach (var cam in Cameras)
+		foreach (var cam in cameras)
 		{
-			cam.Priority = 10;
+			cam.Priority = kLowestPriority;
 		}
 
-		if (_startCamera != null)
+		if (startCamera != null)
 		{
-			_activeCamera = _startCamera;
+			_activeCamera = startCamera;
 
-			_activeCamera.Priority = 20;
+			_activeCamera.Priority = kHighestPriority;
 		}
 	}
 
+	// Switches the active camera to the specified camera
 	public void SwitchActiveCamera(CinemachineVirtualCamera targetCamera)
 	{
 		if (targetCamera == null) return;
 
-		targetCamera.Priority = 20;
+		targetCamera.Priority = kHighestPriority;
 
-		_activeCamera.Priority = 10;
-
-		Debug.Log(_activeCamera.name);
+		_activeCamera.Priority = kLowestPriority;
 
 		_activeCamera = targetCamera;
 	}

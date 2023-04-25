@@ -7,14 +7,16 @@ public class PlayerCrouchState : PlayerOnGroundState
 	private float crouchingHeight = 0.8f;
 	private float transitionSpeed = 10f;
 	private float currentHeight;
+	private bool isExiting;
+	private bool isReleasing = false; // Checks if the player is not pressing the crouch button anymore
 	private Coroutine crouchRoutine;
 
 	private readonly int r_StartCrouchingAnimationState = Animator.StringToHash("StandingToCrouch");
 	private readonly int r_ExitCrouchingAnimationState = Animator.StringToHash("CrouchToStanding");
 	private readonly int r_CrouchMotionParam = Animator.StringToHash("CrouchSpeed");
 
-	private const float k_AnimationTransitionTime = 0.15f;
-	private const float k_AnimatorDampTime = 0.1f;
+	private const float k_AnimationTransitionTime = 0.25f;
+	private const float k_AnimatorDampTime = 0.15f;
 
 	public PlayerCrouchState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{
@@ -30,6 +32,9 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 		currentHeight = _ctx.StandingHeight;
 
+		// Used to check if exiting coroutine is being played already
+		isExiting = false;
+
 		StartCrouch();
 	}
 
@@ -39,24 +44,47 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 		MovePlayer();
 		RotatePlayer();
+
+		// If the player is not crouching anymore, them release it
+		if (isReleasing)
+		{
+			// Checks to see if the Exiting Routine isn't playing already
+			// also checks if there is floor above the player, if there is, them skips the command
+			if (CanStand() && !isExiting)
+			{
+				_ctx.StartCoroutine(ExitCrouchCoroutine());
+			}
+		}
 	}
 
 	public override void Tick(float deltaTime)
 	{
 		base.Tick(deltaTime);
 
-		if (_ctx.InputVector ==  Vector3.zero)
+		if (!_ctx.IsGrounded())
 		{
-			_ctx.MainAnimator.SetFloat(r_CrouchMotionParam, 0f, k_AnimatorDampTime, deltaTime);
-			return;
+			_ctx.StartCoroutine(ExitCrouchCoroutine());
 		}
 
-		_ctx.MainAnimator.SetFloat(r_CrouchMotionParam, 1f, k_AnimatorDampTime, deltaTime);
+		// Plays sound and animations parameters for
+		if (_ctx.InputVector ==  Vector3.zero)
+		{
+			// Idle Crouch
+			_ctx.MainAnimator.SetFloat(r_CrouchMotionParam, 0f, k_AnimatorDampTime, deltaTime);
+			_ctx.PlayerSound.DisableStepsAudio();
+		}
+		else 
+		{
+			// Moving Crouch
+			_ctx.MainAnimator.SetFloat(r_CrouchMotionParam, 1f, k_AnimatorDampTime, deltaTime);
+			_ctx.PlayerSound.SetupStepsAudio();
+		}
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
+
 		_ctx.PlayerInput.crouchCanceledEvent -= ReleaseCrouch;
 	}
 
@@ -69,10 +97,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 	private void ReleaseCrouch()
 	{
-		if (CanStand())
-		{
-			_ctx.StartCoroutine(ExitCrouchCoroutine());
-		}
+		isReleasing = true;
 	}
 
 	private bool CanStand()
@@ -83,6 +108,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 	private void MovePlayer()
 	{
+		// Calculates Movement Vector based on input´s direction
 		_ctx.MovementVector = _ctx.InputVector * _ctx.MovementSpeed;
 
 		//Moves the player
@@ -116,6 +142,7 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 	private IEnumerator CrouchCoroutine(float targetHeight)
 	{
+		// Don´t need to crouch if it is already crouching
 		if (_ctx.PlayerCollider.height == targetHeight) yield break;
 
 		while (Mathf.Abs(currentHeight - targetHeight) > 0.01f)
@@ -130,6 +157,8 @@ public class PlayerCrouchState : PlayerOnGroundState
 
 	private IEnumerator ExitCrouchCoroutine()
 	{
+		isExiting = true;
+
 		if (crouchRoutine != null) _ctx.StopCoroutine(crouchRoutine);
 		crouchRoutine = _ctx.StartCoroutine(CrouchCoroutine(_ctx.StandingHeight));
 		_ctx.MainAnimator.CrossFadeInFixedTime(r_ExitCrouchingAnimationState, k_AnimationTransitionTime);

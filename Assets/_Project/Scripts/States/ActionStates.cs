@@ -1,4 +1,5 @@
-﻿public enum ActionStates
+﻿// Deprecated
+public enum ActionStates
 {
 		Idle,
 		Walking,
@@ -8,6 +9,7 @@
 		Falling,
 }
 
+// Deprecated
 public enum SubStates
 {
 	None,

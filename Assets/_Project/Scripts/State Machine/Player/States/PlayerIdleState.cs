@@ -4,7 +4,7 @@ public class PlayerIdleState : PlayerOnGroundState
 {
 	private readonly int r_IdleAnimationState = Animator.StringToHash("Idle");
 
-	private const float k_AnimationTransitionTime = 0.15f;
+	private const float k_AnimationTransitionTime = 0.25f;
 
 	public PlayerIdleState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{

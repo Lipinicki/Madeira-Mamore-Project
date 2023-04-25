@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerLadderClimbState : PlayerBaseState
 {
+	private readonly int r_ClimbingAnimationBlendTree = Animator.StringToHash("ClimbingLadderBlendTree");
+	private readonly int r_ClimbingAnimationParam = Animator.StringToHash("ClimbingSpeed");
+
+	private const float k_AnimationTransitionTime = 0.25f;
+	private const float k_AnimatorDampTime = 0.15f;
+
 	public PlayerLadderClimbState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{
 	}
@@ -11,6 +17,8 @@ public class PlayerLadderClimbState : PlayerBaseState
 	public override void Enter()
 	{
 		_ctx.PlayerInput.interactEvent += OnRelease;
+
+		_ctx.MainAnimator.CrossFadeInFixedTime(r_ClimbingAnimationBlendTree, k_AnimationTransitionTime);
 
 		Vector3 offSetPos = new Vector3(
 			_ctx.ActiveLadder.position.x,
@@ -75,12 +83,19 @@ public class PlayerLadderClimbState : PlayerBaseState
 
 		Vector3 climbDirection = new Vector3(0f, _ctx.PlayerInput.RawMovementInput.z, 0f);
 
+		SetupAnimation(climbDirection.y, deltaTime);
+
 		_ctx.transform.Translate(climbDirection * _ctx.LadderClimbingSpeed * deltaTime);
 
 		if (_ctx.IsGrounded())
 		{
 			OnRelease();
 		}
+	}
+
+	private void SetupAnimation(float paramValue, float deltaTime)
+	{
+		_ctx.MainAnimator.SetFloat(r_ClimbingAnimationParam, paramValue, k_AnimatorDampTime, deltaTime);
 	}
 
 	private void ClampsHorizontalVelocity()

@@ -5,8 +5,10 @@ using UnityEngine.Events;
 
 public class PlayerStateMachine : StateMachine
 {
-	
-	[field: SerializeField, Header("Essential Components")]
+	#region Essential Components
+
+	[field: Header("Essential Components"), 
+		SerializeField]
 	public PlayerInput PlayerInput { get; private set; }
 
 	[field: SerializeField]
@@ -30,13 +32,23 @@ public class PlayerStateMachine : StateMachine
 	[field: SerializeField]
 	public Inventory PlayerInventory { get; private set; }
 
-	[field: Space(30f), SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
+	#endregion
+
+	#region Movement Vectors
+
+	[field: Space(30f), Header("Vectors"),
+		SerializeField, ReadOnly, Tooltip("Represents the input value of the player")]
 	public Vector3 InputVector { get; private set; }
 
 	[field: SerializeField, ReadOnly, Tooltip("Force applied to move the rigidbody")]
 	public Vector3 MovementVector { get; set; }
 
-	[field: Header("Movement Parameters"), Space(30f), SerializeField, Tooltip("Speed of players movement")]
+	#endregion
+
+	#region Movement Parameters
+
+	[field: Space(30f), Header("Movement Parameters"),
+		SerializeField, Tooltip("Speed of players movement")]
 	public float MovementSpeed { get; private set; } = 17f;
 
 	[field: SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")]
@@ -48,13 +60,26 @@ public class PlayerStateMachine : StateMachine
 	[field: SerializeField, Tooltip("Speed in wich the player turn around its own axis")]
 	public float RotationSpeed { get; private set; } = 12f;
 
-	[field: Space(30f), SerializeField, Tooltip("Maximun time which the player can hold the jump button")]
+	[SerializeField]
+	private float startingDrag = 1f;
+
+	#endregion
+
+	#region Jump Parameters
+
+	[field: Space(30f), Header("Jump Parameters"),
+		SerializeField, Tooltip("Maximun time which the player can hold the jump button")]
 	public float JumpInputDuration { get; private set; } = .4f;
 
 	[field: SerializeField, Tooltip("Sets the player rb.velocity.y to this value when jump is pressed")]
 	public float InitialJumpForce { get; private set; } = 7f;
 
-	[field: Space(30f), SerializeField, Tooltip("Scales the Physics.gravity to a new gravity that is used instead")]
+	#endregion
+
+	#region Gravity Parameters
+
+	[field: Space(30f), Header("Gravity Parameters"),
+		SerializeField, Tooltip("Scales the Physics.gravity to a new gravity that is used instead")]
 	public float GravityScale { get; private set; } = 3f;
 
 	[field: SerializeField, Tooltip("Represents how fast gravityContributionMultiplier will go back to 1f. The higher, the faster")]
@@ -70,7 +95,12 @@ public class PlayerStateMachine : StateMachine
 
 	public float JumpBeginTime { get; set; } = Mathf.NegativeInfinity;
 
-	[Space(30f), SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")]
+	#endregion
+
+	#region Ground Detection
+
+	[Space(30f), Header("Ground Detection"),
+		SerializeField, Tooltip("Tunes the IsGrounded sphereCheck position, the higher the value the lower the sphere will be")]
 	private float _groundOffset = 0.67f;
 
 	[SerializeField, Tooltip("Radius of IsGrounded sphere")]
@@ -79,10 +109,12 @@ public class PlayerStateMachine : StateMachine
 	[SerializeField]
 	private LayerMask _groundLayers;
 
-	[Space(30f), SerializeField]
-	private UnityEvent OnInteractEvent;
-	
-	[field: Space(30f), SerializeField, Header("Ladder State")]
+	#endregion
+
+	#region Ladder State
+
+	[field: Space(30f), Header("Ladder State"), 
+		SerializeField]
 	public float LadderClimbingSpeed { get; private set; } = 5f;
 
 	[field: SerializeField]
@@ -105,17 +137,30 @@ public class PlayerStateMachine : StateMachine
 	public Transform ActiveLadder { get; set; }
 	public float StandingHeight { get; private set; }
 
+	#endregion
 
-	[field: Space(30f), SerializeField, Header("Pushing State")]
+	#region Pushing State
+
+	[field: Space(30f), Header("Pushing State"), 
+		SerializeField]
 	public float MinInteractionDistance { get; private set; } = 1f;
 	
 	[field: SerializeField]
     public float BlockMovementSpeed { get; private set; } = 2f; // Force applied to the block when pushed	
+
 	public float BlockOffset { get; private set; } = 1f;
 	public float MaxInteractionDistance { get; private set; } 
     public LayerMask PushBlocksLayer;
     public Rigidbody ActiveBlock { get; private set; } = null;
 
+	#endregion
+
+	#region Events
+
+	[Space(30f), SerializeField]
+	private UnityEvent OnInteractEvent;
+
+	#endregion
 
 	private void OnEnable()
 	{
@@ -131,7 +176,7 @@ public class PlayerStateMachine : StateMachine
 	{
 		MainCameraTransform = Camera.main.transform;
 		MainRigidbody.useGravity = false; //Disable Physics.gravity influence
-		MainRigidbody.drag = 0.75f;
+		MainRigidbody.drag = startingDrag;
 		StandingHeight = PlayerCollider.height;
 		PlayerInventory.ClearInventory();
 
@@ -143,6 +188,8 @@ public class PlayerStateMachine : StateMachine
 		OnInteractEvent?.Invoke();
 	}
 
+	// Checks the ground with a sphere cast to assure there is ground under
+	// the capsule collider diameter
 	public bool IsGrounded()
 	{
 		Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - _groundOffset, transform.position.z);
