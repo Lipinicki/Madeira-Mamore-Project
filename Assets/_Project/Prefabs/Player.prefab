@@ -175,7 +175,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e29e28f6cf5a89e45abb09b15c94aa9c, type: 3}
   - {fileID: 8300000, guid: 66a8e335d7f31dd4aafb03520a869a4c, type: 3}
   footStepsDelay: 0.55
-  footStepsVolume: 0.35
+  footStepsVolume: 0.08
 --- !u!136 &4259353017313282562
 CapsuleCollider:
   m_ObjectHideFlags: 0

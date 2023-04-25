@@ -263,10 +263,10 @@ BlendTree:
     m_DirectBlendParameter: CrouchSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 5991b44393cb375469c4e3177315c54c, type: 2}
+    m_Motion: {fileID: 7400000, guid: 3a28d62b59cac084185318201896f110, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1e-34
+    m_TimeScale: 2
     m_CycleOffset: 0
     m_DirectBlendParameter: CrouchSpeed
     m_Mirror: 0
@@ -389,7 +389,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: UpperBody
     m_StateMachine: {fileID: 5809363998533710220}
-    m_Mask: {fileID: 31900000, guid: deeff0e71fbf6fb41a38e9f23233249f, type: 2}
+    m_Mask: {fileID: 31900000, guid: c9d97c2e6c843bd448ef8fa1d678a3d5, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0

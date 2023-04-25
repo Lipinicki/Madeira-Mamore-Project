@@ -26,8 +26,6 @@ public class PlayerPushingState : PlayerOnGroundState
 		base.Enter();
 
 		_ctx.PlayerInput.interactEvent += Release;
-		
-		_ctx.PlayerSound.SetupStepsAudio();
 
 		// Turn on UpperBody animations for pushing the block
 		_ctx.MainAnimator.SetLayerWeight(k_UpperBodyAnimatorLayer, 1f);
@@ -113,6 +111,8 @@ public class PlayerPushingState : PlayerOnGroundState
 		{
 			float xValue = input.x > 0 ? 1f : -1f;
 			_ctx.MainAnimator.SetFloat(r_PushHorizontalAnimationParam, xValue, k_PushAnimationDamp, deltaTime);
+
+			_ctx.PlayerSound.SetupStepsAudio();
 		}
 
 		// Sets vertical (z) values
@@ -124,6 +124,13 @@ public class PlayerPushingState : PlayerOnGroundState
 		{
 			float yValue = input.z > 0 ? 1f : -1f;
 			_ctx.MainAnimator.SetFloat(r_PushVerticalAnimationParam, yValue, k_PushAnimationDamp, deltaTime);
+
+			_ctx.PlayerSound.SetupStepsAudio();
+		}
+
+		if (input.z == 0 && input.x == 0)
+		{
+			_ctx.PlayerSound.DisableStepsAudio();
 		}
 	}
 

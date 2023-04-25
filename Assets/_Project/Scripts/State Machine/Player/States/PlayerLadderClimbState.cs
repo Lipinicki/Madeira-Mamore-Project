@@ -42,6 +42,7 @@ public class PlayerLadderClimbState : PlayerBaseState
 	public override void Tick(float deltaTime)
 	{
 		CheckForLadder();
+		SetupAnimation(deltaTime);
 	}
 
 	private void CheckForLadder()
@@ -83,8 +84,6 @@ public class PlayerLadderClimbState : PlayerBaseState
 
 		Vector3 climbDirection = new Vector3(0f, _ctx.PlayerInput.RawMovementInput.z, 0f);
 
-		SetupAnimation(climbDirection.y, deltaTime);
-
 		_ctx.transform.Translate(climbDirection * _ctx.LadderClimbingSpeed * deltaTime);
 
 		if (_ctx.IsGrounded())
@@ -93,9 +92,19 @@ public class PlayerLadderClimbState : PlayerBaseState
 		}
 	}
 
-	private void SetupAnimation(float paramValue, float deltaTime)
+	// Controls animations based on input
+	private void SetupAnimation(float deltaTime)
 	{
-		_ctx.MainAnimator.SetFloat(r_ClimbingAnimationParam, paramValue, k_AnimatorDampTime, deltaTime);
+		if (_ctx.PlayerInput.RawMovementInput.z == 0f)
+		{
+			_ctx.MainAnimator.SetFloat(r_ClimbingAnimationParam, 0f, k_AnimatorDampTime, deltaTime);
+		}
+		else
+		{
+			float zValue = _ctx.PlayerInput.RawMovementInput.z > 0 ? 1f : -1f;
+			_ctx.MainAnimator.SetFloat(r_ClimbingAnimationParam, zValue, k_AnimatorDampTime, deltaTime);
+		}
+		
 	}
 
 	private void ClampsHorizontalVelocity()
