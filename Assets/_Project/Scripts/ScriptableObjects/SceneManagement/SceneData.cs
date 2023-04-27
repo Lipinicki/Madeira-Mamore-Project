@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +15,9 @@ public class SceneData : ScriptableObject
 	public List<SceneIndexes> indexesToLoad = new List<SceneIndexes>();
 	public List<SceneIndexes> indexesToUnload = new List<SceneIndexes>();
 
-	// Clear Lists of loading/unloading scenes
+	/// <summary>
+	/// Clear Lists of loading/unloading scenes
+	/// </summary>
 	public void ClearSceneLists()
 	{
 		indexesToLoad.Clear();
@@ -32,8 +32,9 @@ public class SceneData : ScriptableObject
 	{
 		// If the player has reached the last level, them goes back to menu
 		// The length has -1 because of the game manager scene
-		if ((int)index == SceneManager.sceneCountInBuildSettings - 1)
+		if ((int)index >= SceneManager.sceneCountInBuildSettings - 1)
 		{
+			indexesToUnload.Add(--CurrentSceneIndex);
 			index = SceneIndexes.TitleScreen;
 			CurrentSceneIndex = index;
 		}
@@ -43,7 +44,7 @@ public class SceneData : ScriptableObject
 		LoadScenes();
 
 		// Add previous scene to scenes to unload
-		if (index > 0)
+		if ((int)index > 0)
 		{
 			indexesToUnload.Add(index - 1);
 		}
@@ -53,8 +54,6 @@ public class SceneData : ScriptableObject
 		{
 			UnloadScenes();
 		}
-
-		indexesToUnload.Add(index);
 
 		CurrentSceneIndex = index;
 	}
@@ -68,6 +67,9 @@ public class SceneData : ScriptableObject
 		LoadLevelWithIndex(sceneIndex.Index);
 	}
 
+	/// <summary>
+	/// Load next scene on the scene list
+	/// </summary>
 	public void LoadNextLevel()
 	{
 		// goes to the next level in the list
@@ -75,6 +77,9 @@ public class SceneData : ScriptableObject
 		LoadLevelWithIndex(CurrentSceneIndex);
 	}
 
+	/// <summary>
+	/// Will restart the current playing level
+	/// </summary>
 	public void RestartLevel()
 	{
 		// restarts with the current level index
@@ -88,13 +93,28 @@ public class SceneData : ScriptableObject
 		LoadScenes();
 
 		// Add main menu scene to unload when the level starts
-		indexesToUnload.Add(SceneIndexes.TitleScreen);
+		//indexesToUnload.Add(SceneIndexes.TitleScreen);
 	}
 
-	public void SetCurrentSceneActive()
+
+	/// <summary>
+	/// Will try to set the current playable scene to be the active one
+	/// </summary>
+	/// <returns>Wheter the function succed or not</returns>
+	public bool TrySetCurrentActiveScene()
 	{
-		Debug.Log(CurrentSceneIndex.ToString());
-		SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentSceneIndex.ToString()));
+		Scene sceneToActivate = SceneManager.GetSceneByName(CurrentSceneIndex.ToString());
+
+		if (sceneToActivate.isLoaded)
+		{
+			//Debug.Log(CurrentSceneIndex.ToString(), this);
+			SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentSceneIndex.ToString()));
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	private void LoadScenes()
@@ -111,15 +131,21 @@ public class SceneData : ScriptableObject
 	{
 		for (int i = 0; i < indexesToUnload.Count; i++)
 		{
-			Debug.Log(indexesToUnload[i].ToString());
-			SceneManager.UnloadSceneAsync(indexesToUnload[i].ToString());
+			Scene unloadedScene = SceneManager.GetSceneByName(indexesToUnload[i].ToString());
+
+			//Checks if the scene is loaded, if is not, just cleans the list position
+			if (unloadedScene.isLoaded)
+			{
+				scenesToLoad.Add(SceneManager.UnloadSceneAsync(indexesToUnload[i].ToString()));
+			}
 
 			indexesToUnload.Remove(indexesToUnload[i]);
 		}
 	}
 
+	// Just in case there is need for the conversion
 	private SceneIndexes SceneIndexFromName(string name)
 	{
-		return (SceneIndexes) Enum.Parse(typeof(SceneIndexes), name);
+		return (SceneIndexes)Enum.Parse(typeof(SceneIndexes), name);
 	}
 }

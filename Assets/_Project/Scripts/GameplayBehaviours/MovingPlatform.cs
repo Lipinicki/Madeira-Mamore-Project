@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
 using MyBox;
 
 public class MovingPlatform : MonoBehaviour, IInteractable

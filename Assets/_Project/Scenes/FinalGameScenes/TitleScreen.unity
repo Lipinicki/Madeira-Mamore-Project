@@ -1553,12 +1553,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 92133afdd67654d4a963892e1e382e6a, type: 2}
         m_TargetAssemblyTypeName: SceneData, Assembly-CSharp
-        m_MethodName: LoadLevelWithIndex
-        m_Mode: 2
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 79c8f499e150abc4b8e97868e22a1923,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: SceneIndex, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -21,8 +21,6 @@ public class LoadingBar : MonoBehaviour
         StartCoroutine(ShowLoadingScreen());
     }
 
-    int testIndex = 0;
-
     private IEnumerator ShowLoadingScreen()
     {
         for (int i = 0; i < sceneDB.scenesToLoad.Count; i++)
@@ -38,12 +36,8 @@ public class LoadingBar : MonoBehaviour
         {
             while (!currentScenesToLoad[i].isDone || totalProgress < 1f) // checks individually for each load progress
             {
-                testIndex++;
-                Debug.Log(testIndex);
-
 				foreach (AsyncOperation operation in currentScenesToLoad)
                 {
-					Debug.Log(currentScenesToLoad.Count);
 					totalProgress += operation.progress;
                 }
 
@@ -63,6 +57,11 @@ public class LoadingBar : MonoBehaviour
         }
 
 		gameObject.SetActive(false);
-        sceneDB.SetCurrentSceneActive();
+
+        // Will try to set the current scene active while it is not loaded yet
+        while (!sceneDB.TrySetCurrentActiveScene())
+        {
+            yield return null;
+        }
 	}
 }

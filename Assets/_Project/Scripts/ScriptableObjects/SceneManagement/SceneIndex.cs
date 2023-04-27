@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Used to serialize SceneIndexes enum inside button click interface
 [CreateAssetMenu]
 public class SceneIndex : ScriptableObject
 {

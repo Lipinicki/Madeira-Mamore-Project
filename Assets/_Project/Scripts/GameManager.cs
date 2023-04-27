@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 	{
 		sceneData.ClearSceneLists();
 
+		// Show the main menu on entering
 		if (startWithTitleScreen)
 		{
 			sceneData.LoadTitleScreen();
