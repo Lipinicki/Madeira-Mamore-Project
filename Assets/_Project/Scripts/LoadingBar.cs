@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class LoadingBar : MonoBehaviour
 {
     [SerializeField] private SceneData sceneDB;
     [SerializeField] private Image LoadingBarImage;
+    [SerializeField] private TextMeshProUGUI LoadingText;
     [SerializeField, Tooltip("Used to tune looading bar animation")] private float LoadingLerpTime = 0.3f;
 
     // List of asynchronous operations running on background while loading scene
@@ -19,6 +21,8 @@ public class LoadingBar : MonoBehaviour
         StartCoroutine(ShowLoadingScreen());
     }
 
+    int testIndex = 0;
+
     private IEnumerator ShowLoadingScreen()
     {
         for (int i = 0; i < sceneDB.scenesToLoad.Count; i++)
@@ -27,23 +31,31 @@ public class LoadingBar : MonoBehaviour
             currentScenesToLoad.Add(sceneDB.scenesToLoad[i]);
         }
 
-        float elapsedTime = 0f; // time elapsed for the loading bar lerp
+		float totalProgress = 0f; // progress of the loading going from 0 to 1f
+		float elapsedTime = 0f; // time elapsed for the loading bar lerp
 
         for (int i = 0; i < currentScenesToLoad.Count; ++i)
         {
-            while (!currentScenesToLoad[i].isDone) // checks individually for each load progress
+            while (!currentScenesToLoad[i].isDone || totalProgress < 1f) // checks individually for each load progress
             {
-				float totalProgress = 0f; // progress of the loading going from 0 to 1f
+                testIndex++;
+                Debug.Log(testIndex);
 
 				foreach (AsyncOperation operation in currentScenesToLoad)
                 {
-                    totalProgress += operation.progress;
+					Debug.Log(currentScenesToLoad.Count);
+					totalProgress += operation.progress;
                 }
 
                 totalProgress = totalProgress / currentScenesToLoad.Count; // normalizes the progress value
 
                 // Lerps the bar fill for smooth animation
                 LoadingBarImage.fillAmount = Mathf.Lerp(LoadingBarImage.fillAmount, totalProgress, elapsedTime/LoadingLerpTime);
+                totalProgress = LoadingBarImage.fillAmount;
+
+                // Sets the progress percentage text, formats with 1 decimal place
+                LoadingText.text = $"{(totalProgress * 100f):0.#}" + "%";
+
                 elapsedTime += Time.deltaTime;
 
                 yield return null;
@@ -51,5 +63,6 @@ public class LoadingBar : MonoBehaviour
         }
 
 		gameObject.SetActive(false);
+        sceneDB.SetCurrentSceneActive();
 	}
 }

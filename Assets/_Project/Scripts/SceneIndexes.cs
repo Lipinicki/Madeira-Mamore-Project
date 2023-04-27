@@ -6,7 +6,7 @@
 public enum SceneIndexes
 {
 	TitleScreen = 0,
-	Level1 = 1, 
-	Level2 = 2,
-	Level3 = 3
+	Fase1 = 1, 
+	Fase2 = 2,
+	Fase3 = 3
 }

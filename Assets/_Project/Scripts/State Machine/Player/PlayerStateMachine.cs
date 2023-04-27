@@ -91,7 +91,7 @@ public class PlayerStateMachine : StateMachine
 	[field: SerializeField, Tooltip("Is multiplied each frame while jumping trying to 'cancel' gravity effect")]
 	public float GravityDivider { get; private set; } = 0.4f;
 
-	public Transform MainCameraTransform { get; private set; }
+	public Transform MainCameraTransform { get => Camera.main.transform; }
 
 	public float JumpBeginTime { get; set; } = Mathf.NegativeInfinity;
 
@@ -176,7 +176,6 @@ public class PlayerStateMachine : StateMachine
 
 	private void Start()
 	{
-		MainCameraTransform = Camera.main.transform;
 		MainRigidbody.useGravity = false; //Disable Physics.gravity influence
 		MainRigidbody.drag = startingDrag;
 		StandingHeight = PlayerCollider.height;

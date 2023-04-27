@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17494392, g: 0.21884765, b: 0.30113673, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -213,6 +213,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &359937598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359937600}
+  - component: {fileID: 359937599}
+  m_Layer: 0
+  m_Name: StartTitleScreenListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &359937599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359937598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c67c9ede7e33f4aaaa64744524bb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4b930d2acd538484499a4a78e7a7d8f5, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 214354873}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3594137872709873535}
+        m_TargetAssemblyTypeName: LoadingBar, Assembly-CSharp
+        m_MethodName: StartProgressBar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!4 &359937600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359937598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1070.1088, y: 489.45755, z: -8.492933}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &849640389
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +378,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1171933672}
-  - component: {fileID: 1171933671}
   m_Layer: 0
   m_Name: SceneChanger
   m_TagString: Untagged
@@ -314,21 +385,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1171933671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171933670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59319a101eabe114e8acebc9e538790c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneDB: {fileID: 0}
-  LoadingBarImage: {fileID: 0}
-  LoadingLerpTime: 0.3
 --- !u!4 &1171933672
 Transform:
   m_ObjectHideFlags: 0
@@ -544,8 +600,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9780b0913cbacab44a8482a3f9224e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneData: {fileID: 0}
-  startWithTitleScreen: 0
+  sceneData: {fileID: 11400000, guid: 92133afdd67654d4a963892e1e382e6a, type: 2}
+  onStartTitleScreen: {fileID: 11400000, guid: 4b930d2acd538484499a4a78e7a7d8f5, type: 2}
+  startWithTitleScreen: 1
 --- !u!1001 &3594137872709873534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -670,9 +727,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6737196184740226719, guid: 39f36d7d52ccf764894f524010d1c448,
         type: 3}
+      propertyPath: LoadingText
+      value: 
+      objectReference: {fileID: 3594137872709873536}
+    - target: {fileID: 6737196184740226719, guid: 39f36d7d52ccf764894f524010d1c448,
+        type: 3}
       propertyPath: LoadingBarImage
       value: 
       objectReference: {fileID: 344058953}
+    - target: {fileID: 6737196184740226719, guid: 39f36d7d52ccf764894f524010d1c448,
+        type: 3}
+      propertyPath: LoadingLerpTime
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39f36d7d52ccf764894f524010d1c448, type: 3}
 --- !u!114 &3594137872709873535 stripped
@@ -685,5 +752,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59319a101eabe114e8acebc9e538790c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3594137872709873536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4989230789272358448, guid: 39f36d7d52ccf764894f524010d1c448,
+    type: 3}
+  m_PrefabInstance: {fileID: 3594137872709873534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

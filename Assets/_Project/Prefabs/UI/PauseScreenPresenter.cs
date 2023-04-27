@@ -22,10 +22,10 @@ public class PauseScreenPresenter : MonoBehaviour
 
     private void OnEnable()
     {
-        playButton?.onClick.AddListener(StartGame);
+        //playButton?.onClick.AddListener(StartGame);
         returnOptions?.onClick.AddListener(ToggleOptions);
         gotoOptions?.onClick.AddListener(ToggleOptions);
-        gotoMainMenu?.onClick.AddListener(GoToMainMenu);
+        //gotoMainMenu?.onClick.AddListener(GoToMainMenu);
         gotoDesktop?.onClick.AddListener(GotoDesktop);
     }
 
@@ -43,7 +43,7 @@ public class PauseScreenPresenter : MonoBehaviour
         optionsPresenter.SetActive(optionsIsOpen);
     }
 
-    private void GoToMainMenu() => SceneManager.LoadScene(kMainMenuScene);
-    private void StartGame() => SceneManager.LoadScene(playSceneName);
+    //private void GoToMainMenu() => SceneManager.LoadScene(kMainMenuScene);
+    //private void StartGame() => SceneManager.LoadScene(playSceneName);
     private void GotoDesktop() => Application.Quit();
 }

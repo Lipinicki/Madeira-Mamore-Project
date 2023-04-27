@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance;
 
 	[SerializeField] private SceneData sceneData;
+	[SerializeField] private GameEvent onStartTitleScreen;
 	[SerializeField] private bool startWithTitleScreen;
 
 	private void Awake()
@@ -18,9 +19,13 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		sceneData.ClearSceneLists();
+
 		if (startWithTitleScreen)
 		{
 			sceneData.LoadTitleScreen();
+			onStartTitleScreen?.Raise();
+			startWithTitleScreen = false;
 		}
 	}
 }
