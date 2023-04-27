@@ -7,17 +7,16 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Key
+  m_Name: Maleta Vermelha
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
-  - _EMISSION
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -25,11 +24,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: a54c311041e98084a876750dc5c3e46d, type: 3}
+        m_Texture: {fileID: 2800000, guid: b08d0ad0abf12c24787a8b9f3c406bea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: b81cdeb49b43d1249b1ea5b51ed17537, type: 3}
+        m_Texture: {fileID: 2800000, guid: b22788986c4212b4397daae4ed9b2605, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -49,11 +48,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a54c311041e98084a876750dc5c3e46d, type: 3}
+        m_Texture: {fileID: 2800000, guid: b08d0ad0abf12c24787a8b9f3c406bea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 66d0c1ccddcde4a43b8d464aee89026f, type: 3}
+        m_Texture: {fileID: 2800000, guid: cc126b1cd72fd394f92376d58ecd8a93, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -109,12 +108,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.69411767}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.69411767}
-    - _EmissionColor: {r: 4.528302, g: 3.959301, b: 0.66383487, a: 1}
+    - _BaseColor: {r: 1, g: 0, b: 0.17710209, a: 1}
+    - _Color: {r: 1, g: 0, b: 0.17710206, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1380331238243875727
+--- !u!114 &3546870940957956385
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

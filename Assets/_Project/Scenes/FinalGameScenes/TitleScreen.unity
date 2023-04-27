@@ -1313,6 +1313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionsPresenter
       objectReference: {fileID: 0}
+    - target: {fileID: 4016242891899505132, guid: 5bf761f7caf487e438c4ac06d0014da7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf761f7caf487e438c4ac06d0014da7, type: 3}
 --- !u!1 &1943961214 stripped
@@ -1554,4 +1559,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841898777}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 92133afdd67654d4a963892e1e382e6a, type: 2}
+        m_TargetAssemblyTypeName: SceneData, Assembly-CSharp
+        m_MethodName: LoadLevelWithIndex
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 79c8f499e150abc4b8e97868e22a1923,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SceneIndex, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 0f71426fde4bea4479789760f864034a, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

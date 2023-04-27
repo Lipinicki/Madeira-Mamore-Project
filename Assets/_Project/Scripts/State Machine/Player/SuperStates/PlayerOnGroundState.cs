@@ -16,9 +16,11 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 
 	public override void FixedTick(float fixedDeltaTime)
 	{
+		// Player is not on ground
 		if (!_ctx.IsGrounded())
 		{
 			_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
+			return;
 		}
 
 		_ctx.ApplyGravity();
