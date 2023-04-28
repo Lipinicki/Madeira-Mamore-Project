@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -105,14 +106,19 @@ public class SceneData : ScriptableObject
 	{
 		Scene sceneToActivate = SceneManager.GetSceneByName(CurrentSceneIndex.ToString());
 
-		if (sceneToActivate.isLoaded)
+		if (sceneToActivate == SceneManager.GetActiveScene())
 		{
-			//Debug.Log(CurrentSceneIndex.ToString(), this);
-			SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentSceneIndex.ToString()));
+			// scene is active
 			return true;
 		}
 		else
 		{
+			// scene is not active
+			if (sceneToActivate.isLoaded)
+			{
+				SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentSceneIndex.ToString()));
+			}
+
 			return false;
 		}
 	}

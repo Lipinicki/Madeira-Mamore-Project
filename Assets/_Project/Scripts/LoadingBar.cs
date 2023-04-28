@@ -27,7 +27,9 @@ public class LoadingBar : MonoBehaviour
         {
             // Set current async operations
             currentScenesToLoad.Add(sceneDB.scenesToLoad[i]);
-        }
+		}
+
+        
 
 		float totalProgress = 0f; // progress of the loading going from 0 to 1f
 		float elapsedTime = 0f; // time elapsed for the loading bar lerp
@@ -56,12 +58,15 @@ public class LoadingBar : MonoBehaviour
             }
         }
 
-		gameObject.SetActive(false);
+		yield return new WaitForEndOfFrame();
+		int index = 0;
+		// Will try to set the current scene active while it is not loaded yet
+		while (!sceneDB.TrySetCurrentActiveScene())
+		{
+			Debug.Log(++index);
+			yield return null;
+		}
 
-        // Will try to set the current scene active while it is not loaded yet
-        while (!sceneDB.TrySetCurrentActiveScene())
-        {
-            yield return null;
-        }
+		gameObject.SetActive(false);
 	}
 }
