@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8209531853654755952
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37,8 +37,8 @@ RectTransform:
   m_Father: {fileID: 8209531854541781777}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.062920004, y: 0.10861478}
-  m_AnchorMax: {x: 0.28941423, y: 0.5086148}
+  m_AnchorMin: {x: 0.15239707, y: 0.087368526}
+  m_AnchorMax: {x: 0.378891, y: 0.48736852}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -138,10 +138,10 @@ RectTransform:
   m_Father: {fileID: 8209531853654755952}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 217.43445, y: -216}
-  m_SizeDelta: {x: 374.8689, y: 104}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8209531853932783017
 CanvasRenderer:
@@ -253,6 +253,9 @@ MonoBehaviour:
       m_Calls: []
   OnButtonSelect:
     m_PersistentCalls:
+      m_Calls: []
+  OnButtonDeselect:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3473162744204222774}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -267,9 +270,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnButtonDeselect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8209531854074968267
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,10 +658,10 @@ RectTransform:
   m_Father: {fileID: 8209531853654755952}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 217.43445, y: -72}
-  m_SizeDelta: {x: 374.8689, y: 104}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8209531854566131628
 CanvasRenderer:
@@ -785,6 +785,9 @@ MonoBehaviour:
       m_Calls: []
   OnButtonSelect:
     m_PersistentCalls:
+      m_Calls: []
+  OnButtonDeselect:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3473162744204222774}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -799,9 +802,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnButtonDeselect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8209531854703383312
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,10 +973,10 @@ RectTransform:
   m_Father: {fileID: 8209531853654755952}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 217.43445, y: -360}
-  m_SizeDelta: {x: 374.8689, y: 104}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8209531854929620121
 CanvasRenderer:
@@ -1088,6 +1088,9 @@ MonoBehaviour:
       m_Calls: []
   OnButtonSelect:
     m_PersistentCalls:
+      m_Calls: []
+  OnButtonDeselect:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3473162744204222774}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -1102,9 +1105,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnButtonDeselect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8209531854944914497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,8 +1138,8 @@ RectTransform:
   m_Father: {fileID: 8209531854541781777}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.76651037}
-  m_AnchorMax: {x: 1, y: 0.97}
+  m_AnchorMin: {x: 0.031957507, y: 0.49442294}
+  m_AnchorMax: {x: 0.51791525, y: 0.9194027}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LAST WAGON
+  m_text: "<size=65%>Murm\xFArios</size>\n<size=40%>da</size>\ncandel\xE1ria"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 596e3f4275909e34c9ce28b12fa115c3, type: 2}
   m_sharedMaterial: {fileID: 6427666151803456346, guid: 596e3f4275909e34c9ce28b12fa115c3,
@@ -1199,19 +1199,19 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 191.9
+  m_fontSize: 182.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 212.84
-  m_fontStyle: 16
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -9.93
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1436,14 +1436,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.035199348, g: 0.0382652, b: 0.066037714, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b6cc510023ff6c2408cc43587644f1d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1580,6 +1580,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5668786820958855615, guid: 7d3454c65982e1f4a88633a8e39aedeb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d3454c65982e1f4a88633a8e39aedeb, type: 3}
 --- !u!224 &849772434861958630 stripped
@@ -1713,7 +1718,7 @@ PrefabInstance:
     - target: {fileID: 4016242891899505132, guid: 5bf761f7caf487e438c4ac06d0014da7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6835505087239404428, guid: 5bf761f7caf487e438c4ac06d0014da7,
         type: 3}
