@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 864253902260788654}
-  - component: {fileID: 864253902260788653}
   - component: {fileID: 2678868533782012236}
+  - component: {fileID: 4760138443983535142}
   m_Layer: 0
   m_Name: DoorKey
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &864253902260788654
 Transform:
@@ -27,26 +27,13 @@ Transform:
   m_GameObject: {fileID: 864253902260788655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.7, y: 5.65, z: 100.83}
-  m_LocalScale: {x: 2.5783684, y: 0.5772891, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2634282140307139146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &864253902260788653
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864253902260788655}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.605991, y: 0.58930767, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2678868533782012236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +49,19 @@ MonoBehaviour:
   itemName: "Chave Primeiro Vag\xE3o"
   itensInventoryData: {fileID: 11400000, guid: 7c2a017389f3d9f468418f426bdef85c, type: 2}
   playerInventory: {fileID: 11400000, guid: 69effd7bb494c3c47887133998ae69c7, type: 2}
+--- !u!65 &4760138443983535142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864253902260788655}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.605991, y: 0.58930767, z: 0.98360443}
+  m_Center: {x: 0, y: 0, z: 0.046001434}
 --- !u!1001 &2676450007536800300
 PrefabInstance:
   m_ObjectHideFlags: 0

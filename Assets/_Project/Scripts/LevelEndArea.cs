@@ -13,7 +13,6 @@ public class LevelEndArea : MonoBehaviour
 
 			// Deactivates to stop double trigger
 			this.enabled = false;
-			other.gameObject.SetActive(false);
 		}
 	}
 }
