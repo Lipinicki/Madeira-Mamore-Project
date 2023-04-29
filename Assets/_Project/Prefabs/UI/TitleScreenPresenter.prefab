@@ -527,6 +527,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OptionsScreen: {fileID: 5067273164041847190}
   MainMenuOptions: {fileID: 8209531853654755953}
+  OnStartNewGame:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &3473162744204222774
 AudioSource:
   m_ObjectHideFlags: 0
@@ -536,7 +539,8 @@ AudioSource:
   m_GameObject: {fileID: 8209531854541781781}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7470852104069275097, guid: 1e812b8ffb70a3c40b5a62126bb67cf2,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -715,19 +719,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 92133afdd67654d4a963892e1e382e6a, type: 2}
-        m_TargetAssemblyTypeName: SceneData, Assembly-CSharp
-        m_MethodName: LoadNextLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 0f71426fde4bea4479789760f864034a, type: 2}
+      - m_Target: {fileID: 11400000, guid: b07da212690de064ab5573b2065c7a34, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: Raise
         m_Mode: 1

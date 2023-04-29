@@ -133,9 +133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneDB: {fileID: 11400000, guid: 92133afdd67654d4a963892e1e382e6a, type: 2}
+  onFinishLoading: {fileID: 11400000, guid: d9b2f2a0b2dc14847b42280799a7da0e, type: 2}
   LoadingBarImage: {fileID: 3594137873037099831}
   LoadingText: {fileID: 4989230789272358448}
-  LoadingLerpTime: 0.3
+  LoadingLerpTime: 200
 --- !u!223 &3594137872638190786
 Canvas:
   m_ObjectHideFlags: 0

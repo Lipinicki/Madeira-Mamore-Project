@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class LoadingBar : MonoBehaviour
 {
     [SerializeField] private SceneData sceneDB;
+    [SerializeField] private GameEvent onFinishLoading;
     [SerializeField] private Image LoadingBarImage;
     [SerializeField] private TextMeshProUGUI LoadingText;
     [SerializeField, Tooltip("Used to tune looading bar animation")] private float LoadingLerpTime = 0.3f;
@@ -58,14 +59,14 @@ public class LoadingBar : MonoBehaviour
             }
         }
 
-		yield return new WaitForEndOfFrame();
-		int index = 0;
 		// Will try to set the current scene active while it is not loaded yet
+		yield return new WaitForEndOfFrame();
 		while (!sceneDB.TrySetCurrentActiveScene())
 		{
-			Debug.Log(++index);
 			yield return null;
 		}
+
+        onFinishLoading.Raise();
 
 		gameObject.SetActive(false);
 	}
