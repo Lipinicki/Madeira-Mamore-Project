@@ -1,3 +1,4 @@
+using MyBox;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,7 +10,10 @@ public class LoadingBar : MonoBehaviour
 {
     [SerializeField] private SceneData sceneDB;
     [SerializeField] private GameEvent onFinishLoading;
-    [SerializeField] private Image LoadingBarImage;
+
+    [SerializeField] bool isSlider;
+    [SerializeField, ConditionalField(nameof(isSlider), true)] private Image LoadingBarImage;
+    [SerializeField, ConditionalField(nameof(isSlider))] private Slider SliderImage;
     [SerializeField] private TextMeshProUGUI LoadingText;
     [SerializeField, Tooltip("Used to tune looading bar animation")] private float LoadingLerpTime = 0.3f;
 
@@ -29,7 +33,6 @@ public class LoadingBar : MonoBehaviour
             // Set current async operations
             currentScenesToLoad.Add(sceneDB.scenesToLoad[i]);
 		}
-
         
 
 		float totalProgress = 0f; // progress of the loading going from 0 to 1f
@@ -47,8 +50,16 @@ public class LoadingBar : MonoBehaviour
                 totalProgress = totalProgress / currentScenesToLoad.Count; // normalizes the progress value
 
                 // Lerps the bar fill for smooth animation
-                LoadingBarImage.fillAmount = Mathf.Lerp(LoadingBarImage.fillAmount, totalProgress, elapsedTime/LoadingLerpTime);
-                totalProgress = LoadingBarImage.fillAmount;
+                if (isSlider)
+                {
+                    SliderImage.value = Mathf.Lerp(SliderImage.value, totalProgress, elapsedTime / LoadingLerpTime);
+					totalProgress = SliderImage.value;
+				}
+                else
+                {
+					LoadingBarImage.fillAmount = Mathf.Lerp(LoadingBarImage.fillAmount, totalProgress, elapsedTime / LoadingLerpTime);
+					totalProgress = LoadingBarImage.fillAmount;
+				}
 
                 // Sets the progress percentage text, formats with 1 decimal place
                 LoadingText.text = $"{(totalProgress * 100f):0.#}" + "%";
