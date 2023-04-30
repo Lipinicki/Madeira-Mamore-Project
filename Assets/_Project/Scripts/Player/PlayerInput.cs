@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 	public UnityAction jumpCanceledEvent;
 	public UnityAction interactEvent;
 	public UnityAction pauseEvent;
+	public UnityAction inventoryEvent;
 	public UnityAction<Vector2> moveEvent;
 	public UnityAction<Vector2> cameraLookEvent;
 
@@ -80,5 +81,10 @@ public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
 	{
 		if (context.phase == InputActionPhase.Started)
 			pauseEvent?.Invoke();
+	}
+
+	public void OnInventory(InputAction.CallbackContext context)
+	{
+		if (context.phase == InputActionPhase.Started) inventoryEvent?.Invoke();
 	}
 }
