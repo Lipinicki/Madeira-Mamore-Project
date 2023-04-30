@@ -92,8 +92,17 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		else if (Physics.Raycast(_ctx.transform.position, _ctx.transform.forward, out var grabHit, _ctx.RayCastMaxDistance, _ctx.PushBlocksLayer))
 		{
 			Debug.Log(grabHit.transform.name, grabHit.transform);
-			_ctx.SetupActiveBlock(grabHit.transform);
+			SetupActiveBlock(grabHit.transform);
 			_ctx.SwitchCurrentState(new PlayerPushingState(_ctx));
 		}
+	}
+
+	public void SetupActiveBlock(Transform t)
+	{
+		Rigidbody rb = t.GetComponent<Rigidbody>();
+		var blockDepth = t.GetComponent<Collider>().bounds.size.z;
+		
+		_ctx.BlockOffset = blockDepth;
+		_ctx.ActiveBlock = rb;
 	}
 }

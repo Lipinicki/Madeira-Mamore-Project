@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerPushingState : PlayerOnGroundState
 {
-	private Rigidbody activeBlock => _ctx.ActiveBlock;
 	private Transform transform => _ctx.transform;
 	private Vector3 blockTargetPosition = Vector3.zero;
 
@@ -27,6 +26,15 @@ public class PlayerPushingState : PlayerOnGroundState
 
 		_ctx.PlayerInput.interactEvent += Release;
 
+		// dinamically set the rigidBody contraints
+		_ctx.ActiveBlock.constraints = RigidbodyConstraints.None;
+		_ctx.ActiveBlock.constraints = RigidbodyConstraints.FreezeRotation;
+
+		// add a tiny impulse to reposition the block
+		Vector3 offsetDirection = _ctx.ActiveBlock.transform.position - _ctx.transform.position;
+		offsetDirection.y = 0;
+		_ctx.ActiveBlock.AddForceAtPosition(offsetDirection * 0.1f, _ctx.transform.position, ForceMode.Impulse);
+
 		// Turn on UpperBody animations for pushing the block
 		_ctx.MainAnimator.SetLayerWeight(k_UpperBodyAnimatorLayer, 1f);
 		_ctx.MainAnimator.CrossFadeInFixedTime(r_PushBlockBlendTree, k_AnimationTransitionTime);
@@ -34,9 +42,10 @@ public class PlayerPushingState : PlayerOnGroundState
 
 	public override void FixedTick(float fixedDeltaTime)
 	{
-		MovePlayer();
 		UpdateBlockPosition(fixedDeltaTime);
+		MovePlayer();
 		base.FixedTick(fixedDeltaTime);
+		if (_ctx.PlayerInput.RawMovementInput == Vector3.zero) _ctx.ActiveBlock.velocity = Vector3.zero;
 	}
 
 	public override void Tick(float deltaTime)
@@ -53,25 +62,26 @@ public class PlayerPushingState : PlayerOnGroundState
 		// Turn off UpperBody animations
 		_ctx.MainAnimator.SetLayerWeight(k_UpperBodyAnimatorLayer, 0f);
 
-		_ctx.PlayerSound.DisableStepsAudio();
+		_ctx.PlayerSound.DisableStepsAudio();	
 	}
 
 	// Translates the block position to follow the player
 	private void UpdateBlockPosition(float deltaTime)
 	{
-		if (activeBlock == null || _ctx.InputVector == Vector3.zero) return;
+		if (_ctx.ActiveBlock == null || _ctx.InputVector == Vector3.zero) return;
 
 		// Calculate the target position for the block based on the player's forward direction
-		blockTargetPosition = new Vector3(transform.position.x, activeBlock.transform.position.y, transform.position.z) 
+		blockTargetPosition = new Vector3(transform.position.x, _ctx.ActiveBlock.transform.position.y, transform.position.z) 
 			+ (transform.forward.normalized * _ctx.BlockOffset);
 
-		_ctx.ActiveBlock.MovePosition(blockTargetPosition);
+		if (_ctx.PlayerInput.RawMovementInput == Vector3.zero) _ctx.ActiveBlock.velocity = Vector3.zero;
+		else _ctx.ActiveBlock.velocity = _ctx.MainRigidbody.velocity;
 	}
 
 	// Function used to move player inside this state
 	private void MovePlayer()
 	{
-		float reducedMovespeed = _ctx.MovementSpeed * 0.8f;
+		float reducedMovespeed = _ctx.MovementSpeed * 0.7f;
 		_ctx.MovementVector = _ctx.InputVector.normalized * reducedMovespeed;
 
 		//Moves the player
@@ -93,7 +103,7 @@ public class PlayerPushingState : PlayerOnGroundState
 	// Release the block and switch states
 	private void Release()
 	{
-		_ctx.DetachBlock();
+		DetachBlock();
 		_ctx.SwitchCurrentState(new PlayerIdleState(_ctx));
 	}
 
@@ -133,5 +143,17 @@ public class PlayerPushingState : PlayerOnGroundState
 			_ctx.PlayerSound.DisableStepsAudio();
 		}
 	}
-
+	
+	// release the current block a reset it's variables
+	public void DetachBlock()
+	{
+		if (_ctx.ActiveBlock != null)
+		{
+			_ctx.ActiveBlock.velocity = Vector3.zero;
+			_ctx.ActiveBlock.angularVelocity = Vector3.zero;
+			_ctx.MaxInteractionDistance = 0f;
+			_ctx.ActiveBlock.constraints = RigidbodyConstraints.FreezePosition;	
+			_ctx.ActiveBlock = null;
+		}
+	}
 }
