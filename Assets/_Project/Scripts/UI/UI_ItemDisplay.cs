@@ -11,13 +11,9 @@ public class UI_ItemDisplay : MonoBehaviour, ISelectHandler
 	public TextMeshProUGUI Name;
     public TextMeshProUGUI Text;
     public Image image;
+	public EventTrigger attatchedEventTrigger;
 
 	[SerializeField] private Item item;
-
-	private void Start()
-	{
-		EventSystem.current.SetSelectedGameObject(gameObject);
-	}
 
 	public static Action<Item> onButtonClick;
 
@@ -36,17 +32,10 @@ public class UI_ItemDisplay : MonoBehaviour, ISelectHandler
 
 	public void Click()
 	{
-		if (onButtonClick != null)
-		{
-			onButtonClick?.Invoke(this.item);
-		}
-		else
-		{
-			Debug.Log("Nobody is listening to: " + name);
-		}
-
+		onButtonClick?.Invoke(item);
 	}
 
+	// Callback for the OnSelect event on EventSystem
 	public void OnSelect(BaseEventData eventData)
 	{
 		Click();

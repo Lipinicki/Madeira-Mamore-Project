@@ -82,10 +82,30 @@ public class SceneData : ScriptableObject
 	/// </summary>
 	public void RestartLevel()
 	{
+		indexesToUnload.Add(CurrentSceneIndex);
+		UnloadScenes();
+
 		// restarts with the current level index
 		LoadLevelWithIndex(CurrentSceneIndex);
 	}
 
+	/// <summary>
+	/// Method for calling title screen from any scene
+	/// </summary>
+	public void BackToTitleScreen()
+	{
+		// Unload Current scene
+		indexesToUnload.Add(CurrentSceneIndex);
+
+		// Load TitleScreen
+		CurrentSceneIndex = SceneIndexes.TitleScreen;
+		LoadLevelWithIndex(CurrentSceneIndex);
+	}
+
+	/// <summary>
+	/// Used to load Title screen for the fist time when the games
+	/// starts
+	/// </summary>
 	public void LoadTitleScreen()
 	{
 		CurrentSceneIndex = SceneIndexes.TitleScreen;

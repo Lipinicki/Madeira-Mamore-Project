@@ -73,6 +73,14 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 
 	private void OnJump()
 	{
+		if (_ctx.MainAnimator == null)
+		{
+#if UNITY_EDITOR
+			Debug.Log($"<color=red>Player rigidbody: {_ctx.MainRigidbody} is a NullReference. Skiping Jump this frame.</color>", _ctx);
+#endif
+			return;
+		}
+
 		_ctx.MainRigidbody.velocity += new Vector3(0, _ctx.InitialJumpForce, 0);
 		_ctx.JumpBeginTime = Time.time; //Resets jump begin time
 		_ctx.SwitchCurrentState(new PlayerJumpState(_ctx));
