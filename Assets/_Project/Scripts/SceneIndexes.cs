@@ -5,8 +5,8 @@
 [Serializable]
 public enum SceneIndexes
 {
-	TitleScreen = 0,
-	Fase1 = 1, 
-	Fase2 = 2,
-	Fase3 = 3
+	TitleScreen = 1,
+	Fase1 = 2, 
+	Fase2 = 3,
+	Fase3 = 4
 }

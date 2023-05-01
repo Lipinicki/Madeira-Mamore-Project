@@ -52,7 +52,9 @@ public class LoadingBar : MonoBehaviour
                 // Lerps the bar fill for smooth animation
                 if (isSlider)
                 {
-                    SliderImage.value = Mathf.Lerp(SliderImage.value, totalProgress, elapsedTime / LoadingLerpTime);
+					Debug.Log(SliderImage.value);
+					SliderImage.value = Mathf.Lerp(SliderImage.value, totalProgress, elapsedTime / LoadingLerpTime);
+                    Debug.Log(SliderImage.value);
 					totalProgress = SliderImage.value;
 				}
                 else

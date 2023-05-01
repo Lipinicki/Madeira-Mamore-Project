@@ -32,8 +32,7 @@ public class SceneData : ScriptableObject
 	public void LoadLevelWithIndex(SceneIndexes index)
 	{
 		// If the player has reached the last level, them goes back to menu
-		// The length has -1 because of the game manager scene
-		if ((int)index >= SceneManager.sceneCountInBuildSettings - 1)
+		if ((int)index >= SceneManager.sceneCountInBuildSettings)
 		{
 			indexesToUnload.Add(--CurrentSceneIndex);
 			index = SceneIndexes.TitleScreen;
@@ -45,7 +44,7 @@ public class SceneData : ScriptableObject
 		LoadScenes();
 
 		// Add previous scene to scenes to unload
-		if ((int)index > 0)
+		if ((int)index > 1)
 		{
 			indexesToUnload.Add(index - 1);
 		}
@@ -96,7 +95,6 @@ public class SceneData : ScriptableObject
 		// Add main menu scene to unload when the level starts
 		//indexesToUnload.Add(SceneIndexes.TitleScreen);
 	}
-
 
 	/// <summary>
 	/// Will try to set the current playable scene to be the active one

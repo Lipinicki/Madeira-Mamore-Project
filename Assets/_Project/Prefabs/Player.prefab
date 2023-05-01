@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 3788120389734674105}
   - component: {fileID: 3788120389734674106}
   - component: {fileID: 1847364052836778489}
-  - component: {fileID: 3788120389734674054}
   - component: {fileID: 1869405802564442559}
   - component: {fileID: 4259353017313282562}
   - component: {fileID: 4660965913318623633}
@@ -101,7 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f120a7b0dac4e5f42953d18f4fd4d4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PlayerInput>k__BackingField: {fileID: 3788120389734674054}
+  <PlayerInput>k__BackingField: {fileID: 11400000, guid: 85fef3c7dd8a14049b8d9ae1eb58d766,
+    type: 2}
   <PlayerSound>k__BackingField: {fileID: 1869405802564442559}
   <MainRigidbody>k__BackingField: {fileID: 3788120389734674106}
   <MainAnimator>k__BackingField: {fileID: 1654514822149110652}
@@ -145,18 +145,6 @@ MonoBehaviour:
   OnInteractEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3788120389734674054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3788120389734674053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f3cf452ff98c444abf9b45803cdaf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1869405802564442559
 MonoBehaviour:
   m_ObjectHideFlags: 0

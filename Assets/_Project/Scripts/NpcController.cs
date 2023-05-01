@@ -10,7 +10,7 @@ public class NpcController : MonoBehaviour, IInteractable
     
     private void OnEnable()
     {
-        uiController = GameObject.FindGameObjectWithTag(UIController.kDialogueControllerTag).GetComponent<UIController>();   
+        //uiController = GameObject.FindGameObjectWithTag(UIController.kDialogueControllerTag).GetComponent<UIController>();   
     }
 
     public void Interact()
