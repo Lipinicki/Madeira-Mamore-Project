@@ -11,6 +11,7 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     [SerializeField] private float positionOffset = 0.15f;
     [SerializeField] private bool activateRelatedObject = false;
     [ConditionalField(nameof(activateRelatedObject))][SerializeField] private GameObject relatedObject = null;
+    [SerializeField] AudioSource audioSrc;
 
     private bool isMoving = false;
     private Vector3 initialPosition;
