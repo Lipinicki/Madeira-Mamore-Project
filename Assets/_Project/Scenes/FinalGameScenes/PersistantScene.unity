@@ -306,12 +306,24 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7897356650048448761}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1746876126}
         m_TargetAssemblyTypeName: DialoguePresenter, Assembly-CSharp
         m_MethodName: SetupDialoguePresenter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: a03894826638fc944a5f35afa3de475b,
+          m_ObjectArgument: {fileID: 11400000, guid: a5e462a6d9f92a4409b2dddb7533a98e,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: Dialogue, Assembly-CSharp
           m_IntArgument: 0
@@ -664,6 +676,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7897356650048448765}
     m_Modifications:
+    - target: {fileID: 1112133797835116600, guid: cb6e3ff4d2595544c84da5944479628b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -643.3805
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086635072171156794, guid: cb6e3ff4d2595544c84da5944479628b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -643.3804
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464806786457297461, guid: cb6e3ff4d2595544c84da5944479628b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 507.36
+      objectReference: {fileID: 0}
     - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
       propertyPath: m_Name
@@ -773,6 +800,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199047274878770262, guid: cb6e3ff4d2595544c84da5944479628b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -37.900726
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb6e3ff4d2595544c84da5944479628b, type: 3}
