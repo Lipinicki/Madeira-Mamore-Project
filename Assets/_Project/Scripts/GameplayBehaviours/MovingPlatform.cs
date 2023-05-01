@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using MyBox;
+using System.Collections;
 
 public class MovingPlatform : MonoBehaviour, IInteractable
 {
@@ -32,6 +33,8 @@ public class MovingPlatform : MonoBehaviour, IInteractable
 
         isMoving = true;
         relatedObject.SetActive(true);
+        
+        audioSrc.Play();
         movingTween.Play();
     }
 
@@ -40,7 +43,9 @@ public class MovingPlatform : MonoBehaviour, IInteractable
         Sequence internalSequence = DOTween.Sequence();
         internalSequence.Append(transform.DOLocalMoveY(destinationPoint.position.y + positionOffset, movementDuration).SetEase(Ease.InSine));
         internalSequence.Append(transform.DOLocalMoveY(destinationPoint.position.y, movementDuration * 0.025f).SetEase(Ease.OutQuint));
+        internalSequence.AppendCallback(StopAndFadeAudio);
         internalSequence.AppendInterval(intervalToGoBack);
+        internalSequence.AppendCallback( () => audioSrc.Play());
         internalSequence.Append(transform.DOLocalMoveY(initialPosition.y, movementDuration * 0.5f).SetEase(Ease.OutQuart));
         internalSequence.OnComplete(EndAnimation);
 
@@ -52,7 +57,9 @@ public class MovingPlatform : MonoBehaviour, IInteractable
         Sequence internalSequence = DOTween.Sequence();
         internalSequence.Append(transform.DOLocalMoveX(destinationPoint.position.x + positionOffset, movementDuration).SetEase(Ease.InSine));
         internalSequence.Append(transform.DOLocalMoveX(destinationPoint.position.x, movementDuration * 0.025f).SetEase(Ease.OutQuint));
+        internalSequence.AppendCallback(StopAndFadeAudio);
         internalSequence.AppendInterval(intervalToGoBack);
+        internalSequence.AppendCallback( () => audioSrc.Play());
         internalSequence.Append(transform.DOLocalMoveX(initialPosition.x, movementDuration * 0.5f).SetEase(Ease.OutQuart));
         internalSequence.OnComplete(EndAnimation);
 
@@ -63,6 +70,7 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     {
         isMoving = false;
         relatedObject.SetActive(false);
+        StopAndFadeAudio();
     }
 
     private void OnDestroy()
@@ -75,5 +83,21 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     public void Interact()
     {
         GoToDestination();
+    }
+
+    private void StopAndFadeAudio() => StartCoroutine(FadeOutSound(0.35f));
+    
+    IEnumerator FadeOutSound(float fadeTime)
+    {
+        float startVolume = audioSrc.volume;
+
+        while (audioSrc.volume > 0)
+        {
+            audioSrc.volume -= startVolume * Time.deltaTime / fadeTime;
+            yield return null;
+        }
+
+        audioSrc.Stop();
+        audioSrc.volume = startVolume;
     }
 }
