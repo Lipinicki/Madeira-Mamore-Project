@@ -622,7 +622,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""08fb50da-a69b-42d4-8135-20dbe53f1433"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse/Keyboard"",
