@@ -85,19 +85,6 @@ public class MovingPlatform : MonoBehaviour, IInteractable
         GoToDestination();
     }
 
-    private void StopAndFadeAudio() => StartCoroutine(FadeOutSound(0.35f));
-    
-    IEnumerator FadeOutSound(float fadeTime)
-    {
-        float startVolume = audioSrc.volume;
+    private void StopAndFadeAudio() => StartCoroutine(audioSrc.FadeOutSound(0.35f));
 
-        while (audioSrc.volume > 0)
-        {
-            audioSrc.volume -= startVolume * Time.deltaTime / fadeTime;
-            yield return null;
-        }
-
-        audioSrc.Stop();
-        audioSrc.volume = startVolume;
-    }
 }

@@ -144,7 +144,7 @@ public class PlayerStateMachine : StateMachine
 	[field: Space(30f), Header("Pushing State")]
 	public float MaxInteractionDistance { get; set; } 
     public LayerMask PushBlocksLayer;
-    public Rigidbody ActiveBlock { get; set; } = null;
+    public BasicPullPushBlock ActiveBlock { get; set; } = null;
 
 	#endregion
 
