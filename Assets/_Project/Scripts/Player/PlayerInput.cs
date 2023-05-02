@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "PlayerInput", menuName = "Player Input")]
-public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameControls.IMenusActions
+public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameControls.IMenusActions, GameControls.IDebugActions
 {
 	// ++++ Player ++++
 
@@ -20,10 +20,15 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 
 	// ++++ Menus ++++
 
-	public UnityAction unPauseEvent;
-	public UnityAction cancelEvent;
-	public UnityAction submitEvent;
-	public UnityAction<Vector2> navigateEvent;
+	public UnityAction menusPauseEvent;
+	public UnityAction menusCancelEvent;
+	public UnityAction menusSubmitEvent;
+	public UnityAction<Vector2> menusNavigateEvent;
+
+	// ++++ Debug ++++
+
+	public UnityAction debugActivePlayerInputEvent;
+	public UnityAction debugNextLevelEvent;
 
 	private GameControls gameControls;
 
@@ -35,7 +40,11 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 
 			gameControls.Player.SetCallbacks(this);
 			gameControls.Menus.SetCallbacks(this);
+			gameControls.Debug.SetCallbacks(this);
 		}
+#if UNITY_EDITOR
+		gameControls.Debug.Enable();
+#endif
 	}
 
 	private void OnDisable()
@@ -117,26 +126,26 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 	public void OnUnPause(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Started)
-			unPauseEvent?.Invoke();
+			menusPauseEvent?.Invoke();
 	}
 
 	public void OnSubmit(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Started)
-			submitEvent?.Invoke();
+			menusSubmitEvent?.Invoke();
 	}
 
 	public void OnCancel(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Started)
-			cancelEvent?.Invoke();
+			menusCancelEvent?.Invoke();
 	}
 
 	public void OnNavigate(InputAction.CallbackContext context)
 	{
 		Vector2 input = context.ReadValue<Vector2>();
 
-		navigateEvent?.Invoke(input);
+		menusNavigateEvent?.Invoke(input);
 	}
 
 	public void OnPoint(InputAction.CallbackContext context)
@@ -172,5 +181,21 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 	public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
 	{
 		
+	}
+
+	/*
+	 * Debug
+	 */
+
+	public void OnActivatePlayerInput(InputAction.CallbackContext context)
+	{
+		if (context.phase == InputActionPhase.Started)
+			debugActivePlayerInputEvent?.Invoke();
+	}
+
+	public void OnNextLevel(InputAction.CallbackContext context)
+	{
+		if (context.phase == InputActionPhase.Started)
+			debugNextLevelEvent?.Invoke();	
 	}
 }

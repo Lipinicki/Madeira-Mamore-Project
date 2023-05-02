@@ -152,7 +152,7 @@ public class PlayerPushingState : PlayerOnGroundState
 			_ctx.ActiveBlock.velocity = Vector3.zero;
 			_ctx.ActiveBlock.angularVelocity = Vector3.zero;
 			_ctx.MaxInteractionDistance = 0f;
-			_ctx.ActiveBlock.constraints = RigidbodyConstraints.FreezePosition;	
+			_ctx.ActiveBlock.constraints = RigidbodyConstraints.FreezeAll;		
 			_ctx.ActiveBlock = null;
 		}
 	}

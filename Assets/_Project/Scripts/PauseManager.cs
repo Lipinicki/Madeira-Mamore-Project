@@ -8,13 +8,13 @@ public class PauseManager : MonoBehaviour
 	private void OnEnable()
 	{
 		_playerInput.pauseEvent += PauseGame;
-		_playerInput.unPauseEvent += ResumeGame;
+		_playerInput.menusPauseEvent += ResumeGame;
 	}
 
 	private void OnDisable()
 	{
 		_playerInput.pauseEvent -= PauseGame;
-		_playerInput.unPauseEvent -= ResumeGame;
+		_playerInput.menusPauseEvent -= ResumeGame;
 	}
 
 	public void PauseGame()

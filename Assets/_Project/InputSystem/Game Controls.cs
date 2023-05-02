@@ -796,6 +796,54 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Debug"",
+            ""id"": ""0825a3cd-d6dc-4909-908b-e47aa3ce2d80"",
+            ""actions"": [
+                {
+                    ""name"": ""ActivatePlayerInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2761c0e-28d2-4991-bd18-5ab015949c51"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf581e8c-5107-45f1-a049-46d665d6f034"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2e1028e7-2ec0-4217-8d95-2911e2af602b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse/Keyboard"",
+                    ""action"": ""ActivatePlayerInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e86b9b8-d4ed-4239-b84a-4124eafa53cc"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse/Keyboard"",
+                    ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -849,6 +897,10 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_Menus_TrackedDevicePosition = m_Menus.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_Menus_TrackedDeviceOrientation = m_Menus.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_Menus_UnPause = m_Menus.FindAction("UnPause", throwIfNotFound: true);
+        // Debug
+        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_ActivatePlayerInput = m_Debug.FindAction("ActivatePlayerInput", throwIfNotFound: true);
+        m_Debug_NextLevel = m_Debug.FindAction("NextLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1118,6 +1170,60 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         }
     }
     public MenusActions @Menus => new MenusActions(this);
+
+    // Debug
+    private readonly InputActionMap m_Debug;
+    private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
+    private readonly InputAction m_Debug_ActivatePlayerInput;
+    private readonly InputAction m_Debug_NextLevel;
+    public struct DebugActions
+    {
+        private @GameControls m_Wrapper;
+        public DebugActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ActivatePlayerInput => m_Wrapper.m_Debug_ActivatePlayerInput;
+        public InputAction @NextLevel => m_Wrapper.m_Debug_NextLevel;
+        public InputActionMap Get() { return m_Wrapper.m_Debug; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public void AddCallbacks(IDebugActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DebugActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DebugActionsCallbackInterfaces.Add(instance);
+            @ActivatePlayerInput.started += instance.OnActivatePlayerInput;
+            @ActivatePlayerInput.performed += instance.OnActivatePlayerInput;
+            @ActivatePlayerInput.canceled += instance.OnActivatePlayerInput;
+            @NextLevel.started += instance.OnNextLevel;
+            @NextLevel.performed += instance.OnNextLevel;
+            @NextLevel.canceled += instance.OnNextLevel;
+        }
+
+        private void UnregisterCallbacks(IDebugActions instance)
+        {
+            @ActivatePlayerInput.started -= instance.OnActivatePlayerInput;
+            @ActivatePlayerInput.performed -= instance.OnActivatePlayerInput;
+            @ActivatePlayerInput.canceled -= instance.OnActivatePlayerInput;
+            @NextLevel.started -= instance.OnNextLevel;
+            @NextLevel.performed -= instance.OnNextLevel;
+            @NextLevel.canceled -= instance.OnNextLevel;
+        }
+
+        public void RemoveCallbacks(IDebugActions instance)
+        {
+            if (m_Wrapper.m_DebugActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDebugActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DebugActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DebugActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DebugActions @Debug => new DebugActions(this);
     private int m_MouseKeyboardSchemeIndex = -1;
     public InputControlScheme MouseKeyboardScheme
     {
@@ -1158,5 +1264,10 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnUnPause(InputAction.CallbackContext context);
+    }
+    public interface IDebugActions
+    {
+        void OnActivatePlayerInput(InputAction.CallbackContext context);
+        void OnNextLevel(InputAction.CallbackContext context);
     }
 }
