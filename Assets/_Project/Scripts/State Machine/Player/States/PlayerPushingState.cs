@@ -67,7 +67,9 @@ public class PlayerPushingState : PlayerOnGroundState
 		// Turn off UpperBody animations
 		_ctx.MainAnimator.SetLayerWeight(k_UpperBodyAnimatorLayer, 0f);
 
-		_ctx.PlayerSound.DisableStepsAudio();	
+		_ctx.PlayerSound.DisableStepsAudio();
+
+		DetachBlock();
 	}
 
 	// Translates the block position to follow the player
@@ -113,7 +115,6 @@ public class PlayerPushingState : PlayerOnGroundState
 	// Release the block and switch states
 	private void Release()
 	{
-		DetachBlock();
 		_ctx.SwitchCurrentState(new PlayerIdleState(_ctx));
 	}
 

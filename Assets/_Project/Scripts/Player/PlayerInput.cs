@@ -196,6 +196,6 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 	public void OnNextLevel(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Started)
-			debugNextLevelEvent?.Invoke();	
+			debugNextLevelEvent?.Invoke();
 	}
 }
