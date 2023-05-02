@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -82,7 +83,7 @@ public class DialoguePresenter : MonoBehaviour
     public void AdvanceDialogue()
     {
         if (activeDialogue == null) return;
-        if (speechIndex == activeDialogue.SpheechCount)
+        if (speechIndex == activeDialogue.SpheechCount - 1)
         {
             EndDialogue();
             return;
@@ -111,7 +112,6 @@ public class DialoguePresenter : MonoBehaviour
 
     private void EndDialogue()
     {
-        Debug.Log("end");
         speechIndex = 0;
         activeDialogue = null;
         currentSpeech = null;

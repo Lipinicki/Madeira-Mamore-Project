@@ -18,10 +18,15 @@ public class UIController : MonoBehaviour
     [HideInInspector] public UnityEvent<bool> OnGamePause = new UnityEvent<bool>();
 	private bool gameIsPaused = false;
 
+    [Header("Inventory Session")]
+    [SerializeField] private UI_InventoryDisplay inventoryScreen;
+    private bool inventoryIsOpen = false;
+
     private void OnEnable()
     {
         OnNpcInteraction.AddListener(ShowDialoguePresenter);
         playerInput.pauseEvent += PauseGame;
+        playerInput.inventoryEvent += ToggleInventory;
     }
 
     private void OnDisable() 
@@ -42,5 +47,11 @@ public class UIController : MonoBehaviour
         float currentTimeScale = gameIsPaused ? 0f : 1f;
         pauseScreen.SetActive(gameIsPaused);
         Time.timeScale = currentTimeScale;
+    }
+
+    private void ToggleInventory()
+    {
+        inventoryIsOpen = inventoryIsOpen ? false : true;
+        inventoryScreen?.gameObject.SetActive(inventoryIsOpen);
     }
 }

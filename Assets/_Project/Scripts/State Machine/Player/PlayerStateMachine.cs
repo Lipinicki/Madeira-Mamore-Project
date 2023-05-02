@@ -148,10 +148,10 @@ public class PlayerStateMachine : StateMachine
 	[field: SerializeField]
     public float BlockMovementSpeed { get; private set; } = 2f; // Force applied to the block when pushed	
 
-	public float BlockOffset { get; private set; } = 1f;
-	public float MaxInteractionDistance { get; private set; } 
+	public float BlockOffset { get; set; } = 1f;
+	public float MaxInteractionDistance { get; set; } 
     public LayerMask PushBlocksLayer;
-    public Rigidbody ActiveBlock { get; private set; } = null;
+    public Rigidbody ActiveBlock { get; set; } = null;
 
 	#endregion
 
@@ -251,23 +251,4 @@ public class PlayerStateMachine : StateMachine
 		Debug.DrawRay(ray.origin, ray.direction * RayCastMaxDistance);
 	}
 
-	public void SetupActiveBlock(Transform t)
-	{
-		Rigidbody rb = t.GetComponent<Rigidbody>();
-		var blockDepth = t.GetComponent<Collider>().bounds.size.z;
-		
-		BlockOffset = blockDepth;
-		ActiveBlock = rb;
-	}
-
-	public void DetachBlock()
-	{
-		if (ActiveBlock != null)
-		{
-			ActiveBlock.velocity = Vector3.zero;
-			ActiveBlock.angularVelocity = Vector3.zero;
-			MaxInteractionDistance = 0f;
-			ActiveBlock = null;
-		}
-	}
 }
