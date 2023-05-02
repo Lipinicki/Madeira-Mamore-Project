@@ -100,9 +100,8 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 	public void SetupActiveBlock(Transform t)
 	{
 		Rigidbody rb = t.GetComponent<Rigidbody>();
-		var blockDepth = t.GetComponent<Collider>().bounds.size.z;
-		
-		_ctx.BlockOffset = blockDepth;
+		float blockDepth = t.GetComponent<Collider>().bounds.size.z;
+		_ctx.MaxInteractionDistance = blockDepth;
 		_ctx.ActiveBlock = rb;
 	}
 }

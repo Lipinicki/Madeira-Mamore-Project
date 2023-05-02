@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerPushingState : PlayerOnGroundState
 {
 	private Transform transform => _ctx.transform;
-	private Vector3 blockTargetPosition = Vector3.zero;
 
 	private readonly int r_PushHorizontalAnimationParam = Animator.StringToHash("PushHorizontalSpeed");
 	private readonly int r_PushVerticalAnimationParam = Animator.StringToHash("PushVerticalSpeed");
@@ -69,11 +68,16 @@ public class PlayerPushingState : PlayerOnGroundState
 	private void UpdateBlockPosition(float deltaTime)
 	{
 		if (_ctx.ActiveBlock == null || _ctx.InputVector == Vector3.zero) return;
+		
+		// release block if player strays too far from it
+		float currentBlockDistance = Vector3.Distance(_ctx.ActiveBlock.transform.position, _ctx.transform.position);
+		if (currentBlockDistance > _ctx.MaxInteractionDistance)
+		{ 
+			Release();
+			return;
+		}
 
-		// Calculate the target position for the block based on the player's forward direction
-		blockTargetPosition = new Vector3(transform.position.x, _ctx.ActiveBlock.transform.position.y, transform.position.z) 
-			+ (transform.forward.normalized * _ctx.BlockOffset);
-
+		// only moves the block if the raw input vector isn't zero
 		if (_ctx.PlayerInput.RawMovementInput == Vector3.zero) _ctx.ActiveBlock.velocity = Vector3.zero;
 		else _ctx.ActiveBlock.velocity = _ctx.MainRigidbody.velocity;
 	}
@@ -81,7 +85,7 @@ public class PlayerPushingState : PlayerOnGroundState
 	// Function used to move player inside this state
 	private void MovePlayer()
 	{
-		float reducedMovespeed = _ctx.MovementSpeed * 0.7f;
+		float reducedMovespeed = _ctx.MovementSpeed * 0.65f;
 		_ctx.MovementVector = _ctx.InputVector.normalized * reducedMovespeed;
 
 		//Moves the player
@@ -152,7 +156,7 @@ public class PlayerPushingState : PlayerOnGroundState
 			_ctx.ActiveBlock.velocity = Vector3.zero;
 			_ctx.ActiveBlock.angularVelocity = Vector3.zero;
 			_ctx.MaxInteractionDistance = 0f;
-			_ctx.ActiveBlock.constraints = RigidbodyConstraints.FreezePosition;	
+			_ctx.ActiveBlock.constraints = RigidbodyConstraints.FreezeAll;	
 			_ctx.ActiveBlock = null;
 		}
 	}

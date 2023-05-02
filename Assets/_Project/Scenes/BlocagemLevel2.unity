@@ -8366,6 +8366,7 @@ MonoBehaviour:
   OnGamePause:
     m_PersistentCalls:
       m_Calls: []
+  inventoryScreen: {fileID: 0}
 --- !u!1 &1163122498
 GameObject:
   m_ObjectHideFlags: 0
@@ -8567,6 +8568,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1395428459}
     m_Modifications:
+    - target: {fileID: 1847364052836778489, guid: adf144d77b270794c8c4a65bf5218328,
+        type: 3}
+      propertyPath: <MaxInteractionDistance>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3788120389734674053, guid: adf144d77b270794c8c4a65bf5218328,
         type: 3}
       propertyPath: m_Name
@@ -9506,6 +9512,7 @@ MonoBehaviour:
   OnGamePause:
     m_PersistentCalls:
       m_Calls: []
+  inventoryScreen: {fileID: 0}
 --- !u!114 &1345467017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11871,17 +11878,17 @@ PrefabInstance:
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.35575822
+      value: 0.3557582
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.29234195
+      value: 0.29234186
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.68582624
+      value: 0.6858263
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
