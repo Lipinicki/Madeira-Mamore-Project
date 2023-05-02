@@ -25,8 +25,8 @@ public class UIController : MonoBehaviour
     private void OnEnable()
     {
         OnNpcInteraction.AddListener(ShowDialoguePresenter);
+        Debug.Log(this, this);
         playerInput.pauseEvent += PauseGame;
-        playerInput.inventoryEvent += ToggleInventory;
     }
 
     private void OnDisable() 

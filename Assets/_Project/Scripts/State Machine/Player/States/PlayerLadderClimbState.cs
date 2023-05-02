@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLadderClimbState : PlayerBaseState
@@ -17,6 +15,8 @@ public class PlayerLadderClimbState : PlayerBaseState
 	public override void Enter()
 	{
 		_ctx.PlayerInput.interactEvent += OnRelease;
+
+		_ctx.InteractableArea.NotifyInteractionCancel(); // Notifies prompts
 
 		_ctx.MainAnimator.CrossFadeInFixedTime(r_ClimbingAnimationBlendTree, k_AnimationTransitionTime);
 

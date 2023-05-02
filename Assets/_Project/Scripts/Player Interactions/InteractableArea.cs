@@ -5,7 +5,14 @@ using UnityEngine.Events;
 
 public class InteractableArea : MonoBehaviour
 {
-	[HideInInspector] public bool CanInteract;
+	public bool CanInteract 
+	{ 
+		get 
+		{
+			return Interaction == null ? false : true;
+		} 
+	}
+
 	[HideInInspector] public IInteractable Interaction;
 
 	[SerializeField] private UnityEvent OnPotentialInteraction;
@@ -27,7 +34,6 @@ public class InteractableArea : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag(kInteractable))
 		{
-			CanInteract = true;
 			AddInteraction(other.gameObject);
 			OnPotentialInteraction?.Invoke();
 		}
@@ -37,10 +43,20 @@ public class InteractableArea : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag(kInteractable))
 		{
-			CanInteract = false;
 			ResetInteraction();
 			OnPotentialInteractionCancelled?.Invoke();
 		}
+	}
+
+	// Both will be used when other script needs to notify a prompt
+	public void NotifyInteraction()
+	{
+		OnPotentialInteraction?.Invoke();
+	}
+
+	public void NotifyInteractionCancel()
+	{
+		OnPotentialInteractionCancelled?.Invoke();
 	}
 
 	private void AddInteraction(GameObject interactableObject)
@@ -58,6 +74,5 @@ public class InteractableArea : MonoBehaviour
 		if (Interaction == null) return;
 
 		Interaction = null;
-		CanInteract = false;
 	}
 }

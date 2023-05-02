@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7257067714129121918
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.5
 --- !u!114 &-1762560627678713159
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -88,6 +104,7 @@ MonoBehaviour:
   - {fileID: 6872619221135934154}
   - {fileID: 4905312039146638854}
   - {fileID: -1762560627678713159}
+  - {fileID: -7257067714129121918}
 --- !u!114 &490827034723031518
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -144,19 +161,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mode:
     m_OverrideState: 1
     m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 11.1
+    m_Value: 0
   gaussianEnd:
     m_OverrideState: 1
-    m_Value: 10.22
+    m_Value: 38.44
   gaussianMaxRadius:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 1.26
   highQualitySampling:
     m_OverrideState: 0
     m_Value: 0
