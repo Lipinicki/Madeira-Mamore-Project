@@ -8366,6 +8366,7 @@ MonoBehaviour:
   OnGamePause:
     m_PersistentCalls:
       m_Calls: []
+  inventoryScreen: {fileID: 0}
 --- !u!1 &1163122498
 GameObject:
   m_ObjectHideFlags: 0
@@ -8567,6 +8568,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1395428459}
     m_Modifications:
+    - target: {fileID: 1847364052836778489, guid: adf144d77b270794c8c4a65bf5218328,
+        type: 3}
+      propertyPath: <MaxInteractionDistance>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3788120389734674053, guid: adf144d77b270794c8c4a65bf5218328,
         type: 3}
       propertyPath: m_Name
@@ -9506,6 +9512,7 @@ MonoBehaviour:
   OnGamePause:
     m_PersistentCalls:
       m_Calls: []
+  inventoryScreen: {fileID: 0}
 --- !u!114 &1345467017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12903,6 +12910,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8385467072856704740}
     m_Modifications:
+    - target: {fileID: 7425942937458928274, guid: 2e5afd02b95998d4a9c300953ca2c2f6,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8925285469809434848, guid: 2e5afd02b95998d4a9c300953ca2c2f6,
         type: 3}
       propertyPath: m_Name
@@ -12931,7 +12943,7 @@ PrefabInstance:
     - target: {fileID: 8925285469809434851, guid: 2e5afd02b95998d4a9c300953ca2c2f6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 71.4
+      value: 77.52
       objectReference: {fileID: 0}
     - target: {fileID: 8925285469809434851, guid: 2e5afd02b95998d4a9c300953ca2c2f6,
         type: 3}
@@ -12941,7 +12953,7 @@ PrefabInstance:
     - target: {fileID: 8925285469809434851, guid: 2e5afd02b95998d4a9c300953ca2c2f6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.96
+      value: -20.87
       objectReference: {fileID: 0}
     - target: {fileID: 8925285469809434851, guid: 2e5afd02b95998d4a9c300953ca2c2f6,
         type: 3}
@@ -14459,7 +14471,7 @@ PrefabInstance:
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.1629631
+      value: -0.16296308
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}

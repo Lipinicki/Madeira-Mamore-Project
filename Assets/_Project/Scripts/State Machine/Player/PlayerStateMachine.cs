@@ -141,17 +141,10 @@ public class PlayerStateMachine : StateMachine
 
 	#region Pushing State
 
-	[field: Space(30f), Header("Pushing State"), 
-		SerializeField]
-	public float MinInteractionDistance { get; private set; } = 1f;
-	
-	[field: SerializeField]
-    public float BlockMovementSpeed { get; private set; } = 2f; // Force applied to the block when pushed	
-
-	public float BlockOffset { get; set; } = 1f;
+	[field: Space(30f), Header("Pushing State")]
 	public float MaxInteractionDistance { get; set; } 
     public LayerMask PushBlocksLayer;
-    public Rigidbody ActiveBlock { get; set; } = null;
+    public BasicPullPushBlock ActiveBlock { get; set; } = null;
 
 	#endregion
 
