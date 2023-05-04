@@ -15,7 +15,7 @@ public class UI_SettingsMenu : MonoBehaviour
 
 	private void OnEnable()
 	{
-        Invoke(nameof(SelectFirsObject), 0.1f);
+        StartCoroutine(DelaySelection());
 	}
 
     // Menu Options
@@ -27,7 +27,7 @@ public class UI_SettingsMenu : MonoBehaviour
 
     public void SetSFXVolume(float volume)
     {
-		_mainMixer.SetFloat("MusicVolume", volume);
+		_mainMixer.SetFloat("SFXVolume", volume);
 	}
 
     public void SetUIVolume(float volume)
@@ -42,7 +42,7 @@ public class UI_SettingsMenu : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-		_mainMixer.SetFloat("SFXVolume", volume);
+		_mainMixer.SetFloat("MusicVolume", volume);
 	}
 
     public void SetFullScreen(bool value)
@@ -55,9 +55,15 @@ public class UI_SettingsMenu : MonoBehaviour
 
     // Selection when active
 
+    private IEnumerator DelaySelection()
+    {
+        yield return new WaitForSecondsRealtime(.2f);
+
+        SelectFirsObject();
+    }
+
     private void SelectFirsObject()
     {
         EventSystem.current.SetSelectedGameObject(_firstSelection);
-        Debug.Log(EventSystem.current.currentSelectedGameObject, EventSystem.current.currentSelectedGameObject);
 	}
 }

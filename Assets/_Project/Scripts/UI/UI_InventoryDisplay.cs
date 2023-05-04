@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UI_InventoryDisplay : MonoBehaviour
 {
@@ -44,7 +45,6 @@ public class UI_InventoryDisplay : MonoBehaviour
             TestCreateItems(_testButtonCount);
             UpdateAllButtonNavigationalReferences();
         }
-
         // Initialization
         Initialize();
 
@@ -65,7 +65,6 @@ public class UI_InventoryDisplay : MonoBehaviour
 			var itemDisplay = CreateItem(item.Name);
 			itemDisplay.Initialize(item);
 		}
-
 		UpdateAllButtonNavigationalReferences();
 
 		gameObject.SetActive(true);
@@ -79,7 +78,14 @@ public class UI_InventoryDisplay : MonoBehaviour
 		{
 			Destroy(_content.GetChild(i).gameObject);
 		}
+
+        _infoDisplay.Deactivate();
 	}
+
+    public void SelectItemInfo()
+    {
+        EventSystem.current.SetSelectedGameObject(_infoDisplay.gameObject);
+    }
 
 	public void SelectChild(int index)
     {
@@ -98,7 +104,7 @@ public class UI_InventoryDisplay : MonoBehaviour
     // Used to delay selection to let unity initialize components before making the selection
     public IEnumerator DelayChildSelection(int index)
     {
-        yield return new WaitForSeconds(_firstSelectionDelay); // default to 1 secon, but it's cosidered a MAGIC NUMBER
+        yield return new WaitForSecondsRealtime(_firstSelectionDelay); // delays the selection call
 
         SelectChild(index);
     }
@@ -107,7 +113,9 @@ public class UI_InventoryDisplay : MonoBehaviour
 	{
         UI_ItemButtonDisplay[] children = _content.transform.GetComponentsInChildren<UI_ItemButtonDisplay>();
 
-        if (children.Length < 2)
+		Debug.Log("Content Children = " + children.Length);
+
+		if (children.Length < 2)
         {
             return; // Navigation will not work, the array must contain at least 2 children
         }
@@ -126,6 +134,8 @@ public class UI_InventoryDisplay : MonoBehaviour
 
 			item.gameObject.GetComponent<Button>().navigation = navigation;
 		}
+
+		Debug.Log("Update Navigations!");
 	}
 
 	private Selectable GetNavigationDown(int indexCurrent, int totalEntries)

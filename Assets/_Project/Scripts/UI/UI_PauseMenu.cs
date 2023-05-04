@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -5,6 +6,8 @@ using UnityEngine.EventSystems;
 public class UI_PauseMenu : MonoBehaviour, IPauseHandler
 {
     [SerializeField] private PauseCallbackHandler callbackHandler;
+
+	[SerializeField] private GameObject pausePresenter;
 	[SerializeField] private GameObject pauseScreen;
 	[SerializeField] private GameObject optionsScreen;
 	[SerializeField] private GameObject inventoryScreen;
@@ -19,8 +22,6 @@ public class UI_PauseMenu : MonoBehaviour, IPauseHandler
 	private void OnEnable()
 	{
 		callbackHandler?.SubscribeCallback(this);
-
-		Invoke(nameof(SelectFirstButton), 0.05f);	
 	}
 
 	private void OnDisable()
@@ -30,15 +31,17 @@ public class UI_PauseMenu : MonoBehaviour, IPauseHandler
 
 	public void OnPause()
 	{
-		pauseScreen?.SetActive(true);
-		Invoke(nameof(SelectFirstButton), 0.05f);
+		pausePresenter?.SetActive(true);
+		ShowPauseScreen();
+
+		StartCoroutine(DelayFirstSelection());
 
 		pauseEvent?.Invoke();
 	}
 
 	public void OnResume()
 	{
-		pauseScreen?.SetActive(false);
+		pausePresenter?.SetActive(false);
 
 		resumeEvent?.Invoke();
 	}
@@ -55,7 +58,7 @@ public class UI_PauseMenu : MonoBehaviour, IPauseHandler
 		optionsScreen?.SetActive(false);
 
 		pauseScreen?.SetActive(true);
-		Invoke(nameof(SelectFirstButton), 0.05f);
+		StartCoroutine(DelayFirstSelection());
 	}
 
 	public void ShowInvetory()
@@ -69,7 +72,22 @@ public class UI_PauseMenu : MonoBehaviour, IPauseHandler
 		inventoryScreen?.SetActive(false);
 
 		pauseScreen?.SetActive(true);
-		Invoke(nameof(SelectFirstButton), 0.05f);
+		StartCoroutine(DelayFirstSelection());
+	}
+
+	private void ShowPauseScreen()
+	{
+		inventoryScreen?.SetActive(false);
+		optionsScreen?.SetActive(false);
+
+		pauseScreen?.SetActive(true);
+	}
+
+	private IEnumerator DelayFirstSelection()
+	{
+		yield return new WaitForSecondsRealtime(.2f);
+
+		SelectFirstButton();
 	}
 
 	private void SelectFirstButton()

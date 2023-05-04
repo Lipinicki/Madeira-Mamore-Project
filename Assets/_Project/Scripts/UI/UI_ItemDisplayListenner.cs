@@ -23,7 +23,7 @@ public class UI_ItemDisplayListenner : MonoBehaviour
 
 		gameObject.SetActive(true);
 
-		Invoke(nameof(GetSelection), 0.05f);
+		Invoke(nameof(GetSelection), 0.5f);
 	}
 
 	public void Deactivate()
