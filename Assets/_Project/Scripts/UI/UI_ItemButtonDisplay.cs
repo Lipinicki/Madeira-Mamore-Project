@@ -8,7 +8,7 @@ using UnityEngine.UI;
 [Serializable]
 public class ItemButtonEvent : UnityEvent<UI_ItemButtonDisplay> { }
 
-public class UI_ItemButtonDisplay : MonoBehaviour, ISelectHandler, ISubmitHandler, IPointerClickHandler, IDeselectHandler
+public class UI_ItemButtonDisplay : MonoBehaviour, ISelectHandler, ISubmitHandler, IPointerClickHandler, IDeselectHandler, ICancelHandler, IPointerEnterHandler
 {
 	[Header("Button Visuals")]
 	[SerializeField] private TextMeshProUGUI _name;
@@ -20,6 +20,8 @@ public class UI_ItemButtonDisplay : MonoBehaviour, ISelectHandler, ISubmitHandle
 	[SerializeField] private ItemButtonEvent _onDeselectEvent;
 	[SerializeField] private ItemButtonEvent _onSubmitEvent;
 	[SerializeField] private ItemButtonEvent _onClickEvent;
+	[SerializeField] private ItemButtonEvent _onCancelEvent;
+	[SerializeField] private ItemButtonEvent _onHoverEnterEvent;
 
 	[Space(10)]
 	[Header("Item data")]
@@ -32,6 +34,8 @@ public class UI_ItemButtonDisplay : MonoBehaviour, ISelectHandler, ISubmitHandle
 	public ItemButtonEvent OnSelectEvent { get => _onSelectEvent; }
 	public ItemButtonEvent OnSubmitEvent { get => _onSubmitEvent; }
 	public ItemButtonEvent OnClickEvent1 { get => _onClickEvent; }
+	public ItemButtonEvent OnCancelEvent { get => _onCancelEvent; }
+	public ItemButtonEvent OnHoverEnterEvent { get => _onHoverEnterEvent; }
 
 	public Item Item { get => _item; }
 
@@ -97,6 +101,16 @@ public class UI_ItemButtonDisplay : MonoBehaviour, ISelectHandler, ISubmitHandle
 	public void OnDeselect(BaseEventData eventData)
 	{
 		_onDeselectEvent?.Invoke(this);
+	}
+
+	public void OnCancel(BaseEventData eventData)
+	{
+		_onCancelEvent?.Invoke(this);
+	}
+
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		_onHoverEnterEvent?.Invoke(this);
 	}
 }
 

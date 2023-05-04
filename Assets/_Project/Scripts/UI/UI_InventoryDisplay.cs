@@ -11,6 +11,10 @@ public class UI_InventoryDisplay : MonoBehaviour
 	[SerializeField] private Inventory _playerInventory;
 
     [Space(10)]
+    [Header("Item Info Display")]
+    [SerializeField] private UI_ItemDisplayListenner _infoDisplay;
+
+    [Space(10)]
     [Header("Scroll Objects")]
     [SerializeField] private RectTransform _content;
     [SerializeField] private GameObject _prefabItem;
@@ -21,6 +25,8 @@ public class UI_InventoryDisplay : MonoBehaviour
 	[SerializeField] private ItemButtonEvent _eventItemSelected;
 	[SerializeField] private ItemButtonEvent _eventItemSubmited;
     [SerializeField] private ItemButtonEvent _eventItemDeselect;
+    [SerializeField] private ItemButtonEvent _eventItemCancel;
+    [SerializeField] private ItemButtonEvent _eventItemHoverEnter;
 
     [Space(10)]
     [Header("Default Selected Index")]
@@ -30,9 +36,6 @@ public class UI_InventoryDisplay : MonoBehaviour
     [Space(10)]
     [Header("For Testing Only!")]
     [SerializeField] private int _testButtonCount = 1;  // Number of testing buttons
-
-
-    private List<GameObject> disposableItems = new List<GameObject>();
 
 	public void OnEnable()
 	{
@@ -187,6 +190,8 @@ public class UI_InventoryDisplay : MonoBehaviour
         item.OnClickEvent.AddListener((ItemButton) => { HandleOnClickButton(item); });
         item.OnSubmitEvent.AddListener((ItemButton) => { HandleOnSubmitButton(item); });
         item.OnSelectEvent.AddListener((ItemButton) => { HandleOnDeselectButton(item); });
+        item.OnCancelEvent.AddListener((ItemButton) => { HandleOnCancelButton(item); });
+        item.OnHoverEnterEvent.AddListener((ItemButton) => { HandleOnHoverEnterButton(item); });
 
         return item;
 	}
@@ -206,11 +211,25 @@ public class UI_InventoryDisplay : MonoBehaviour
 
 	private void HandleOnClickButton(UI_ItemButtonDisplay itemButton)
 	{
-        _eventItemClicked?.Invoke(itemButton);
+		_infoDisplay.Activate(itemButton.Item);
+
+		_eventItemClicked?.Invoke(itemButton);
 	}
 
 	private void HandleOnSubmitButton(UI_ItemButtonDisplay itemButton)
 	{
+        _infoDisplay.Activate(itemButton.Item);
+
         _eventItemSubmited?.Invoke(itemButton);
 	}
+
+	private void HandleOnCancelButton(UI_ItemButtonDisplay itemButton)
+    {
+        _eventItemCancel?.Invoke(itemButton);
+    }
+
+    private void HandleOnHoverEnterButton(UI_ItemButtonDisplay itemButton)
+    {
+        _eventItemHoverEnter?.Invoke(itemButton);
+    }
 }

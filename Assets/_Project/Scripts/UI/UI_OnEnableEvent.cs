@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 // Triggers behaviour when a object is enabled on the canvas
-public class UI_OnStartEvent : MonoBehaviour
+public class UI_OnEnableEvent : MonoBehaviour
 {
 	[SerializeField] private UnityEvent OnUIStart;
 

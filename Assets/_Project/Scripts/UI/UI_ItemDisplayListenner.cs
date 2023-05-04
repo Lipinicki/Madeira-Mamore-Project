@@ -8,18 +8,32 @@ using UnityEngine.UI;
 
 public class UI_ItemDisplayListenner : MonoBehaviour
 {
+	[Header("Display Informations")]
 	public TextMeshProUGUI Name;
 	public TextMeshProUGUI Text;
 	public Image image;
 
-	private void OnEnable()
+	public void Activate(Item item)
 	{
-		UI_ItemButtonDisplay.onButtonClick += OnValueChanged;
+		if (item == null) return;
+
+		if (Name != null) Name.text = item.Name;
+		if (Text != null) Text.text = item.Text;
+		if (image != null) image.sprite = item.Sprite;
+
+		gameObject.SetActive(true);
+
+		Invoke(nameof(GetSelection), 0.05f);
 	}
 
-	private void OnDisable()
+	public void Deactivate()
 	{
-		UI_ItemButtonDisplay.onButtonClick -= OnValueChanged;
+		gameObject.SetActive(false);
+	}
+
+	private void GetSelection()
+	{
+		EventSystem.current.SetSelectedGameObject(gameObject);
 	}
 
 	private void OnValueChanged(Item item)
