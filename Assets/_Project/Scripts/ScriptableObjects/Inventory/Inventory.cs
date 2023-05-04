@@ -8,45 +8,45 @@ using MyBox;
 public class Inventory : ScriptableObject
 {
 	[SerializeField, SerializedDictionary("(Key)Nome", "Item")] 
-	private SerializedDictionary<string, Item> Items;
+	private SerializedDictionary<string, Item> _items;
 
-	public SerializedDictionary<string, Item> GetItems() => Items;
+	public SerializedDictionary<string, Item> GetItems() => _items;
 
 	public void AddItem(string itemName, Item item)
 	{
-		if (Items.ContainsKey(itemName))
+		if (_items.ContainsKey(itemName))
 		{
 			Debug.Log(name + " inventory has already the: " + itemName + " already.", this);
 			return;
 		}
 
-		Items.Add(itemName,item);
+		_items.Add(itemName,item);
 	}
 
 	public Item GetItem(string itemName)
 	{
-		if (!Items.ContainsKey(itemName)) return null;
+		if (!_items.ContainsKey(itemName)) return null;
 
-		return Items[itemName];
+		return _items[itemName];
 	}
 
 	public KeyValuePair<string, Item> GetKeyPairValue(string itemName)
 	{
-		if (!Items.ContainsKey(itemName)) return new KeyValuePair<string, Item>("", null);
+		if (!_items.ContainsKey(itemName)) return new KeyValuePair<string, Item>("", null);
 
-		return new KeyValuePair<string, Item>(itemName, Items[itemName]);
+		return new KeyValuePair<string, Item>(itemName, _items[itemName]);
 	}
 
 	public KeyValuePair<string, Item> GetFirstItem()
 	{
-		if (Items.Count == 0) return new KeyValuePair<string, Item>("", null);
+		if (_items.Count == 0) return new KeyValuePair<string, Item>("", null);
 
-		return Items.First();
+		return _items.First();
 	}
 
 	[ButtonMethod]
 	public void ClearInventory()
 	{
-		Items = new SerializedDictionary<string, Item>();
+		_items = new SerializedDictionary<string, Item>();
 	}
 }

@@ -14,12 +14,12 @@ public class UI_ItemDisplayListenner : MonoBehaviour
 
 	private void OnEnable()
 	{
-		UI_ItemDisplay.onButtonClick += OnValueChanged;
+		UI_ItemButtonDisplay.onButtonClick += OnValueChanged;
 	}
 
 	private void OnDisable()
 	{
-		UI_ItemDisplay.onButtonClick -= OnValueChanged;
+		UI_ItemButtonDisplay.onButtonClick -= OnValueChanged;
 	}
 
 	private void OnValueChanged(Item item)

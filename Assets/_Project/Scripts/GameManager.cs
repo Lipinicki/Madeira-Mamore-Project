@@ -13,13 +13,17 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameEvent onStartTitleScreen;
 	[SerializeField] private bool startWithTitleScreen;
 
+	[Space(10)]
+	[Header("Debug")]
 	[SerializeField] private PlayerInput playerInput;
-	[SerializeField] private UnityEvent activateInputEvent;
+	[SerializeField] private UnityEvent activatePlayerInputEvent;
+	[SerializeField] private UnityEvent activateMenusInputEvent;
 	[SerializeField] private UnityEvent nextLevelEvent;
 
 	private void Awake()
 	{
 		playerInput.debugActivePlayerInputEvent += DebugOnActivatePlayerInput;
+		playerInput.debugActiveMenusInputEvent += DebugOnActivateMenusInput;
 		playerInput.debugNextLevelEvent += DebugOnNextLevelEvent;
 
 		Instance = this;
@@ -28,6 +32,7 @@ public class GameManager : MonoBehaviour
 	private void OnDestroy()
 	{
 		playerInput.debugActivePlayerInputEvent -= DebugOnActivatePlayerInput;
+		playerInput.debugActiveMenusInputEvent -= DebugOnActivateMenusInput;
 		playerInput.debugNextLevelEvent -= DebugOnNextLevelEvent;
 	}
 
@@ -46,7 +51,12 @@ public class GameManager : MonoBehaviour
 
 	private void DebugOnActivatePlayerInput()
 	{
-		activateInputEvent?.Invoke();
+		activatePlayerInputEvent?.Invoke();
+	}
+
+	private void DebugOnActivateMenusInput()
+	{
+		activateMenusInputEvent?.Invoke();
 	}
 
 	private void DebugOnNextLevelEvent()

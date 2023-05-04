@@ -811,6 +811,15 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ActivateMenusInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""670e13d3-30e7-49c4-8007-5b311e36c124"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""NextLevel"",
                     ""type"": ""Button"",
                     ""id"": ""bf581e8c-5107-45f1-a049-46d665d6f034"",
@@ -835,11 +844,22 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1e86b9b8-d4ed-4239-b84a-4124eafa53cc"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse/Keyboard"",
                     ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29b302a8-6466-4f80-8bce-53fc20960961"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse/Keyboard"",
+                    ""action"": ""ActivateMenusInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -900,6 +920,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_ActivatePlayerInput = m_Debug.FindAction("ActivatePlayerInput", throwIfNotFound: true);
+        m_Debug_ActivateMenusInput = m_Debug.FindAction("ActivateMenusInput", throwIfNotFound: true);
         m_Debug_NextLevel = m_Debug.FindAction("NextLevel", throwIfNotFound: true);
     }
 
@@ -1175,12 +1196,14 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_ActivatePlayerInput;
+    private readonly InputAction m_Debug_ActivateMenusInput;
     private readonly InputAction m_Debug_NextLevel;
     public struct DebugActions
     {
         private @GameControls m_Wrapper;
         public DebugActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ActivatePlayerInput => m_Wrapper.m_Debug_ActivatePlayerInput;
+        public InputAction @ActivateMenusInput => m_Wrapper.m_Debug_ActivateMenusInput;
         public InputAction @NextLevel => m_Wrapper.m_Debug_NextLevel;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
@@ -1194,6 +1217,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @ActivatePlayerInput.started += instance.OnActivatePlayerInput;
             @ActivatePlayerInput.performed += instance.OnActivatePlayerInput;
             @ActivatePlayerInput.canceled += instance.OnActivatePlayerInput;
+            @ActivateMenusInput.started += instance.OnActivateMenusInput;
+            @ActivateMenusInput.performed += instance.OnActivateMenusInput;
+            @ActivateMenusInput.canceled += instance.OnActivateMenusInput;
             @NextLevel.started += instance.OnNextLevel;
             @NextLevel.performed += instance.OnNextLevel;
             @NextLevel.canceled += instance.OnNextLevel;
@@ -1204,6 +1230,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @ActivatePlayerInput.started -= instance.OnActivatePlayerInput;
             @ActivatePlayerInput.performed -= instance.OnActivatePlayerInput;
             @ActivatePlayerInput.canceled -= instance.OnActivatePlayerInput;
+            @ActivateMenusInput.started -= instance.OnActivateMenusInput;
+            @ActivateMenusInput.performed -= instance.OnActivateMenusInput;
+            @ActivateMenusInput.canceled -= instance.OnActivateMenusInput;
             @NextLevel.started -= instance.OnNextLevel;
             @NextLevel.performed -= instance.OnNextLevel;
             @NextLevel.canceled -= instance.OnNextLevel;
@@ -1268,6 +1297,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     public interface IDebugActions
     {
         void OnActivatePlayerInput(InputAction.CallbackContext context);
+        void OnActivateMenusInput(InputAction.CallbackContext context);
         void OnNextLevel(InputAction.CallbackContext context);
     }
 }

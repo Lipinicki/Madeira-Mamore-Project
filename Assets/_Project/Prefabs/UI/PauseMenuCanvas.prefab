@@ -835,6 +835,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3189227911301297063, guid: 596786fb185f85541a17668045a3e110,
         type: 3}
+      propertyPath: m_Name
+      value: ButtonsView
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189227911301297063, guid: 596786fb185f85541a17668045a3e110,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

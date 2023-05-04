@@ -28,6 +28,7 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 	// ++++ Debug ++++
 
 	public UnityAction debugActivePlayerInputEvent;
+	public UnityAction debugActiveMenusInputEvent;
 	public UnityAction debugNextLevelEvent;
 
 	private GameControls gameControls;
@@ -191,6 +192,12 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 	{
 		if (context.phase == InputActionPhase.Started)
 			debugActivePlayerInputEvent?.Invoke();
+	}
+
+	public void OnActivateMenusInput(InputAction.CallbackContext context)
+	{
+		if (context.phase == InputActionPhase.Started)
+			debugActiveMenusInputEvent?.Invoke();
 	}
 
 	public void OnNextLevel(InputAction.CallbackContext context)

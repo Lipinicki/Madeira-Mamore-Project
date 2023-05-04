@@ -789,6 +789,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ActivateMenusInput",
+                    "type": "Button",
+                    "id": "670e13d3-30e7-49c4-8007-5b311e36c124",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "NextLevel",
                     "type": "Button",
                     "id": "bf581e8c-5107-45f1-a049-46d665d6f034",
@@ -813,11 +822,22 @@
                 {
                     "name": "",
                     "id": "1e86b9b8-d4ed-4239-b84a-4124eafa53cc",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse/Keyboard",
                     "action": "NextLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29b302a8-6466-4f80-8bce-53fc20960961",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse/Keyboard",
+                    "action": "ActivateMenusInput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
