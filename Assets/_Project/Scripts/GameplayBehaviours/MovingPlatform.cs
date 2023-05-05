@@ -85,6 +85,6 @@ public class MovingPlatform : MonoBehaviour, IInteractable
         GoToDestination();
     }
 
-    private void StopAndFadeAudio() => StartCoroutine(audioSrc.FadeOutSound(0.35f));
+    private void StopAndFadeAudio() => StartCoroutine(audioSrc.FadeOutSound(0.55f));
 
 }
