@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private SceneData sceneData;
 	[SerializeField] private GameEvent onStartTitleScreen;
-	[SerializeField] private bool startWithTitleScreen;
+	[SerializeField] private GameObject fadeInSreen;
+	[SerializeField] private bool startWithTitleScreen = true;
 
 	[Space(10)]
 	[Header("Debug")]
+	[SerializeField] private bool fadeOnStart = false;
+
 	[SerializeField] private PlayerInput playerInput;
 	[SerializeField] private UnityEvent activatePlayerInputEvent;
 	[SerializeField] private UnityEvent activateMenusInputEvent;
@@ -39,6 +42,11 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		sceneData.ClearSceneLists();
+
+		if (fadeOnStart)
+		{
+			fadeInSreen.GetComponent<Animator>().SetTrigger("FadeIn");
+		}
 
 		// Show the main menu on entering
 		if (startWithTitleScreen)

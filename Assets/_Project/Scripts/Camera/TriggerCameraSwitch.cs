@@ -1,6 +1,4 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
 
@@ -26,7 +24,9 @@ public class TriggerCameraSwitch : MonoBehaviour
 		{
 			CinemachineVirtualCamera desiredCam = GetDesiredCamera();
 			_cameraManager.SwitchActiveCamera(desiredCam);
+#if UNITY_EDITOR
 			Debug.Log("Transitioning to: " + desiredCam.name);
+#endif
 		}
 	}
 
