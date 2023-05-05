@@ -1249,6 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbada278e6375574fb2828117236c7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   portrait: {fileID: 900866487233401783}
   portraitShadow: {fileID: 8542529457032278508}
   dialogueText: {fileID: 1870940079833517223}
@@ -1269,7 +1270,8 @@ AudioSource:
   m_GameObject: {fileID: 7181982852315859141}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2615469306269564758, guid: 1e812b8ffb70a3c40b5a62126bb67cf2,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

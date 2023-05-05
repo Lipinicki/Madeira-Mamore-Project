@@ -9,6 +9,8 @@ using System.Linq;
 
 public class DialoguePresenter : MonoBehaviour
 {
+    [SerializeField] private PlayerInput playerInput;
+
     [Header("Visual Components")]
     [SerializeField] private Image portrait;
     [SerializeField] private Image portraitShadow;
@@ -115,6 +117,7 @@ public class DialoguePresenter : MonoBehaviour
         speechIndex = 0;
         activeDialogue = null;
         currentSpeech = null;
+        playerInput.EnablePlayerInput();
         gameObject.SetActive(false);
     }
 }

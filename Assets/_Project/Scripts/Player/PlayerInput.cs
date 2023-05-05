@@ -104,9 +104,6 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
-#if UNITY_EDITOR
-		Debug.Log("Moving!!");
-#endif
 		Vector2 input = context.ReadValue<Vector2>();
 
 		moveEvent?.Invoke(input);

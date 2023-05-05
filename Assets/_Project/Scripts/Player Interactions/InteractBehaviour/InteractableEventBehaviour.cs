@@ -5,7 +5,12 @@ public class InteractableEventBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField] private UnityEvent OnInteractEvent;
 
-	public void Interact()
+	private void OnDisable()
+	{
+		//OnInteractEvent.RemoveAllListeners();
+	}
+
+	void IInteractable.Interact()
 	{
 		OnInteractEvent?.Invoke();
 	}

@@ -30,6 +30,15 @@ public class InteractableArea : MonoBehaviour
 		CollectableItemBehaviour.onCollectedEvent -= OnCollection;
 	}
 
+	private void Update()
+	{
+		if (!CanInteract)
+		{
+			ResetInteraction();
+			OnPotentialInteractionCancelled?.Invoke();
+		}
+	}
+
 	public void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag(kInteractable))

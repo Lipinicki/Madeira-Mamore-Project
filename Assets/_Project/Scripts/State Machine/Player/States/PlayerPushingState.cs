@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerPushingState : PlayerOnGroundState
 {
-	private BasicPullPushBlock ActiveBlock = null;
+	private BasicPullPushBlock ActiveBlock = null; // WARNING: this can leads to cache invalidation, maybe try using _ctx reference
 
 	private readonly int r_PushHorizontalAnimationParam = Animator.StringToHash("PushHorizontalSpeed");
 	private readonly int r_PushVerticalAnimationParam = Animator.StringToHash("PushVerticalSpeed");
@@ -19,14 +19,18 @@ public class PlayerPushingState : PlayerOnGroundState
 
 	public override void Enter()
 	{
-		base.Enter();
-
 		_ctx.PlayerInput.interactEvent += Release;
+		_ctx.PlayerInput.jumpEvent += OnJump; // overrides base enter to not subscribe Interact event
+
 		ActiveBlock = _ctx.ActiveBlock;
 
+		Debug.Log(ActiveBlock, _ctx);
 		// dinamically set the rigidBody contraints
 		ActiveBlock.MainRigidBody.constraints = RigidbodyConstraints.None;
 		ActiveBlock.MainRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+
+		// sets the collision to dinamic calculations
+		ActiveBlock.MainRigidBody.isKinematic = false;
 
 		// add a tiny impulse to reposition the block
 		Vector3 offsetDirection = ActiveBlock.transform.position - _ctx.transform.position;
@@ -62,7 +66,8 @@ public class PlayerPushingState : PlayerOnGroundState
 
 	public override void Exit()
 	{
-		base.Exit();
+		_ctx.PlayerInput.interactEvent -= Release;
+		_ctx.PlayerInput.jumpEvent -= OnJump;
 
 		// Turn off UpperBody animations
 		_ctx.MainAnimator.SetLayerWeight(k_UpperBodyAnimatorLayer, 0f);
@@ -163,7 +168,8 @@ public class PlayerPushingState : PlayerOnGroundState
 			ActiveBlock.StopAudio();
 			ActiveBlock.MainRigidBody.velocity = Vector3.zero;
 			ActiveBlock.MainRigidBody.angularVelocity = Vector3.zero;
-			ActiveBlock.MainRigidBody.constraints = RigidbodyConstraints.FreezeAll;	
+			ActiveBlock.MainRigidBody.constraints = RigidbodyConstraints.FreezeAll;
+			ActiveBlock.MainRigidBody.isKinematic = true;
 			_ctx.MaxInteractionDistance = 0f;
 			_ctx.ActiveBlock = null;
 		}

@@ -22,10 +22,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Skin 1
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ValidKeywords:
-  - _EMISSION
+  m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -123,9 +122,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.40943396, g: 1, b: 0.80082864, a: 1}
-    - _Color: {r: 0.40943393, g: 1, b: 0.80082864, a: 1}
-    - _EmissionColor: {r: 1.639211, g: 1.6099393, b: 5.5908804, a: 1}
+    - _BaseColor: {r: 0.34188002, g: 0.41061553, b: 0.462, a: 1}
+    - _Color: {r: 0.34188, g: 0.4106155, b: 0.46199995, a: 1}
+    - _EmissionColor: {r: 1.1294118, g: 7.717647, b: 7.3411765, a: 1}
     - _EmissiveColor: {r: 1, g: 1, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

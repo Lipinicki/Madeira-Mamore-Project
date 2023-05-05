@@ -71,7 +71,7 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
-	private void OnJump()
+	protected void OnJump()
 	{
 		if (_ctx.MainAnimator == null)
 		{
@@ -101,6 +101,8 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		{
 			Debug.Log(grabHit.transform.name, grabHit.transform);
 			SetupActiveBlock(grabHit.transform);
+
+			if (_ctx.ActiveBlock == null) return;
 			_ctx.SwitchCurrentState(new PlayerPushingState(_ctx));
 		}
 	}

@@ -394,18 +394,6 @@ MonoBehaviour:
           m_StringArgument: FadeOut
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 74919007}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!4 &849640391
 Transform:
   m_ObjectHideFlags: 0
@@ -709,6 +697,7 @@ MonoBehaviour:
   onStartTitleScreen: {fileID: 11400000, guid: 4b930d2acd538484499a4a78e7a7d8f5, type: 2}
   fadeInSreen: {fileID: 74919007}
   startWithTitleScreen: 0
+  fadeOnStart: 0
   playerInput: {fileID: 11400000, guid: 85fef3c7dd8a14049b8d9ae1eb58d766, type: 2}
   activatePlayerInputEvent:
     m_PersistentCalls:
@@ -1036,7 +1025,7 @@ PrefabInstance:
     - target: {fileID: 1859903408406100849, guid: 573291db51de376498d47e3250a785ed,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1859903408406100852, guid: 573291db51de376498d47e3250a785ed,
         type: 3}
