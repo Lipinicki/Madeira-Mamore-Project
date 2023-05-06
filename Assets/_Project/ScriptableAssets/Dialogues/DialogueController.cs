@@ -27,7 +27,7 @@ public class DialogueController : MonoBehaviour
 	/// <param name="dialogue">The dialogue that wilk play in the scene</param>
 	public void PlayDialogue(Dialogue dialogue)
     {
-        playerInput.EnableMenusInput();
+        playerInput?.EnableMenusInput();
 
         OnNpcInteraction?.Invoke(dialogue);
     }

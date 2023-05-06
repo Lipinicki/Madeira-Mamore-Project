@@ -215,6 +215,7 @@ public class PlayerStateMachine : StateMachine
 
 	void OnMove(Vector2 movement)
 	{
+		Debug.Log("adadasdsdsdad");
 		SetInputVector(movement);
 	}
 

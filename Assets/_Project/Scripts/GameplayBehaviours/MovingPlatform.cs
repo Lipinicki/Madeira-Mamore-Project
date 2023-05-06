@@ -23,6 +23,18 @@ public class MovingPlatform : MonoBehaviour, IInteractable
         initialPosition = transform.position;    
     }
 
+    public void SetPlatformMovement()
+    {
+        if (isMoving)
+        {
+            StopMovementAndReturnToOrigin()
+        }
+        else
+        {
+            GoToDestination();
+        }
+    }
+
     public void GoToDestination()
     {
         if (isMoving) return;
@@ -64,6 +76,16 @@ public class MovingPlatform : MonoBehaviour, IInteractable
         internalSequence.OnComplete(EndAnimation);
 
         return internalSequence;
+    }
+
+    private void StopMovementAndReturnToOrigin()
+    {
+        if (!isMoving) return;
+
+        movingTween?.Kill();
+        movingTween = null;
+        isMoving = false;        
+        transform.DOLocalMoveX(initialPosition.x, movementDuration * 0.5f).SetEase(Ease.OutQuart);
     }
 
     private void EndAnimation()
