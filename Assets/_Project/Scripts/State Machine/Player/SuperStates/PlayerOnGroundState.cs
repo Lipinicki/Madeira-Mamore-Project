@@ -90,7 +90,7 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 	{
 		if (_ctx.InteractableArea.CanInteract)
 		{
-			_ctx.InteractableArea.Interaction.Interact();
+			_ctx.InteractableArea.Interact();
 			_ctx.TriggerInteractionEvent();
 		}
 		else if (CheckForLadder())

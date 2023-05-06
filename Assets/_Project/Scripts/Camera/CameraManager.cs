@@ -49,11 +49,16 @@ public class CameraManager : MonoBehaviour
 	// Switches the active camera to the specified camera
 	public void SwitchActiveCamera(CinemachineVirtualCamera targetCamera)
 	{
+		Debug.Log("Switchng Camera: " + targetCamera.Name, this);
 		if (targetCamera == null) return;
+		Debug.Log("Target don't equals null!", this);
+
+		foreach (var cam in cameras)
+		{
+			cam.Priority = kLowestPriority;
+		}
 
 		targetCamera.Priority = kHighestPriority;
-
-		_activeCamera.Priority = kLowestPriority;
 
 		_activeCamera = targetCamera;
 	}

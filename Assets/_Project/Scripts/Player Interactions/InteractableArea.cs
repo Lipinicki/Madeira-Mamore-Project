@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InteractableArea : MonoBehaviour
+public class InteractableArea : MonoBehaviour, IInteractable
 {
 	public bool CanInteract 
 	{ 
@@ -13,10 +13,10 @@ public class InteractableArea : MonoBehaviour
 		} 
 	}
 
-	[HideInInspector] public IInteractable Interaction;
-
 	[SerializeField] private UnityEvent OnPotentialInteraction;
 	[SerializeField] private UnityEvent OnPotentialInteractionCancelled;
+
+	private IInteractable Interaction;
 
 	public const string kInteractable = "Interactable";
 
@@ -28,15 +28,6 @@ public class InteractableArea : MonoBehaviour
 	private void OnDisable()
 	{
 		CollectableItemBehaviour.onCollectedEvent -= OnCollection;
-	}
-
-	private void Update()
-	{
-		if (!CanInteract)
-		{
-			ResetInteraction();
-			OnPotentialInteractionCancelled?.Invoke();
-		}
 	}
 
 	public void OnTriggerEnter(Collider other)
@@ -55,6 +46,15 @@ public class InteractableArea : MonoBehaviour
 			ResetInteraction();
 			OnPotentialInteractionCancelled?.Invoke();
 		}
+	}
+
+	// Interacts with interactable objects
+	public void Interact()
+	{
+		Interaction.Interact();
+
+		ResetInteraction();
+		OnPotentialInteractionCancelled?.Invoke(); // Cancels Interaction related actions
 	}
 
 	// Both will be used when other script needs to notify a prompt

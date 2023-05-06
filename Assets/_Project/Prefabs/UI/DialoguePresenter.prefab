@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbada278e6375574fb2828117236c7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 11400000, guid: 85fef3c7dd8a14049b8d9ae1eb58d766, type: 2}
   portrait: {fileID: 900866487233401783}
   portraitShadow: {fileID: 8542529457032278508}
   dialogueText: {fileID: 1870940079833517223}

@@ -19,6 +19,11 @@ MonoBehaviour:
         Name: Dr. Lovelace - Carta
         Text: 
         Sprite: {fileID: 21300000, guid: 8bc1024e5fc813446976e64ba7805842, type: 3}
+    - Key: Item_First_Wagom_Key
+      Value:
+        Name: "Chave do Vag\xE3o"
+        Text: 
+        Sprite: {fileID: 21300000, guid: 4f78742646c00c845b98f39cc476a3c1, type: 3}
     - Key: Item_Carta-TenenteDaSilva
       Value:
         Name: Nota de Falecimento

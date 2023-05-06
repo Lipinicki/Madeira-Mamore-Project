@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/FinalGameScenes/Fase1.unity
     guid: 3a79f55173e8cc344909e9064b2b79a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/FinalGameScenes/Fase2.unity
     guid: 97913eb3a16c6484986052338298881e
   - enabled: 1

@@ -14,8 +14,6 @@ public class PlayerFallingState : PlayerOnAirState
 
 	public override void Enter()
 	{
-		Debug.Log("Falling State", _ctx);
-
 		_ctx.MainAnimator.CrossFadeInFixedTime(r_FallingIdleAnimatorState, k_AnimationTransitionTime);
 	}
 

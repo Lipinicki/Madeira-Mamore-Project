@@ -50,6 +50,7 @@ public class DialoguePresenter : MonoBehaviour
 
     public void SetupDialoguePresenter(Dialogue dialogue)
     {
+        gameObject.SetActive(true);
         activeDialogue = dialogue;
         UpdateDialoguePresenter();
     }

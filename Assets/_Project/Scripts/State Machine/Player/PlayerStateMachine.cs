@@ -169,9 +169,6 @@ public class PlayerStateMachine : StateMachine
 
 	private void Start()
 	{
-#if UNITY_EDITOR
-		Debug.Log("Started Player!", this);
-#endif
 		MainRigidbody.useGravity = false; //Disable Physics.gravity influence
 		MainRigidbody.drag = startingDrag;
 		StandingHeight = PlayerCollider.height;

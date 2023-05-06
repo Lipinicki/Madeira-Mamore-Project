@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad70feeefd318cd4aa88becb63af73df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: "Chave Primeiro Vag\xE3o"
+  itemName: Item_First_Wagom_Key
   itensInventoryData: {fileID: 11400000, guid: 7c2a017389f3d9f468418f426bdef85c, type: 2}
   playerInventory: {fileID: 11400000, guid: 69effd7bb494c3c47887133998ae69c7, type: 2}
 --- !u!65 &4760138443983535142
@@ -129,6 +129,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key
       objectReference: {fileID: 0}
+    - target: {fileID: 1288412548968006409, guid: 56ca0c088fece6b4dbcaabf72b68b890,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 84a1bbb6e76c728468f2b381580f6de6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ca0c088fece6b4dbcaabf72b68b890, type: 3}
 --- !u!4 &2634282140307139146 stripped

@@ -176,7 +176,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 142
+  m_fontSizeMax: 188
   m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

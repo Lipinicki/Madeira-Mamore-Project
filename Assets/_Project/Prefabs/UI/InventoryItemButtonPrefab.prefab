@@ -39,8 +39,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -50}
-  m_SizeDelta: {x: 450, y: 100}
+  m_AnchoredPosition: {x: 493.29974, y: -50}
+  m_SizeDelta: {x: 986.6, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8998034336994761190
 CanvasRenderer:
@@ -187,6 +187,12 @@ MonoBehaviour:
   _onClickEvent:
     m_PersistentCalls:
       m_Calls: []
+  _onCancelEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHoverEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _item:
     Name: 
     Text: 
@@ -285,7 +291,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

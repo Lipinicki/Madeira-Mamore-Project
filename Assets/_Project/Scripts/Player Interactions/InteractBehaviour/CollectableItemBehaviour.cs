@@ -20,11 +20,20 @@ public class CollectableItemBehaviour : MonoBehaviour, IInteractable, ICollectab
 		var item = itensInventoryData.GetKeyPairValue(itemName); 
 		if (item.Value == null) 
 		{
+#if UNITY_EDITOR
 			Debug.Log($"Error! item: ({itemName}) does not exist on the {itensInventoryData.name} collection.");
+#endif
 			return;
 		}
 
-		if (inventory.GetItems().ContainsKey(item.Key)) return;
+		// In Case player restarts the game
+		if (inventory.GetItems().ContainsKey(item.Key))
+		{
+			onCollectedEvent?.Invoke(item.Value);
+
+			gameObject.SetActive(false);
+			return;
+		}
 
 		inventory.AddItem(item.Key, item.Value);
 		onCollectedEvent?.Invoke(item.Value);

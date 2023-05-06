@@ -7,6 +7,6 @@ public enum SceneIndexes
 {
 	TitleScreen = 1,
 	Fase1 = 2, 
-	Fase2 = 3,
-	Fase3 = 4
+	Fase3 = 3,
+	//Fase3 = 4 TODO: TEMPORARY DISABLE FOR BUILD
 }

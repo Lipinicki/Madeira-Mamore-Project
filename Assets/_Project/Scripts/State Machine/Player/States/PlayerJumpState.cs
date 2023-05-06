@@ -93,7 +93,6 @@ public class PlayerJumpState : PlayerOnAirState
 
 	private void OnJumpcannceled()
 	{
-		Debug.Log("Enter this block");
 		_ctx.GravityContribution = 1f;
 		_ctx.SwitchCurrentState(new PlayerFallingState(_ctx));
 	}

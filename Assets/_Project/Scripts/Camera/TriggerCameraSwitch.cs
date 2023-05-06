@@ -8,7 +8,8 @@ public class TriggerCameraSwitch : MonoBehaviour
 	[SerializeField, Tooltip("True if this trigger should swap between two cameras everytime you pass through it")] private bool switchBetween = false;
 	[ConditionalField(nameof(switchBetween))][SerializeField] private CinemachineVirtualCamera secondTargetCamera; 
 
-	CameraManager _cameraManager;
+	[SerializeField] private CameraManager _cameraManager;
+
 	private int internalControlDigit = 0;
 
 	void Awake()
