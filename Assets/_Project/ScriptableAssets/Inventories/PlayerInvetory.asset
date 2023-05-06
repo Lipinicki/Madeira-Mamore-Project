@@ -13,24 +13,4 @@ MonoBehaviour:
   m_Name: PlayerInvetory
   m_EditorClassIdentifier: 
   _items:
-    _serializedList:
-    - Key: Item_Carta-DrLovelace
-      Value:
-        Name: Dr. Lovelace - Carta
-        Text: 
-        Sprite: {fileID: 21300000, guid: 8bc1024e5fc813446976e64ba7805842, type: 3}
-    - Key: Item_Carta-TenenteDaSilva
-      Value:
-        Name: Nota de Falecimento
-        Text: 
-        Sprite: {fileID: 21300000, guid: eb8213d7e34361e4b8dc08713471f019, type: 3}
-    - Key: Item_PreceALua
-      Value:
-        Name: "Prece \xE0 Lua"
-        Text: 
-        Sprite: {fileID: 21300000, guid: 41eb577c14211844f8461211b679190c, type: 3}
-    - Key: Item_JornalNovoSampa
-      Value:
-        Name: Jornal Novo Sampa
-        Text: 
-        Sprite: {fileID: 21300000, guid: 3d390804978a861479af6bd5f913859f, type: 3}
+    _serializedList: []
