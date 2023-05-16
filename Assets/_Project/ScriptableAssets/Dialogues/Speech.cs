@@ -11,6 +11,7 @@ public class Speech : ScriptableObject
 {
     public Sprite characterPortrait;
     public string characterName;
+    [Multiline]
     public string speechText;
     public bool hasAudio = false;
     [ConditionalField(nameof(hasAudio))] public AudioClip speechAudio;

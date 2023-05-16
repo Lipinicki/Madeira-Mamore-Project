@@ -29,4 +29,21 @@ MonoBehaviour:
     text: 
     linkText: Link do GDD
     url: https://app.nuclino.com/LuckyBoys/Game-Design-Document/Overview-Last-Wagon-93f39fd1-ddb2-4e28-bb23-f8268b3d947f
+  - heading: "Edi\xE7\xE3o de Di\xE1logos"
+    text: 
+    linkText: 
+    url: 
+  - heading: 
+    text: 'Caminho para os Dialogos: Assets\_Projects\ScriptableAssets\Dialogues...'
+    linkText: 
+    url: 
+  - heading: 
+    text: "Para criar um dialogo ou fala clique com o bot\xE3o direito em uma pata
+      e selecione Create > DialogueSystem > New Dialogue/New Speech."
+    linkText: 
+    url: 
+  - heading: 
+    text: "Link para a documenta\xE7\xE3o das anima\xE7\xF5es de texto:"
+    linkText: https://www.febucci.com/
+    url: https://www.febucci.com/text-animator-unity/docs/how-to-add-effects-to-your-texts/
   loadedLayout: 1
