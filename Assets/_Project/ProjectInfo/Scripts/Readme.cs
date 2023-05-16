@@ -9,6 +9,7 @@ public class Readme : ScriptableObject {
 	
 	[Serializable]
 	public class Section {
+		[Multiline]
 		public string heading, text, linkText, url;
 	}
 }
