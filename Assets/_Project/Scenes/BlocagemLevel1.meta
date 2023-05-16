@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Project/Scenes/BlocagemLevel1.meta
+guid: be3ba012a980eb348988c0aebc0df06a
+========
+guid: 882aa857c59199a44890d4541b3d9871
+>>>>>>>> 32ad5ac (Minor refactoring on player movement script):Assets/_Project/Scripts/States.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

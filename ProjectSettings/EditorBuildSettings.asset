@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_AssetPackages/URP/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/_Project/Scenes/FinalGameScenes/PersistantScene.unity
+    guid: 7925f337840d4ba42a709a2e5cb24415
+  - enabled: 1
+    path: Assets/_Project/Scenes/FinalGameScenes/TitleScreen.unity
+    guid: 959bfa83b96174844a0e7cefe6cab8d3
+  - enabled: 1
+    path: Assets/_Project/Scenes/FinalGameScenes/Fase1.unity
+    guid: 3a79f55173e8cc344909e9064b2b79a5
+  - enabled: 1
+    path: Assets/_Project/Scenes/FinalGameScenes/Fase3.unity
+    guid: 12f6eb7ed3c421a4ca35a0c45d14063c
+  - enabled: 0
+    path: Assets/_Project/Scenes/FinalGameScenes/Fase2.unity
+    guid: 97913eb3a16c6484986052338298881e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a1380a5c25b22d94c9cc9a9ccd485a2c,
       type: 2}

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro/Shaders.meta
+guid: e9f693669af91aa45ad615fc681ed29f
+========
+guid: 882aa857c59199a44890d4541b3d9871
+>>>>>>>> 32ad5ac (Minor refactoring on player movement script):Assets/_Project/Scripts/States.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
