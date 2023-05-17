@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718c0ef2ce09f1c45bf3ad329687f261, type: 3}
+  m_Name: ThirdDialogue
+  m_EditorClassIdentifier: 
+  speechList:
+  - {fileID: 11400000, guid: ab0bf54e1fc49764b89b5ff8180a542c, type: 2}
+  - {fileID: 11400000, guid: 5cb06ef95ac28e0439c4cb80cb880936, type: 2}
+  - {fileID: 11400000, guid: 1d32186a6df624a4aa89cd4a0512bbf8, type: 2}
+  - {fileID: 11400000, guid: 833e0240573107b418a65dfde6cad988, type: 2}
+  - {fileID: 11400000, guid: 9fef9418271b5724da70218241a105a4, type: 2}
+  - {fileID: 11400000, guid: 6ba1a2a3e97300b4fa376901fc068ffc, type: 2}
+  - {fileID: 11400000, guid: f5b148b53f22a944291ff0bf28caea37, type: 2}
+  - {fileID: 11400000, guid: 2a13ba2e550e4c842a3afd33c2fb1006, type: 2}
+  - {fileID: 11400000, guid: 5ff43ff29a8427741b456ff284d405c0, type: 2}
+  - {fileID: 11400000, guid: 0cca3513f0eeb1a43a79561d5fad88ff, type: 2}
