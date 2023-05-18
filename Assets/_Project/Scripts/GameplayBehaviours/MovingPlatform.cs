@@ -27,7 +27,7 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     {
         if (isMoving)
         {
-            StopMovementAndReturnToOrigin()
+            StopMovementAndReturnToOrigin();
         }
         else
         {
