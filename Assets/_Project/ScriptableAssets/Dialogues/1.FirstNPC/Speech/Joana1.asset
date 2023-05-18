@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
   characterName: Joana
-  speechText: "N\xE3o precisa se desesperar. Eu estou aqui. O que aconteceu? Por
-    que voc\xEA veio para c\xE1?"
+  speechText: "N\xE3o precisa se desesperar. Eu estou aqui."
   hasAudio: 1
   speechAudio: {fileID: 8300000, guid: 13b162f8160c86f4da558dc58b5722c1, type: 3}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Terceiro_Fala 5
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 0}
+  characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
   characterName: Joana
   speechText: "O que acontecia com o seu pessoal? Por que a situa\xE7\xE3o ficou
-    t\xE3o complicada"
+    t\xE3o complicada ?"
   hasAudio: 0
   speechAudio: {fileID: 0}

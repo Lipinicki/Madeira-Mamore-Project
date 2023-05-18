@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Quarto_Fala 1
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 0}
-  characterName: Humberto
-  speechText: "Eu estava esperando voc\xEA Joana. Prazer eu sou Humberto."
-  hasAudio: 0
-  speechAudio: {fileID: 0}
+  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterName: ???
+  speechText: "Eu estava esperando voc\xEA <wiggle a=0.2 f=0.5>Joana</wiggle>. Prazer
+    eu sou Humberto."
+  hasAudio: 1
+  speechAudio: {fileID: 8300000, guid: 49ece4c84c03f2f42b16f6ced5a2f1d8, type: 3}

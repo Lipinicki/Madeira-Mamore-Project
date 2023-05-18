@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Quarto_Fala 6
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 0}
+  characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
   characterName: Joana
   speechText: " Obrigada Humberto. Eu precisava desse empurr\xE3o. Se perdoe. Gra\xE7as
     a voc\xEA serei capaz de revelar o inferno na terra criado pela gan\xE2ncia de

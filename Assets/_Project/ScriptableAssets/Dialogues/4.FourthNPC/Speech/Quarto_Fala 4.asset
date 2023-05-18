@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Quarto_Fala 4
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 0}
+  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
   characterName: Humberto
   speechText: Eu tive a oportunidade de contar a verdade e teria salvo muitas pessoas,
     mas preferi salvar meu emprego. Nunca me perdoei por isso.

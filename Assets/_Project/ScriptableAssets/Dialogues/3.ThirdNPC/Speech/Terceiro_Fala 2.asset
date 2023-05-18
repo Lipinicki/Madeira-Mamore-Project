@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Terceiro_Fala 2
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 0}
-  characterName: Robert
-  speechText: "... J\xE1 perdi as contas de quantos pacientes queridos  perdi durante
+  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterName: ???
+  speechText: "... J\xE1 perdi as contas de quantos pacientes queridos perdi durante
     minha miss\xE3o."
   hasAudio: 0
   speechAudio: {fileID: 0}

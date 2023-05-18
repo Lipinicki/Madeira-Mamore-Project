@@ -16,8 +16,9 @@ MonoBehaviour:
   characterName: "Oper\xE1rio Cansado"
   speechText: "<wiggle a=0.2 f=0.5>Eu fiquei doente de mal\xE1ria assim que cheguei.
     Todo fim de dia de trabalho, n\xE3o sobrava nada. E eu n\xE3o tinha como sair.
-    Eu n\xE3o tinha dinheiro pra ir embora. Eu n\xE3o tinha mais sa\xFAde pra ir
-    embora. Eu dependia daqui. <shake a = 0.5>Eu me tornei um escravo</shake>. O
-    coronel me batia para que eu trabalhasse mais. N\xE3o resisti os ferimentos e
-    faleci. </wiggle>"
+    Eu n\xE3o tinha dinheiro pra ir embora. Eu n\xE3o tinha mais sa\xFAde pra ir.
+    Eu dependia daqui. <shake a = 0.5>Eu me tornei um escravo</shake>. O coronel
+    me batia para que eu trabalhasse mais. N\xE3o resisti os ferimentos e faleci.
+    </wiggle>"
+  hasAudio: 0
   speechAudio: {fileID: 0}
