@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class InteractableDoorLockBehaviour : MonoBehaviour, IInteractable
 {
-    [SerializeField] private bool useLever = false;
+    [SerializeField] private bool useLever = false; // if true the door will open using a lever instead of a key
     [ConditionalField(nameof(useLever), inverse: true)][SerializeField] private Inventory playerInventory;
     [ConditionalField(nameof(useLever), inverse: true)][SerializeField] private string keyItemName;
     [SerializeField] private Animator animator;
