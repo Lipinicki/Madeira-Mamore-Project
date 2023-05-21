@@ -10,18 +10,15 @@ public class TriggerCameraSwitch : MonoBehaviour
 
 	[SerializeField] private CameraManager _cameraManager;
 
-	private int internalControlDigit = 0;
+	private const string kPlayerTag = "Player";
 
-	void Awake()
-	{
-		_cameraManager = FindObjectOfType<CameraManager>();
-	}
+	private int internalControlDigit = 0;
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (_cameraManager == null) return;
 
-		if (other.gameObject.CompareTag("Player"))
+		if (other.gameObject.CompareTag(kPlayerTag))
 		{
 			CinemachineVirtualCamera desiredCam = GetDesiredCamera();
 			_cameraManager.SwitchActiveCamera(desiredCam);
