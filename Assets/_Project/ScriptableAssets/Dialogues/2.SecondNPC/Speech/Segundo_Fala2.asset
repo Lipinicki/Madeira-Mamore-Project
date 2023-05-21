@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Segundo_Fala2
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
-  characterName: Joana
-  speechText: "<wiggle a=0.3 f=0.5>M-mas...</wiggle> Eu sou daqui, eu sou de S\xE3o
-    Paulo."
+  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterName: ???
+  speechText: "Bixo burro, pede comida local e reclama que t\xE1 local demais..."
   hasAudio: 1
-  speechAudio: {fileID: 8300000, guid: 2523a2d0d20f53749b44a655fc189e6e, type: 3}
+  speechAudio: {fileID: 8300000, guid: 6ad6db862e9d6b64ab775404481f9922, type: 3}

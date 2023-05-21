@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
   characterName: Rafael
-  speechText: "N\xE3o t\xE1 obvio? Foi no desespero. A gringaiada me papagaiou com
-    grana, dai vim aqui pra Juquira com meu irm\xE3o. Eu trabalhava em um dos restaurantes
-    dos acampamentos, e nas escondidas, dava comida pro pessoal. S\xF3 pra comer
-    j\xE1 era 3 mil r\xE9is, e fazia uns 6 m\xEAs que n\xE3o tinha nem arroz! O gringo
-    n\xE3o ficou feliz com minha atitude... Me deixou uns 2 dias sem comida."
-  hasAudio: 1
-  speechAudio: {fileID: 8300000, guid: 49ece4c84c03f2f42b16f6ced5a2f1d8, type: 3}
+  speechText: "Mas um dia a desgra\xE7a de um carapan\xE3 me pic\xF4. Trabalhei todo
+    tob\xF3 por 1 m\xEAs, e n\xE3o deu outra, fui demitido de um dos meu dois empregos."
+  hasAudio: 0
+  speechAudio: {fileID: 0}

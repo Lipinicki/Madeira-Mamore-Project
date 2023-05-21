@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Segundo_Fala6
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
-  characterName: Joana
-  speechText: "Foi por isso que voc\xEA foi parar aqui?"
-  hasAudio: 1
-  speechAudio: {fileID: 8300000, guid: d5141324c96673d4b8515f5d2aaa508d, type: 3}
+  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterName: Rafael
+  speechText: "Me chamo <shake a=0.5 d=0.75><b>Rafael</b></shake>, e sou beradeiro
+    de cora\xE7\xE3o! Trabalhava em 2 cozinhas na regi\xE3o. Desde pequeno eu segurava
+    a casa toda sozinho."
+  hasAudio: 0
+  speechAudio: {fileID: 0}

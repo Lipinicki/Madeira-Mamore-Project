@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
   characterName: Joana
-  speechText: "Eu imagino que essa foi a raz\xE3o de voc\xEA ter... morrido?"
-  hasAudio: 0
-  speechAudio: {fileID: 0}
+  speechText: "Foi por isso que voc\xEA foi parar aqui?"
+  hasAudio: 1
+  speechAudio: {fileID: 8300000, guid: d5141324c96673d4b8515f5d2aaa508d, type: 3}
