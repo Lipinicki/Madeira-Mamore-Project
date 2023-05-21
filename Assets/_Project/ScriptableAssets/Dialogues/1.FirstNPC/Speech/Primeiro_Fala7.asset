@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Primeiro_Fala7
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterPortrait: {fileID: 21300000, guid: 9eb41b2129c7747428ce0539ef86ca0e, type: 3}
   characterName: "Oper\xE1rio Cansado"
   speechText: "Era muito dinheiro. 8 mil r\xE9is por cada dia trabalhado. Pensei
     em sair daqui pra tentar constituir uma fam\xEDlia. Parecia perfeito..."

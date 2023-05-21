@@ -1346,10 +1346,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7334304563060601422, guid: 5ba18ab28736b2e4cb82f65061f998a3,
+    - target: {fileID: 6263287782219865043, guid: 5ba18ab28736b2e4cb82f65061f998a3,
         type: 3}
-      propertyPath: m_fontSizeBase
-      value: 54
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309514016203435729, guid: 5ba18ab28736b2e4cb82f65061f998a3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8952669196087062905, guid: 5ba18ab28736b2e4cb82f65061f998a3,
         type: 3}

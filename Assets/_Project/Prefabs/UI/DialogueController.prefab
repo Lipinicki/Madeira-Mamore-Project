@@ -78,7 +78,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -126,29 +126,13 @@ PrefabInstance:
     - target: {fileID: 1112133797835116600, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -321.69025
-      objectReference: {fileID: 0}
-    - target: {fileID: 1870940079833517223, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_fontSizeMin
-      value: 16
+      value: -318.52463
       objectReference: {fileID: 0}
     - target: {fileID: 3086635072171156794, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -321.6902
+      value: -318.52454
       objectReference: {fileID: 0}
-    - target: {fileID: 3464806786457297461, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 253.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037205775553990896, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: playerInput
-      value: 
-      objectReference: {fileID: 11400000, guid: 85fef3c7dd8a14049b8d9ae1eb58d766,
-        type: 2}
     - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
       propertyPath: m_Name
@@ -263,11 +247,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8199047274878770262, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -18.950363
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb6e3ff4d2595544c84da5944479628b, type: 3}

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Primeiro_Fala14
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
-  characterName: "Oper\xE1rio Cansado"
-  speechText: "Por favor, n\xE3o esque\xE7a meu nome. Eu mesmo estou come\xE7ando
-    a esquece-lo. Ningu\xE9m mais lembra de mim. N\xE3o tenho uma alma viva para
-    rezar por mim."
+  characterPortrait: {fileID: 21300000, guid: 9eb41b2129c7747428ce0539ef86ca0e, type: 3}
+  characterName: Geraldo
+  speechText: "Por favor, n\xE3o esque\xE7a meu nome, <shake a=0.5 d=0.75><b>Geraldo
+    Filho</b></shake>. Eu mesmo estou come\xE7ando a esquece-lo. Ningu\xE9m mais
+    lembra de mim. N\xE3o tenho uma alma viva para rezar por mim."
   hasAudio: 0
   speechAudio: {fileID: 0}

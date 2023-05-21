@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Segundo_Fala4
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterPortrait: {fileID: 21300000, guid: 40d87ed8d7ff4af4da4ef8ca655e0c17, type: 3}
   characterName: ???
   speechText: "Eita que presepada a minha. \xC9 sudestina? \xC9 fuleragem tamb\xE9m,
     mas de bom peito."

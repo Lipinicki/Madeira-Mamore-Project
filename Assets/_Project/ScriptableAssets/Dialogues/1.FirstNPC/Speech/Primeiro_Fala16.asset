@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Primeiro_Fala16
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
-  characterName: Joana
+  characterPortrait: {fileID: 21300000, guid: 5d4a80a3bd82ee3459efccfac572cd16, type: 3}
+  characterName: Joanna
   speechText: "<i>*O que diabos \xE9 esse lugar...*</i>"
   hasAudio: 0
   speechAudio: {fileID: 0}
