@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718c0ef2ce09f1c45bf3ad329687f261, type: 3}
+  m_Name: FourthDialogue
+  m_EditorClassIdentifier: 
+  speechList:
+  - {fileID: 11400000, guid: f1e9825e9b74f734991dcfb31d74f24e, type: 2}
+  - {fileID: 11400000, guid: b5efb8cec76398c459f826a91005f0d7, type: 2}
+  - {fileID: 11400000, guid: ca3b413e65174fe439056d632afea94a, type: 2}
+  - {fileID: 11400000, guid: 6dca78d8eabf6884294981d0279538a1, type: 2}
+  - {fileID: 11400000, guid: b8f897e94c45f044a94d33ec7c62af03, type: 2}
+  - {fileID: 11400000, guid: 6a89f5daea2984f4aa31bafc698dcf15, type: 2}
+  - {fileID: 11400000, guid: a6acc221c99d0254faeee67a8f936261, type: 2}
