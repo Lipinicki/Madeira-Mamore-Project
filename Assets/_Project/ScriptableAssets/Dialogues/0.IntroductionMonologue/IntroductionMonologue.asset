@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: IntroductionMonologue
   m_EditorClassIdentifier: 
   speechList:
+  - {fileID: 11400000, guid: c35709d442f58834fba2bda34d6aa7e9, type: 2}
   - {fileID: 11400000, guid: 71bbebac6171acd4aade608781cc4790, type: 2}
+  - {fileID: 11400000, guid: eed5031f8400a544fad95abbc2195189, type: 2}
   - {fileID: 11400000, guid: df59f28ea1fb3a149bd0acddca347ae1, type: 2}
+  - {fileID: 11400000, guid: 2bbce8fdfa8a8c145b3e9603c5bf2330, type: 2}
+  - {fileID: 11400000, guid: 4e13bdcacffe68547ad029ab36e347c0, type: 2}
   - {fileID: 11400000, guid: 0c1b9d0bfd376c543b7c11e078b2025a, type: 2}

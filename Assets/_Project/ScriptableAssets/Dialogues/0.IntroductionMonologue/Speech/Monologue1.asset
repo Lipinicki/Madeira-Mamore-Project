@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Monologue1
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
-  characterName: Joana
-  speechText: "O que est\xE1 acontecendo ? <wiggle a=1 f=0.5>Por que estou t\xE3o
-    pequena ?</wiggle>"
-  hasAudio: 0
-  speechAudio: {fileID: 8300000, guid: aaf8565bd15ebb34aad90aada67a2e05, type: 3}
+  characterPortrait: {fileID: 21300000, guid: 5d4a80a3bd82ee3459efccfac572cd16, type: 3}
+  characterName: Joanna
+  speechText: "<wiggle a=0.5 f=0.5>H\xE3m... o que...</wiggle>"
+  hasAudio: 1
+  speechAudio: {fileID: 8300000, guid: 36fb2e6ce56a4564395a2e619d402879, type: 3}

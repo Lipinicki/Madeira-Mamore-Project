@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
   characterName: Humberto
-  speechText: "Joana, eu sei que \xE9 dif\xEDcil. Mas depois de tudo que viu, gostaria
-    de pedir que voc\xEA n\xE3o cometa o mesmo erro que eu. Conte a verdade, e liberte
-    as almas esquecidas neste trem."
-  hasAudio: 1
-  speechAudio: {fileID: 8300000, guid: 201bbf68dde5a404a9662dca61bde5ff, type: 3}
+  speechText: Eu tive a oportunidade de contar a verdade e teria salvo muitas pessoas,
+    mas preferi salvar meu emprego. Mas a que custo?
+  hasAudio: 0
+  speechAudio: {fileID: 0}

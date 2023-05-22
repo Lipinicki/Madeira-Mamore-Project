@@ -13,10 +13,19 @@ MonoBehaviour:
   m_Name: FirstDialogue
   m_EditorClassIdentifier: 
   speechList:
+  - {fileID: 11400000, guid: e092cdf9b2843e64995b5cc05a2a833d, type: 2}
+  - {fileID: 11400000, guid: de85258831dcffd40869ad286b2c555b, type: 2}
   - {fileID: 11400000, guid: e12af56652df8884cb48844aed38bdee, type: 2}
   - {fileID: 11400000, guid: 8a5d2f5e7b12e464a8c05cf1a8a5be8e, type: 2}
+  - {fileID: 11400000, guid: daf0952040148934cb2e0f803036e93b, type: 2}
+  - {fileID: 11400000, guid: a00ca2dea7e89ba4293f12955955b650, type: 2}
   - {fileID: 11400000, guid: c178525c11336f046bbc4cea51674de6, type: 2}
   - {fileID: 11400000, guid: f1f8286c6d56bfe49ab60b359d5f183a, type: 2}
   - {fileID: 11400000, guid: ab6ea057fbdf64e498afa30fe5e20bc6, type: 2}
-  - {fileID: 11400000, guid: 07128ab72877b50449df1b359d36b2e8, type: 2}
+  - {fileID: 11400000, guid: 4f3ca15b1e53bfa418dbc624b22f5beb, type: 2}
+  - {fileID: 11400000, guid: b1d39399f2d10f54a8beabfa2c73ce80, type: 2}
+  - {fileID: 11400000, guid: 5444d32fbdb7cae40abd646173236e44, type: 2}
   - {fileID: 11400000, guid: ae0c3368f25786d49ba995d1d4d212ce, type: 2}
+  - {fileID: 11400000, guid: 07128ab72877b50449df1b359d36b2e8, type: 2}
+  - {fileID: 11400000, guid: 9f8728c0c004c90429b3c1f86745a8e4, type: 2}
+  - {fileID: 11400000, guid: 9ba8bc37fe8ddf946b21cf69ab6c6a52, type: 2}

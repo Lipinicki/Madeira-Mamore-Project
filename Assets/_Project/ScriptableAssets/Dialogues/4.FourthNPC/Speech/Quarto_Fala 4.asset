@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
   characterName: Humberto
-  speechText: Eu tive a oportunidade de contar a verdade e teria salvo muitas pessoas,
-    mas preferi salvar meu emprego. Nunca me perdoei por isso.
+  speechText: "Durante meus anos como maquinista, vi todos aqui morrerem em v\xE3o
+    nesta ferrovia maldita."
   hasAudio: 0
-  speechAudio: {fileID: 0}
+  speechAudio: {fileID: 8300000, guid: 6ad6db862e9d6b64ab775404481f9922, type: 3}
