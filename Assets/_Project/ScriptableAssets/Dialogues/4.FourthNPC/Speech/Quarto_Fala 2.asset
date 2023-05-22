@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Quarto_Fala 2
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d8ed486525f6046409e4eb2dc1db3fb2, type: 3}
-  characterName: Joana
+  characterPortrait: {fileID: 21300000, guid: 5d4a80a3bd82ee3459efccfac572cd16, type: 3}
+  characterName: Joanna
   speechText: "Como voc\xEA sabe o meu nome?!"
   hasAudio: 1
   speechAudio: {fileID: 8300000, guid: c8b71cff0a4aa724f8789f8dbe0db09b, type: 3}

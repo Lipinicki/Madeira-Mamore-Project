@@ -2261,7 +2261,7 @@ PrefabInstance:
         type: 3}
       propertyPath: npcDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 00e4168d1b6b337499f14fcf90c54fa7,
+      objectReference: {fileID: 11400000, guid: c009f2fd50f684a4db929e415d40053c,
         type: 2}
     - target: {fileID: 1098203950048461399, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}

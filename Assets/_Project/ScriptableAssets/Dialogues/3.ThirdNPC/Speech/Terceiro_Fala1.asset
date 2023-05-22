@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Terceiro_Fala1
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterPortrait: {fileID: 21300000, guid: cb57b1026593b4a43835d739f25a7473, type: 3}
   characterName: ???
-  speechText: "<shake a=0.5>Querida! </shake> Voc\xEA n\xE3o est\xE1 doente, est\xE1?"
+  speechText: "<shake a=0.5>Querida!</shake> Voc\xEA n\xE3o est\xE1 doente, est\xE1?"
   hasAudio: 1
   speechAudio: {fileID: 8300000, guid: 53e1a273120e19040b7ea5a7cef72748, type: 3}

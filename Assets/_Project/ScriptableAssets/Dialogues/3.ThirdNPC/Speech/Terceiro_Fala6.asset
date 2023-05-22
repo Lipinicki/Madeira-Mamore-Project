@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Terceiro_Fala6
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterPortrait: {fileID: 21300000, guid: cb57b1026593b4a43835d739f25a7473, type: 3}
   characterName: Robert
   speechText: "No come\xE7o a gente conseguia dar conta... Mas com os meses, a situa\xE7\xE3o
     s\xF3 piorou. Sab\xEDamos que n\xE3o havia salva\xE7\xE3o, mas o general n\xE3o
