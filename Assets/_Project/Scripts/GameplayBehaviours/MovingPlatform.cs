@@ -14,13 +14,18 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     [ConditionalField(nameof(activateRelatedObject))][SerializeField] private GameObject relatedObject = null;
     [SerializeField] AudioSource audioSrc;
 
-    private bool isMoving = false;
+    private bool isMoving;
     private Vector3 initialPosition;
-    private Sequence movingTween = null;
+    
+    private Sequence movingTween;
+    private Tween returnTween;
 
-    void Start()
-    {
-        initialPosition = transform.position;    
+    void Awake()
+    { 
+        isMoving = false;
+        movingTween = null;
+        relatedObject.SetActive(false);
+        initialPosition = transform.position;  
     }
 
     public void SetPlatformMovement()
@@ -39,9 +44,8 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     {
         if (isMoving) return;
         movingTween?.Kill();
-    
-        movingTween = (movementDirection == RectTransform.Axis.Horizontal) ?
-        HorizontalMovement() : VerticalMovement();
+        
+        movingTween = movementDirection == RectTransform.Axis.Vertical ? VerticalMovement() : HorizontalMovement();
 
         isMoving = true;
         relatedObject.SetActive(true);
@@ -81,11 +85,11 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     private void StopMovementAndReturnToOrigin()
     {
         if (!isMoving) return;
-
+        
         movingTween?.Kill();
         movingTween = null;
         isMoving = false;        
-        transform.DOLocalMoveX(initialPosition.x, movementDuration * 0.5f).SetEase(Ease.OutQuart);
+        PlayReturningTween(movementDirection);
     }
 
     private void EndAnimation()
@@ -98,13 +102,23 @@ public class MovingPlatform : MonoBehaviour, IInteractable
     private void OnDestroy()
     {
         movingTween?.Kill();
+        returnTween?.Kill();
         movingTween = null;
+        returnTween = null;
         isMoving = false;
     }
 
     public void Interact()
     {
-        GoToDestination();
+        SetPlatformMovement();
+    }
+
+    private void PlayReturningTween(RectTransform.Axis direction)
+    {
+        returnTween?.Kill();
+        returnTween = direction == RectTransform.Axis.Vertical ?
+        transform.DOLocalMoveY(initialPosition.y, movementDuration * 0.5f).SetEase(Ease.OutQuart).OnComplete(EndAnimation) :
+        transform.DOLocalMoveX(initialPosition.x, movementDuration * 0.5f).SetEase(Ease.OutQuart).OnComplete(EndAnimation) ;
     }
 
     private void StopAndFadeAudio() => StartCoroutine(audioSrc.FadeOutSound(0.55f));
