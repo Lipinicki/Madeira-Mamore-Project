@@ -12,7 +12,7 @@ public class TriggerCameraSwitch : MonoBehaviour
 
 	private const string kPlayerTag = "Player";
 
-	private int internalControlDigit = 0;
+	private bool goToFirst = true;
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -32,16 +32,14 @@ public class TriggerCameraSwitch : MonoBehaviour
 	{
 		if (!switchBetween) return _targetCamera;
 
-		bool goToFirstTarget = (internalControlDigit % 2 == 0);
-
-		if (goToFirstTarget)
+		if (goToFirst)
 		{
-			internalControlDigit++;
+			goToFirst = false;
 			return _targetCamera;
 		}
 		else
 		{
-			internalControlDigit--;
+			goToFirst = true;
 			return secondTargetCamera;
 		}
 	}

@@ -16,5 +16,5 @@ MonoBehaviour:
   characterName: Humberto
   speechText: "Adeus, Joana... Conduzirei, pela \xFAltima vez, todos para um verdadeiro
     lugar de descanso..."
-  hasAudio: 0
-  speechAudio: {fileID: 0}
+  hasAudio: 1
+  speechAudio: {fileID: 8300000, guid: ca322a68ffb26f14897bcef77d6d0b13, type: 3}

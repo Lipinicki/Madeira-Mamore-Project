@@ -17758,6 +17758,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 139c6baa7ae71ba4a86880d3d014a6e0,
+        type: 2}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 85fef3c7dd8a14049b8d9ae1eb58d766,
+        type: 2}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DisableAllInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlayerInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508754396129902755, guid: 5e05b4d2cddecd04586c79f3a3bcf58d,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e05b4d2cddecd04586c79f3a3bcf58d, type: 3}
 --- !u!4 &7512743875975410798 stripped
