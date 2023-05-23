@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6000706964993680677}
   - component: {fileID: 7848092263375238146}
   - component: {fileID: 4654171869801268638}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Almofada2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6606417629589369254}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 8238970753082622111}
   - component: {fileID: 3068215607924244992}
   - component: {fileID: 5351316046219418914}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Almofada4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 4600227137586705591}
   - component: {fileID: 3916771381185949918}
   - component: {fileID: 2960229799567274734}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Almofada5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 4713957208812203093}
   - component: {fileID: 7512557155293029805}
   - component: {fileID: 5921344520921176825}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Almofada1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8882077987512475345}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sofazao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 7356369468586817046}
   - component: {fileID: 4415064399743695137}
   - component: {fileID: 5922169740724344038}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Almofada6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 2768077956274947263}
   - component: {fileID: 1222489830521439904}
   - component: {fileID: 2974357393634326653}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sofazao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 621882411176365617}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247144177846147776}
   - component: {fileID: 7247144177846147791}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247144177905181616}
   - component: {fileID: 7247144177905181631}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247144177979170911}
   - component: {fileID: 7247144177979170910}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247144178875017709}
   - component: {fileID: 7247144178875017708}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,8 +782,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25.635237, y: 2.6257334, z: 5.228325}
-  m_Center: {x: -12.398179, y: -0.14010406, z: 0.62804794}
+  m_Size: {x: 25.635237, y: 2.6257334, z: 4.9924545}
+  m_Center: {x: -12.398179, y: -0.14010406, z: 0.51011276}
 --- !u!1 &8188827930663953520
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 5684298976954092009}
   - component: {fileID: 2416333763875542192}
   - component: {fileID: 7596102478294102150}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Almofada3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

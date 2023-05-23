@@ -123,25 +123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8952669196087062905}
     m_Modifications:
-    - target: {fileID: 1112133797835116600, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -318.52463
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086635072171156794, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -318.52454
-      objectReference: {fileID: 0}
     - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
       propertyPath: m_Name
       value: DialoguePresenter
-      objectReference: {fileID: 0}
-    - target: {fileID: 7181982852315859141, guid: cb6e3ff4d2595544c84da5944479628b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7305460934764504687, guid: cb6e3ff4d2595544c84da5944479628b,
         type: 3}
