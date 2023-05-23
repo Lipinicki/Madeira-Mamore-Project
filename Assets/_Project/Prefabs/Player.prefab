@@ -340,7 +340,7 @@ MonoBehaviour:
   _groundedRadius: 0.38
   _groundLayers:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 648
   <LadderClimbingSpeed>k__BackingField: 7
   <LadderLayers>k__BackingField:
     serializedVersion: 2
@@ -350,8 +350,6 @@ MonoBehaviour:
   <LadderStartOffsetHeight>k__BackingField: 0.5
   <LadderStartOffsetFoward>k__BackingField: 0.5
   <ForceToLeftLadder>k__BackingField: 14
-  <MinInteractionDistance>k__BackingField: 0.75
-  <BlockMovementSpeed>k__BackingField: 0.3
   PushBlocksLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -809,7 +807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4817fa3952e1db4d908e5961ff1f003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanInteract: 0
   OnPotentialInteraction:
     m_PersistentCalls:
       m_Calls:

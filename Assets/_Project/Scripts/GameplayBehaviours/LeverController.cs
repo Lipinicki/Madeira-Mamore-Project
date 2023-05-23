@@ -9,6 +9,8 @@ public class LeverController : MonoBehaviour, IInteractable
     [SerializeField] private Animator animator;
     [SerializeField] private MonoBehaviour chainBehaviour;
 
+    [SerializeField] private UnityEvent Interaction;
+
     public const string kLeverActivate = "Activate";
     public const string kLeverIdle = "Idle";
 
@@ -22,8 +24,13 @@ public class LeverController : MonoBehaviour, IInteractable
         animator?.SetTrigger(kLeverActivate);
         audioSource?.Play();
 
-        IInteractable currentInteraction = chainBehaviour as IInteractable;
-        currentInteraction.Interact();
+        if (chainBehaviour != null)
+        {
+            IInteractable currentInteraction = chainBehaviour as IInteractable;
+            currentInteraction.Interact();
+        }
+
+        Interaction?.Invoke();
     }
 
     public void SetIdle()
