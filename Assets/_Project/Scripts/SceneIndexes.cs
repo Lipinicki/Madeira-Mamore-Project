@@ -5,8 +5,9 @@
 [Serializable]
 public enum SceneIndexes
 {
-	TitleScreen = 1,
+	TitleScreen = 1, //NOTE: Don't change this without changing all it's references
 	Fase1 = 2, 
-	Fase3 = 3,
-	//Fase3 = 4 TODO: TEMPORARY DISABLE FOR BUILD
+	Fase2 = 3,
+	Fase3 = 4,
+	Credits = 5,
 }
