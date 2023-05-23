@@ -2312,7 +2312,7 @@ PrefabInstance:
     - target: {fileID: 6966505520156862921, guid: 616ad9a32f0f63c4693876bcafe274cb,
         type: 3}
       propertyPath: m_Name
-      value: BlankSpace 2
+      value: Clepsidra Studios
       objectReference: {fileID: 0}
     - target: {fileID: 6966505520156862922, guid: 616ad9a32f0f63c4693876bcafe274cb,
         type: 3}
@@ -2422,7 +2422,22 @@ PrefabInstance:
     - target: {fileID: 6966505520160375257, guid: 616ad9a32f0f63c4693876bcafe274cb,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: Clepsidra Studios
+      objectReference: {fileID: 0}
+    - target: {fileID: 6966505520160375257, guid: 616ad9a32f0f63c4693876bcafe274cb,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 46.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6966505520160375257, guid: 616ad9a32f0f63c4693876bcafe274cb,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6966505520160375257, guid: 616ad9a32f0f63c4693876bcafe274cb,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 46.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616ad9a32f0f63c4693876bcafe274cb, type: 3}
