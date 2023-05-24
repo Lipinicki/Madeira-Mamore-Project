@@ -3051,6 +3051,26 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44
       objectReference: {fileID: 0}
+    - target: {fileID: 8632258785126702686, guid: 596786fb185f85541a17668045a3e110,
+        type: 3}
+      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2322652410188487864}
+    - target: {fileID: 8632258785126702686, guid: 596786fb185f85541a17668045a3e110,
+        type: 3}
+      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632258785126702686, guid: 596786fb185f85541a17668045a3e110,
+        type: 3}
+      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI_PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632258785126702686, guid: 596786fb185f85541a17668045a3e110,
+        type: 3}
+      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8634488359182378958, guid: 596786fb185f85541a17668045a3e110,
         type: 3}
       propertyPath: m_fontSize
@@ -3192,7 +3212,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1294494755027642200, guid: 596786fb185f85541a17668045a3e110, type: 3}
     - {fileID: 8317145783042464113, guid: 596786fb185f85541a17668045a3e110, type: 3}
     - {fileID: 9192275063981825234, guid: 596786fb185f85541a17668045a3e110, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 596786fb185f85541a17668045a3e110, type: 3}
