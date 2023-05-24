@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPortrait: {fileID: 21300000, guid: 5d4a80a3bd82ee3459efccfac572cd16, type: 3}
   characterName: Joanna
-  speechText: "Algo dentro de mim n\xE3o quer esconder hist\xF3ria..."
+  speechText: "Algo dentro de mim n\xE3o quer esconder essa hist\xF3ria..."
   hasAudio: 0
   speechAudio: {fileID: 8300000, guid: 36fb2e6ce56a4564395a2e619d402879, type: 3}
