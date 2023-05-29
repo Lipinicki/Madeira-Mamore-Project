@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BasicPullPushBlock : MonoBehaviour
 {
+    [SerializeField] private AudioSource blockAudioSource;
+
     private Rigidbody rb;
     private BoxCollider boxCollider;
-    private AudioSource audioSrc;
 
     public Rigidbody MainRigidBody => rb;
     public BoxCollider MainCollider => boxCollider;
@@ -15,22 +16,21 @@ public class BasicPullPushBlock : MonoBehaviour
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        audioSrc = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
     }
 
     public void PlayAudio()
     {
-        if (audioSrc.isPlaying || fadeSoundRoutine != null) return;
-        audioSrc.Play();
+        if (blockAudioSource.isPlaying || fadeSoundRoutine != null) return;
+        blockAudioSource.Play();
     }
     
     // this method prevent the fadeOutRoutine to be stacked
     public void StopAudio()
     {
-        if (!audioSrc.isPlaying || fadeSoundRoutine != null) return;
+        if (!blockAudioSource.isPlaying || fadeSoundRoutine != null) return;
         
-        fadeSoundRoutine = StartCoroutine(audioSrc.FadeOutSound());
+        fadeSoundRoutine = StartCoroutine(blockAudioSource.FadeOutSound());
         StartCoroutine(ClearFadeSoundRoutine());
     }
 
