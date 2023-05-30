@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0015460165, g: 0.0030376255, b: 0.007010488, a: 1}
+  m_IndirectSpecularColor: {r: 0.003204829, g: 0.0063439845, b: 0.014498586, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9667,6 +9667,11 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 70.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3311040131529344700, guid: b2d225d6d6e92814798742e6591c5ca1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5535001361095605455, guid: b2d225d6d6e92814798742e6591c5ca1,
         type: 3}
       propertyPath: m_RootOrder
@@ -9732,6 +9737,11 @@ PrefabInstance:
       propertyPath: dialogueController
       value: 
       objectReference: {fileID: 564083557}
+    - target: {fileID: 6049368186827562832, guid: b2d225d6d6e92814798742e6591c5ca1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d225d6d6e92814798742e6591c5ca1, type: 3}
 --- !u!1 &6822924341257058414 stripped

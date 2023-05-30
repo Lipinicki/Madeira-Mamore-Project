@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Quarto_Fala 15
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterPortrait: {fileID: 21300000, guid: a8192a12f7461d64994b4d376527004c, type: 3}
   characterName: Humberto
-  speechText: "Adeus, Joana... Conduzirei, pela \xFAltima vez, todos para um verdadeiro
+  speechText: "Adeus, Joanna... Conduzirei, pela \xFAltima vez, todos para um verdadeiro
     lugar de descanso..."
   hasAudio: 1
   speechAudio: {fileID: 8300000, guid: ca322a68ffb26f14897bcef77d6d0b13, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Quarto_Fala 3
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterPortrait: {fileID: 21300000, guid: a8192a12f7461d64994b4d376527004c, type: 3}
   characterName: Humberto
   speechText: "Prazer, eu me chamo <wiggle a=0.2 f=0.5><b>Humberto</b></wiggle>.
     Fui eu quem lhe trouxe para este lugar... para que algu\xE9m pudesse contar a

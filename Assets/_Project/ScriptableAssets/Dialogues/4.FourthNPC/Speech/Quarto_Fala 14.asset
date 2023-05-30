@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4712940570b934db8e022ab22bd4c0, type: 3}
   m_Name: Quarto_Fala 14
   m_EditorClassIdentifier: 
-  characterPortrait: {fileID: 21300000, guid: d1e8a3f87a9132a46a9d18968727bb6f, type: 3}
+  characterPortrait: {fileID: 21300000, guid: a8192a12f7461d64994b4d376527004c, type: 3}
   characterName: Humberto
   speechText: Eu sabia que havia selecionado a pessoa certa.
   hasAudio: 0
