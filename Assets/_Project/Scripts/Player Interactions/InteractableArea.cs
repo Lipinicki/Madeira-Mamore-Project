@@ -30,7 +30,7 @@ public class InteractableArea : MonoBehaviour, IInteractable
 		CollectableItemBehaviour.onCollectedEvent -= OnCollection;
 	}
 
-	public void OnTriggerEnter(Collider other)
+	public void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.CompareTag(kInteractable))
 		{
