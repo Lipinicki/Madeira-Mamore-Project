@@ -9,6 +9,7 @@ public class PuzzleLever : MonoBehaviour, IInteractable
 
 	[SerializeField] private MeshRenderer visualState;
 	[SerializeField] private Animator leverAnimator;
+	[SerializeField] private AudioSource leverAudio;
 
 	private int ID;
 	private bool active;
@@ -26,6 +27,7 @@ public class PuzzleLever : MonoBehaviour, IInteractable
 		OnLeverInteraction?.Invoke(ID);
 
 		leverAnimator?.SetTrigger(rLeverActivate);
+		leverAudio?.Play();
 	}
 
 	// Made so de state could be initialized as some inputed combination

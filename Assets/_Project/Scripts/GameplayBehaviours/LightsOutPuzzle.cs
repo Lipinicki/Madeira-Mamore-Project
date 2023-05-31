@@ -7,8 +7,14 @@ public class LightsOutPuzzle : MonoBehaviour
     [SerializeField] private List<PuzzleLever> levers = new List<PuzzleLever>();
 	[SerializeField] private List<bool> initialCombination = new List<bool>();
 
-    [SerializeField] private Material disabledMaterial;
+	[Space(15)]
+	[SerializeField] private InteractableEventBehaviour CompletionLock;
+	[SerializeField] private MeshRenderer CompletionVisual;
+
+	[Space(15)]
+	[SerializeField] private Material disabledMaterial;
     [SerializeField] private Material enabledMaterial;
+	[SerializeField] private Material completedMaterial;
 
 	private void OnEnable()
 	{
@@ -19,6 +25,8 @@ public class LightsOutPuzzle : MonoBehaviour
 			levers[i].Initialize(initialCombination[i], initialMaterial, i);
 			levers[i].OnLeverInteraction += OnActivation;
 		}
+
+		HandleCompletion();
 	}
 
 	private void OnDisable()
@@ -27,6 +35,18 @@ public class LightsOutPuzzle : MonoBehaviour
 		{
 			levers[i].OnLeverInteraction -= OnActivation;
 		}
+	}
+
+	public bool IsComplete()
+	{
+		for (int i = 0; i < levers.Count; i++)
+		{
+			if (!levers[i].Active)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void OnActivation(int id)
@@ -42,6 +62,8 @@ public class LightsOutPuzzle : MonoBehaviour
 		{
 			ChangeLeverState(id + 1);
 		}
+
+		HandleCompletion();
 	}
 
 	private void ChangeLeverState(int id)
@@ -51,5 +73,14 @@ public class LightsOutPuzzle : MonoBehaviour
 		Material visualMat = levers[id].Active ? enabledMaterial : disabledMaterial;
 
 		levers[id].ChangeVisualState(visualMat);
+	}
+
+	private void HandleCompletion()
+	{
+		Material visualMat = IsComplete() ? completedMaterial : disabledMaterial;
+
+		CompletionVisual.material = visualMat;
+
+		CompletionLock.enabled = IsComplete();
 	}
 }

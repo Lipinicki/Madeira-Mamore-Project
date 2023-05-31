@@ -12,6 +12,8 @@ public class InteractableEventBehaviour : MonoBehaviour, IInteractable
 
 	void IInteractable.Interact()
 	{
+		if (!enabled) return;
+
 		OnInteractEvent?.Invoke();
 	}
 
