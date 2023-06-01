@@ -1773,6 +1773,12 @@ namespace Febucci.UI
 
         private void Update()
         {
+            //PROVISORY
+            if (tmproText.text == null)
+            {
+                tmproText.text = string.Empty;
+            }
+
             //TMPRO's text changed, setting the text again
             if (!tmproText.text.Equals(text))
             {

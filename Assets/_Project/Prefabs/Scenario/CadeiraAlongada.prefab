@@ -405,9 +405,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8458733514073793280, guid: c445230f39913f54dad8007233ae34e1,
         type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8458733514073793280, guid: c445230f39913f54dad8007233ae34e1,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dc917ff11713fb644bda17faf20bf3d7, type: 2}
+    - target: {fileID: -5374763806020595101, guid: c445230f39913f54dad8007233ae34e1,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5374763806020595101, guid: c445230f39913f54dad8007233ae34e1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -417,6 +427,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cadeira_trem01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885943709839360835, guid: c445230f39913f54dad8007233ae34e1,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4885943709839360835, guid: c445230f39913f54dad8007233ae34e1,
         type: 3}

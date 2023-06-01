@@ -15,17 +15,17 @@ MonoBehaviour:
   speechList:
   - {fileID: 11400000, guid: cc074300d2037f142bc0ef37b05f8fb4, type: 2}
   - {fileID: 11400000, guid: 4505629ed2d442c49b7c233b367ee818, type: 2}
-  - {fileID: 11400000, guid: 01fadf6ebc69dbc4aa00e220a4fead7b, type: 2}
   - {fileID: 11400000, guid: 114bf0d044651b3429de3855c433b1e6, type: 2}
   - {fileID: 11400000, guid: 3e2d42d4b989c5c4f9edd5e17c57811e, type: 2}
   - {fileID: 11400000, guid: 5d1a292c19a997f4cb0b1c0d35392b79, type: 2}
-  - {fileID: 11400000, guid: d748c7990de077347830f9376b83629c, type: 2}
   - {fileID: 11400000, guid: a991029435be3004cb683828c939ab14, type: 2}
-  - {fileID: 11400000, guid: 3252a72d36e4a6d4cb5748f7d5b4aeaf, type: 2}
+  - {fileID: 11400000, guid: d748c7990de077347830f9376b83629c, type: 2}
+  - {fileID: 11400000, guid: 0fc0e460bc1539b44918cb2429418576, type: 2}
+  - {fileID: 11400000, guid: 3739007cfa360e343919d9ebf93d7106, type: 2}
   - {fileID: 11400000, guid: 87453ca3dd315cb4289f73626518965a, type: 2}
   - {fileID: 11400000, guid: f948146e559a82d46b11a217d3998490, type: 2}
-  - {fileID: 11400000, guid: 3d0c193180dcb3a439194afd040582d4, type: 2}
-  - {fileID: 11400000, guid: 01a9f26fba0e50e46a90b96c1b4f8666, type: 2}
+  - {fileID: 11400000, guid: cecac45c645cb7c4d88cc0bb822e8ee2, type: 2}
+  - {fileID: 11400000, guid: 5b585162700313546aceb967b1c15d2c, type: 2}
   - {fileID: 11400000, guid: 22b5290aa334c37428d8cb5906ff1b95, type: 2}
   - {fileID: 11400000, guid: ae10680e0cca6674ab794faf80e2d066, type: 2}
   - {fileID: 11400000, guid: 866ef1bfb00f97b4bac5d161eab0804e, type: 2}
