@@ -3516,7 +3516,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 420205812}
-  m_RootOrder: 57
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!23 &136469378
 MeshRenderer:
@@ -5584,8 +5584,8 @@ Transform:
   - {fileID: 297598620}
   - {fileID: 958578097}
   - {fileID: 908379729}
-  - {fileID: 680415984}
   - {fileID: 136469377}
+  - {fileID: 680415984}
   - {fileID: 435710310}
   - {fileID: 8686548385790830339}
   - {fileID: 1085527390}
@@ -5599,6 +5599,7 @@ Transform:
   - {fileID: 728511664}
   - {fileID: 119863189}
   - {fileID: 1297865242}
+  - {fileID: 1189158632}
   - {fileID: 276037536}
   - {fileID: 1407186793}
   - {fileID: 737949992}
@@ -5608,18 +5609,17 @@ Transform:
   - {fileID: 106740905}
   - {fileID: 591844630}
   - {fileID: 1447418580}
-  - {fileID: 1189158632}
+  - {fileID: 1303981722}
   - {fileID: 14342417}
   - {fileID: 2062285464}
   - {fileID: 489491310}
   - {fileID: 174790162}
   - {fileID: 1804273077}
-  - {fileID: 1303981722}
   - {fileID: 694882914}
   - {fileID: 429632302}
+  - {fileID: 883535686}
   - {fileID: 1608672587}
   - {fileID: 753247053}
-  - {fileID: 883535686}
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9020,7 +9020,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 420205812}
-  m_RootOrder: 91
+  m_RootOrder: 89
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!65 &883535687
 BoxCollider:
@@ -10750,11 +10750,6 @@ PrefabInstance:
       propertyPath: startingDrag
       value: 0.45
       objectReference: {fileID: 0}
-    - target: {fileID: 1869405802564442559, guid: adf144d77b270794c8c4a65bf5218328,
-        type: 3}
-      propertyPath: footStepsDelay
-      value: 0.65
-      objectReference: {fileID: 0}
     - target: {fileID: 3788120389734674053, guid: adf144d77b270794c8c4a65bf5218328,
         type: 3}
       propertyPath: m_Name
@@ -10880,7 +10875,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 420205812}
-  m_RootOrder: 80
+  m_RootOrder: 71
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!65 &1189158633
 BoxCollider:
@@ -11274,7 +11269,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 420205812}
-  m_RootOrder: 86
+  m_RootOrder: 81
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!65 &1303981723
 BoxCollider:

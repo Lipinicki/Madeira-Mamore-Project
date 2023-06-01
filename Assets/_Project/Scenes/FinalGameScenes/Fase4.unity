@@ -361,6 +361,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1995171393327000023, guid: 2844d5558294dbb49a878b64f28c03db,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -701,6 +711,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.379
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.391
       objectReference: {fileID: 0}
     - target: {fileID: 1995171393327000023, guid: 2844d5558294dbb49a878b64f28c03db,
         type: 3}
@@ -1473,7 +1493,7 @@ PrefabInstance:
     - target: {fileID: 1145797000751115831, guid: cd921973df04a2f448a0dfffbc802ec4,
         type: 3}
       propertyPath: cameras.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1145797000751115831, guid: cd921973df04a2f448a0dfffbc802ec4,
         type: 3}
@@ -3193,7 +3213,7 @@ Transform:
   m_Children:
   - {fileID: 1535931603}
   m_Father: {fileID: 6454100741811393279}
-  m_RootOrder: 44
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &680439686
 PrefabInstance:
@@ -3521,6 +3541,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.328
       objectReference: {fileID: 0}
     - target: {fileID: 1995171393327000023, guid: 2844d5558294dbb49a878b64f28c03db,
         type: 3}
@@ -4916,6 +4946,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689179843414305103, guid: 2844d5558294dbb49a878b64f28c03db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.279
       objectReference: {fileID: 0}
     - target: {fileID: 1995171393327000023, guid: 2844d5558294dbb49a878b64f28c03db,
         type: 3}
@@ -6617,7 +6662,7 @@ Transform:
   m_Children:
   - {fileID: 127337290}
   m_Father: {fileID: 6454100741811393279}
-  m_RootOrder: 38
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1602508470
 GameObject:
@@ -9081,7 +9126,7 @@ Transform:
   m_Children:
   - {fileID: 1007730796}
   m_Father: {fileID: 6454100741811393279}
-  m_RootOrder: 45
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &2070049828
 PrefabInstance:
@@ -10220,6 +10265,7 @@ Transform:
   - {fileID: 1812602071}
   - {fileID: 6454100740955043696}
   - {fileID: 1343324342}
+  - {fileID: 1601013824}
   - {fileID: 6454100740941859847}
   - {fileID: 6454100740004956847}
   - {fileID: 1497978343}
@@ -10236,6 +10282,7 @@ Transform:
   - {fileID: 6454100741497927496}
   - {fileID: 1666055}
   - {fileID: 6454100740301816357}
+  - {fileID: 671383969}
   - {fileID: 327032841}
   - {fileID: 1869675236}
   - {fileID: 6454100740960455836}
@@ -10250,14 +10297,12 @@ Transform:
   - {fileID: 1638506467}
   - {fileID: 6454100741400887830}
   - {fileID: 680439687}
-  - {fileID: 1601013824}
+  - {fileID: 2064405679}
   - {fileID: 1720333244}
   - {fileID: 617461031}
   - {fileID: 805167392}
   - {fileID: 2021897469}
   - {fileID: 692563542}
-  - {fileID: 671383969}
-  - {fileID: 2064405679}
   - {fileID: 519134756}
   - {fileID: 1076640918}
   - {fileID: 2047522742}

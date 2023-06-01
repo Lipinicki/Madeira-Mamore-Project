@@ -1060,57 +1060,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: 85fef3c7dd8a14049b8d9ae1eb58d766,
-        type: 2}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Raise
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: DisableAllInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PlayerInput, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473115875136728055, guid: 04983ed6573da1c44995e7e22a45c2bc,
-        type: 3}
-      propertyPath: MenuCancel.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 3473115875136728063, guid: 04983ed6573da1c44995e7e22a45c2bc,
         type: 3}
       propertyPath: m_Name
@@ -1190,6 +1139,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809366032547281177, guid: 04983ed6573da1c44995e7e22a45c2bc,
+        type: 3}
+      propertyPath: m_text
+      value: Obrigado por jogar!
       objectReference: {fileID: 0}
     - target: {fileID: 5809366032767604769, guid: 04983ed6573da1c44995e7e22a45c2bc,
         type: 3}
