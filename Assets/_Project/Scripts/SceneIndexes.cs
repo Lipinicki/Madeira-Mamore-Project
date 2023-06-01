@@ -10,5 +10,6 @@ public enum SceneIndexes
 	Fase2 = 3,
 	Fase3 = 4,
 	Fase4 = 5,
-	Credits = 6,
+	Fase5 = 6,
+	Credits = 7
 }

@@ -24,7 +24,7 @@ public class PuzzleLever : MonoBehaviour, IInteractable
 
 		isInteracting = true;
 
-		OnLeverInteraction?.Invoke(ID);
+		OnLeverInteraction?.Invoke(ID);	
 
 		leverAnimator?.SetTrigger(rLeverActivate);
 		leverAudio?.Play();
@@ -50,7 +50,7 @@ public class PuzzleLever : MonoBehaviour, IInteractable
 		visualState.material = visualStateMat;
 	}
 
-	public void SetIdle()
+	public void ResetInteraction()
 	{
 		leverAnimator?.SetTrigger(rLeverIdle);
 		isInteracting = false;

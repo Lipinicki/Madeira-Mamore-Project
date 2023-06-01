@@ -556,7 +556,6 @@ GameObject:
   - component: {fileID: 6975786764390512851}
   - component: {fileID: 6975786764390512848}
   - component: {fileID: 6975786764390512849}
-  - component: {fileID: 6975786764390512942}
   m_Layer: 5
   m_Name: ItensInfoPresenter
   m_TagString: Untagged
@@ -679,19 +678,6 @@ MonoBehaviour:
   Name: {fileID: 0}
   Text: {fileID: 0}
   image: {fileID: 6975786765002113108}
---- !u!114 &6975786764390512942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6975786764390512940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!1 &6975786765002113106
 GameObject:
   m_ObjectHideFlags: 0
