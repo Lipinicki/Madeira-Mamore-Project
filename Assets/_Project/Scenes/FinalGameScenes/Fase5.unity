@@ -1793,7 +1793,7 @@ PrefabInstance:
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.076042
+      value: 7.4691815
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
@@ -1803,27 +1803,27 @@ PrefabInstance:
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.30555
+      value: 6.559312
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.24461187
+      value: 0.45540255
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09542048
+      value: 0.11536053
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.89893985
+      value: 0.8557506
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.35066685
+      value: -0.2167749
       objectReference: {fileID: 0}
     - target: {fileID: 6998811624033865759, guid: 9d6e82f723d7cf74b880ab369a59c20b,
         type: 3}
@@ -2680,7 +2680,7 @@ MonoBehaviour:
     roll: 0
   - position: {x: -4.236783, y: 0.79736805, z: -4.9111724}
     roll: 0
-  - position: {x: 7.076042, y: 0.79736805, z: -5.8944497}
+  - position: {x: 1.4691815, y: 0.79736805, z: -5.640688}
     roll: 0
 --- !u!4 &539670087
 Transform:
@@ -6986,8 +6986,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990756875}
-  m_LocalRotation: {x: 0.09542048, y: 0.89893985, z: -0.35066685, w: 0.24461187}
-  m_LocalPosition: {x: 13.076042, y: 11.157368, z: 6.30555}
+  m_LocalRotation: {x: 0.11536053, y: 0.8557506, z: -0.2167749, w: 0.45540255}
+  m_LocalPosition: {x: 7.4691815, y: 11.157368, z: 6.559312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
