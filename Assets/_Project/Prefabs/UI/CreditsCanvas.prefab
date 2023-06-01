@@ -157,6 +157,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  SubmitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3473115875136728054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1446,7 +1449,7 @@ PrefabInstance:
     - target: {fileID: 6966505520160375257, guid: 616ad9a32f0f63c4693876bcafe274cb,
         type: 3}
       propertyPath: m_text
-      value: "Andr\xE9 Bueno\nWagner Costa\nAgostinho Felipe"
+      value: "Andr\xE9 Bueno\nWagner Costa\nAgostinho Felipe\nGustavo Mondini"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616ad9a32f0f63c4693876bcafe274cb, type: 3}
@@ -1768,7 +1771,7 @@ PrefabInstance:
     - target: {fileID: 6966505520156862921, guid: 616ad9a32f0f63c4693876bcafe274cb,
         type: 3}
       propertyPath: m_Name
-      value: Gane Name
+      value: Game Name
       objectReference: {fileID: 0}
     - target: {fileID: 6966505520156862922, guid: 616ad9a32f0f63c4693876bcafe274cb,
         type: 3}
