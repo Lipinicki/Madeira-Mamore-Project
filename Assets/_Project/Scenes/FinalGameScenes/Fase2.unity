@@ -1873,7 +1873,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &355752954
 Transform:
@@ -3545,7 +3545,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &580027471
 Transform:
@@ -3730,7 +3730,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &598870838
 Transform:
@@ -4852,7 +4852,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &697586993
 Transform:
@@ -7701,7 +7701,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &1189664877
 Transform:
@@ -10908,6 +10908,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 269027244010642875, guid: 4632ad91cac59884cb897cc75dcb9371,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 330976992850554373, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -11578,6 +11583,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 30.472
       objectReference: {fileID: 0}
+    - target: {fileID: 4158214015760192473, guid: 4632ad91cac59884cb897cc75dcb9371,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4320591822485436271, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -11709,6 +11719,11 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4757734244642039257, guid: 4632ad91cac59884cb897cc75dcb9371,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818211052375160694, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -12106,7 +12121,7 @@ PrefabInstance:
     - target: {fileID: 6362894701304573337, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_Range
-      value: 4.9933915
+      value: 8.252729
       objectReference: {fileID: 0}
     - target: {fileID: 6362894701304573337, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
@@ -12126,17 +12141,22 @@ PrefabInstance:
     - target: {fileID: 6362894701304573337, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_Intensity
-      value: 63.95
+      value: 48.5
       objectReference: {fileID: 0}
     - target: {fileID: 6362894701304573337, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_SpotAngle
-      value: 49.250294
+      value: 85.077995
       objectReference: {fileID: 0}
     - target: {fileID: 6362894701304573337, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_Lightmapping
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6362894701304573337, guid: 4632ad91cac59884cb897cc75dcb9371,
+        type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6362894701304573337, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
@@ -12383,12 +12403,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.347
       objectReference: {fileID: 0}
+    - target: {fileID: 8596555631949741516, guid: 4632ad91cac59884cb897cc75dcb9371,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8596685455706236396, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8619716811892378292, guid: 4632ad91cac59884cb897cc75dcb9371,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649072168276614572, guid: 4632ad91cac59884cb897cc75dcb9371,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -12466,7 +12496,7 @@ PrefabInstance:
     - target: {fileID: 5783055571082986121, guid: c4726697afe93ce43a26163572b5d2f1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 5783055571082986121, guid: c4726697afe93ce43a26163572b5d2f1,
         type: 3}
@@ -13847,10 +13877,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6c8de996acf7f814d9400e2de31d97f4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc45e2d46aad4ec4caddd3974497e369, type: 2}
     - target: {fileID: 919132149155446097, guid: 6c8de996acf7f814d9400e2de31d97f4,
         type: 3}
       propertyPath: m_Name
       value: Chapeu_cozinha
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c8de996acf7f814d9400e2de31d97f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c8de996acf7f814d9400e2de31d97f4, type: 3}
@@ -24522,7 +24562,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -25205,7 +25245,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7088089551105695811
 Transform:

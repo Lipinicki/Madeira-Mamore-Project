@@ -815,7 +815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Bixo burro, pede comida local e reclama que t\xE1 local demais..."
+  m_text: '      '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f3a4dee7d2279294786c5636c2a4f4c5, type: 2}
   m_sharedMaterial: {fileID: -8412114043693430463, guid: f3a4dee7d2279294786c5636c2a4f4c5,
