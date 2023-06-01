@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3827455162487040439}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: train small seat full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,6 +40,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3827455162487040439}
     m_Modifications:
+    - target: {fileID: 2553002158758480749, guid: 0b3b72612afdda542bacb0d018f1593d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853394467765993851, guid: 0b3b72612afdda542bacb0d018f1593d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3706037981641976505, guid: 0b3b72612afdda542bacb0d018f1593d,
         type: 3}
       propertyPath: m_RootOrder
@@ -100,6 +110,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: train small seat borders
       objectReference: {fileID: 0}
+    - target: {fileID: 3706037981641976506, guid: 0b3b72612afdda542bacb0d018f1593d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615046157264534372, guid: 0b3b72612afdda542bacb0d018f1593d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636446485960137138, guid: 0b3b72612afdda542bacb0d018f1593d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b3b72612afdda542bacb0d018f1593d, type: 3}
 --- !u!4 &2394745566973988872 stripped
@@ -115,6 +140,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3827455162487040439}
     m_Modifications:
+    - target: {fileID: 1164170271483557226, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208661739529254192, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6695507514513753024, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e,
         type: 3}
       propertyPath: m_RootOrder
@@ -128,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 6695507514513753024, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.427
       objectReference: {fileID: 0}
     - target: {fileID: 6695507514513753024, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e,
         type: 3}
@@ -174,6 +209,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: train small seat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695507514513753025, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293065963528075077, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4566ae5b3e7790d4a8d9cd5ea186d64e, type: 3}

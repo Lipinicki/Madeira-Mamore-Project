@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28672680434376795}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: train large seat full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: train seat side end
       objectReference: {fileID: 0}
+    - target: {fileID: 7663346795657287782, guid: b1436afd65b9151469012b95977e73cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1436afd65b9151469012b95977e73cd, type: 3}
 --- !u!4 &8408229762428576319 stripped
@@ -176,6 +181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: train seat side end (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7663346795657287782, guid: b1436afd65b9151469012b95977e73cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1436afd65b9151469012b95977e73cd, type: 3}
 --- !u!4 &5149926959431001730 stripped
@@ -191,6 +201,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 28672680434376795}
     m_Modifications:
+    - target: {fileID: 682932633124188560, guid: 48b626edf363a1a4fb8e965ad0a7555b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1749925005752016608, guid: 48b626edf363a1a4fb8e965ad0a7555b,
         type: 3}
       propertyPath: m_RootOrder
@@ -204,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 1749925005752016608, guid: 48b626edf363a1a4fb8e965ad0a7555b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 1749925005752016608, guid: 48b626edf363a1a4fb8e965ad0a7555b,
         type: 3}
@@ -250,6 +265,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: train large seat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749925005752016609, guid: 48b626edf363a1a4fb8e965ad0a7555b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197677513593454383, guid: 48b626edf363a1a4fb8e965ad0a7555b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398409632723094248, guid: 48b626edf363a1a4fb8e965ad0a7555b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b626edf363a1a4fb8e965ad0a7555b, type: 3}
