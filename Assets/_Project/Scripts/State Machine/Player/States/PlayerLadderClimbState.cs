@@ -36,34 +36,13 @@ public class PlayerLadderClimbState : PlayerBaseState
 	public override void FixedTick(float fixedDeltaTime)
 	{
 		HandleLadderClimb(fixedDeltaTime);
-		ClampsHorizontalVelocity();
+		ClampsHorizontalVelocity(0f);
 	}
 
 	public override void Tick(float deltaTime)
 	{
 		CheckForLadder();
 		SetupAnimation(deltaTime);
-	}
-
-	private void CheckForLadder()
-	{
-		Ray ray = new Ray(
-					new Vector3(
-					_ctx.transform.position.x,
-					_ctx.transform.position.y + _ctx.RayCastOffset,
-					_ctx.transform.position.z
-					),
-					_ctx.transform.forward
-					);
-
-		if (Physics.Raycast(ray, out RaycastHit hit, _ctx.RayCastMaxDistance, _ctx.LadderLayers, QueryTriggerInteraction.Ignore))
-		{
-			_ctx.ActiveLadder = hit.transform;
-		}
-		else
-		{
-			_ctx.ActiveLadder = null;
-		}
 	}
 
 	public override void Exit()
@@ -105,16 +84,6 @@ public class PlayerLadderClimbState : PlayerBaseState
 			_ctx.MainAnimator.SetFloat(r_ClimbingAnimationParam, zValue, k_AnimatorDampTime, deltaTime);
 		}
 		
-	}
-
-	private void ClampsHorizontalVelocity()
-	{
-		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
-
-		xzVel = Vector3.ClampMagnitude(xzVel, 0);
-
-		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
 	private void ApplyForceToLeft(Vector3 force)

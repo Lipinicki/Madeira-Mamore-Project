@@ -51,8 +51,11 @@ public class PlayerStateMachine : StateMachine
 		SerializeField, Tooltip("Speed of players movement")]
 	public float MovementSpeed { get; private set; } = 17f;
 
+	[field: SerializeField, Tooltip("Clamps the player's Walk velocity")]
+	public float MaxWalkSpeed { get; private set; } = 2.3f;
+
 	[field: SerializeField, Tooltip("Used to clamp horizontal speed to prevent player walking fast")]
-	public float MaxHorizontalSpeed { get; private set; } = 2.5f;
+	public float MaxHorizontalSpeed { get; private set; } = 4f;
 
 	[field: SerializeField, Tooltip("Used to clamp player's vertical speed to prevent high fall speeds")]
 	public float MaxVerticalSpeed { get; private set; } = 50f;

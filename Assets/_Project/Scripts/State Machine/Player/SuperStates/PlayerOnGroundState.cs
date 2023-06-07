@@ -24,7 +24,7 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 		}
 
 		_ctx.ApplyGravity();
-		ClampsVerticalVelocity();
+		ClampsVerticalVelocity(_ctx.MaxVerticalSpeed);
 	}
 
 	public override void Tick(float deltaTime)
@@ -36,39 +36,6 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 	{
 		_ctx.PlayerInput.jumpEvent -= OnJump;
 		_ctx.PlayerInput.interactEvent -= OnInteract;
-	}
-
-	private bool CheckForLadder()
-	{
-		Ray ray = new Ray(
-					new Vector3(
-					_ctx.transform.position.x,
-					_ctx.transform.position.y + _ctx.RayCastOffset,
-					_ctx.transform.position.z
-					),
-					_ctx.transform.forward
-					);
-
-		if (Physics.Raycast(ray, out RaycastHit hit, _ctx.RayCastMaxDistance, _ctx.LadderLayers, QueryTriggerInteraction.Ignore))
-		{
-			_ctx.ActiveLadder = hit.transform;
-			return true;
-		}
-		else
-		{
-			_ctx.ActiveLadder = null;
-			return false;
-		}
-	}
-
-	private void ClampsVerticalVelocity()
-	{
-		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
-
-		yVel = Vector3.ClampMagnitude(yVel, _ctx.MaxVerticalSpeed);
-
-		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
 	protected void OnJump()
@@ -105,14 +72,5 @@ public abstract class PlayerOnGroundState : PlayerBaseState
 			if (_ctx.ActiveBlock == null) return;
 			_ctx.SwitchCurrentState(new PlayerPushingState(_ctx));
 		}
-	}
-
-	public void SetupActiveBlock(Transform t)
-	{
-		BasicPullPushBlock block = t.GetComponent<BasicPullPushBlock>();
-		float blockDepth = block.MainCollider.bounds.size.z;
-		
-		_ctx.MaxInteractionDistance = blockDepth;
-		_ctx.ActiveBlock = block;
 	}
 }

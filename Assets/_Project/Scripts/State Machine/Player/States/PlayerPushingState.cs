@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerPushingState : PlayerOnGroundState
 {
 	private BasicPullPushBlock ActiveBlock = null; // WARNING: this can leads to cache invalidation, maybe try using _ctx reference
+	private float reducedMovespeed;
 
 	private readonly int r_PushHorizontalAnimationParam = Animator.StringToHash("PushHorizontalSpeed");
 	private readonly int r_PushVerticalAnimationParam = Animator.StringToHash("PushVerticalSpeed");
@@ -15,6 +16,7 @@ public class PlayerPushingState : PlayerOnGroundState
 
 	public PlayerPushingState(PlayerStateMachine stateMachine) : base(stateMachine)
 	{
+		reducedMovespeed = _ctx.MovementSpeed * 0.55f;
 	}
 
 	public override void Enter()
@@ -45,7 +47,8 @@ public class PlayerPushingState : PlayerOnGroundState
 	public override void FixedTick(float fixedDeltaTime)
 	{
 		UpdateBlockPosition(fixedDeltaTime);
-		MovePlayer();
+		MovePlayer(reducedMovespeed);
+		ClampsHorizontalVelocity(_ctx.MaxHorizontalSpeed);
 		
 		base.FixedTick(fixedDeltaTime);
 		
@@ -93,28 +96,6 @@ public class PlayerPushingState : PlayerOnGroundState
 		// moves the block based on the player velocity
 		ActiveBlock.MainRigidBody.velocity = _ctx.MainRigidbody.velocity;
 		ActiveBlock.PlayAudio();
-	}
-
-	// Function used to move player inside this state
-	private void MovePlayer()
-	{
-		float reducedMovespeed = _ctx.MovementSpeed * 0.55f;
-		_ctx.MovementVector = _ctx.InputVector.normalized * reducedMovespeed;
-
-		//Moves the player
-		_ctx.MainRigidbody.AddForce(_ctx.MovementVector * _ctx.MainRigidbody.mass, ForceMode.Force);
-		ClampsHorizontalVelocity();
-	}
-
-	// Clamps velocity so the player don't go faster when moving on diagonals
-	private void ClampsHorizontalVelocity()
-	{
-		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
-
-		xzVel = Vector3.ClampMagnitude(xzVel, _ctx.MaxHorizontalSpeed);
-
-		_ctx.MainRigidbody.velocity = xzVel + yVel;
 	}
 
 	// Release the block and switch states

@@ -765,7 +765,7 @@ MonoBehaviour:
   sceneData: {fileID: 11400000, guid: 92133afdd67654d4a963892e1e382e6a, type: 2}
   onStartTitleScreen: {fileID: 11400000, guid: 4b930d2acd538484499a4a78e7a7d8f5, type: 2}
   fadeInSreen: {fileID: 1859903407700291395}
-  startWithTitleScreen: 1
+  startWithTitleScreen: 0
   fadeOnStart: 0
   playerInput: {fileID: 11400000, guid: 85fef3c7dd8a14049b8d9ae1eb58d766, type: 2}
   activatePlayerInputEvent:
@@ -1103,6 +1103,16 @@ PrefabInstance:
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 1814176369}
+    - target: {fileID: 1859903408327047275, guid: 573291db51de376498d47e3250a785ed,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859903408327047275, guid: 573291db51de376498d47e3250a785ed,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1859903408406100849, guid: 573291db51de376498d47e3250a785ed,
         type: 3}
       propertyPath: m_Name
@@ -1111,7 +1121,7 @@ PrefabInstance:
     - target: {fileID: 1859903408406100849, guid: 573291db51de376498d47e3250a785ed,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1859903408406100852, guid: 573291db51de376498d47e3250a785ed,
         type: 3}

@@ -15,6 +15,8 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 	public UnityAction jumpCanceledEvent;
 	public UnityAction interactEvent;
 	public UnityAction pauseEvent;
+	public UnityAction runEvent;
+	public UnityAction runCanceledEvent;
 	public UnityAction<Vector2> moveEvent;
 	public UnityAction<Vector2> cameraLookEvent;
 
@@ -73,6 +75,10 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 		gameControls.Menus.Disable();
 	}
 
+	/*
+	 * Player
+	 */
+
 	public void OnCrouch(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Started)
@@ -115,6 +121,15 @@ public class PlayerInput : ScriptableObject, GameControls.IPlayerActions, GameCo
 	{
 		if (context.phase == InputActionPhase.Started)
 			pauseEvent?.Invoke();
+	}
+
+	public void OnRun(InputAction.CallbackContext context)
+	{
+		if (context.phase == InputActionPhase.Performed)
+			runEvent?.Invoke();
+
+		if (context.phase == InputActionPhase.Canceled)
+			runCanceledEvent?.Invoke();	
 	}
 
 	/*

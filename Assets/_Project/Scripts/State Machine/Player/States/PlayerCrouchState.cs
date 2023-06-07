@@ -42,8 +42,9 @@ public class PlayerCrouchState : PlayerOnGroundState
 	{
 		base.FixedTick(fixedDeltaTime);
 
-		MovePlayer();
-		RotatePlayer();
+		MovePlayer(_ctx.MovementSpeed);
+		ClampsHorizontalVelocity(_ctx.MaxHorizontalSpeed);
+		RotatePlayerToForward();
 
 		// If the player is not crouching anymore, them release it
 		if (isReleasing)
@@ -104,40 +105,6 @@ public class PlayerCrouchState : PlayerOnGroundState
 	{
 		Vector3 raycastOrigin = _ctx.transform.position + Vector3.up * (_ctx.PlayerCollider.height * 0.5f);
 		return !Physics.Raycast(raycastOrigin, Vector3.up, out var hit, _ctx.StandingHeight - crouchingHeight);
-	}
-
-	private void MovePlayer()
-	{
-		// Calculates Movement Vector based on input´s direction
-		_ctx.MovementVector = _ctx.InputVector * _ctx.MovementSpeed;
-
-		//Moves the player
-		_ctx.MainRigidbody.AddForce(_ctx.MovementVector * _ctx.MainRigidbody.mass, ForceMode.Force);
-		ClampsHorizontalVelocity();
-	}
-
-	private void RotatePlayer()
-	{
-		//Rotate to the movement direction
-		UpdateFowardOrientation(_ctx.MovementVector.normalized);
-	}
-
-	private void ClampsHorizontalVelocity()
-	{
-		Vector3 xzVel = new Vector3(_ctx.MainRigidbody.velocity.x, 0, _ctx.MainRigidbody.velocity.z);
-		Vector3 yVel = new Vector3(0, _ctx.MainRigidbody.velocity.y, 0);
-
-		xzVel = Vector3.ClampMagnitude(xzVel, _ctx.MaxHorizontalSpeed);
-
-		_ctx.MainRigidbody.velocity = xzVel + yVel;
-	}
-
-	void UpdateFowardOrientation(Vector3 directionVector)
-	{
-		if (directionVector == Vector3.zero) return;
-
-		Quaternion targetRotation = Quaternion.LookRotation(directionVector, Vector3.up);
-		_ctx.transform.rotation = Quaternion.Slerp(_ctx.transform.rotation, targetRotation, Time.fixedDeltaTime * _ctx.RotationSpeed);
 	}
 
 	private IEnumerator CrouchCoroutine(float targetHeight)

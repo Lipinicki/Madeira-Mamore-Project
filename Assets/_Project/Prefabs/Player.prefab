@@ -329,7 +329,7 @@ MonoBehaviour:
   <MaxHorizontalSpeed>k__BackingField: 4
   <MaxVerticalSpeed>k__BackingField: 50
   <RotationSpeed>k__BackingField: 12
-  startingDrag: 0.4
+  startingDrag: 0.45
   <JumpInputDuration>k__BackingField: 0.4
   <InitialJumpForce>k__BackingField: 10.65
   <GravityScale>k__BackingField: 5
